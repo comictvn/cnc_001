@@ -1,0 +1,580 @@
+<script type="text/javascript">
+
+function BrowseServer( startupPath, functionData )
+{
+	// You can use the "CKFinder" class to render CKFinder in a page:
+	var finder = new CKFinder();
+
+	// The path for the installation of CKFinder (default = "/ckfinder/").
+	finder.basePath = '../';
+
+	//Startup path in a form: "Type:/path/to/directory/"
+	finder.startupPath = startupPath;
+
+	// Name of a function which is called when a file is selected in CKFinder.
+	finder.selectActionFunction = SetFileField;
+
+	// Additional data to be passed to the selectActionFunction in a second argument.
+	// We'll use this feature to pass the Id of a field that will be updated.
+	finder.selectActionData = functionData;
+
+	// Name of a function which is called when a thumbnail is selected in CKFinder.
+	finder.selectActionFunction = ShowThumbnails;
+
+	// Launch CKFinder
+	finder.popup();
+}
+
+// This is a sample function which is called when a file is selected in CKFinder.
+function SetFileField( fileUrl, data )
+{
+	document.getElementById( data["selectActionData"] ).value = fileUrl;
+	return true;
+}
+
+// Thfis is a sample function which is called when a thumbnail is selected in CKFinder.
+function ShowThumbnails( fileUrl, data )
+{
+
+	// this = CKFinderAPI
+	var sFileName = this.getSelectedFile().name;
+	document.getElementById('thumbnails').innerHTML = '';
+	document.getElementById('thumbnails').innerHTML +=
+			
+			'<div class="thumb">' +
+				'<img src="' + fileUrl + '" />' +
+				'<div class="caption">' +
+					'<a href="' + data["fileUrl"] + '" target="_blank">' + sFileName + '</a> (' + data["fileSize"] + 'KB)' +
+				'</div>' +
+			'</div>';
+
+	
+	// It is not required to return any value.
+	// When false is returned, CKFinder will not close automatically.
+	document.getElementById( data["selectActionData"] ).value = fileUrl;
+	return true;
+}
+function BrowseServer1( startupPath, functionData )
+{
+	// You can use the "CKFinder" class to render CKFinder ian a page:
+	var finder = new CKFinder();
+
+	// The path for the installation of CKFinder (default = "/ckfinder/").
+	finder.basePath = '../';
+
+	//Startup path in a form: "Type:/path/to/directory/"
+	finder.startupPath = startupPath;
+
+	// Name of a function which is called when a file is selected in CKFinder.
+	finder.selectActionFunction = SetFileField1;
+
+	// Additional data to be passed to the selectActionFunction in a second argument.
+	// We'll use this feature to pass the Id of a field that will be updated.
+	finder.selectActionData = functionData;
+
+	// Name of a function which is called when a thumbnail is selected in CKFinder.
+	finder.selectActionFunction = ShowThumbnails1;
+
+	// Launch CKFinder
+	finder.popup();
+}
+
+// This is a sample function which is called when a file is selected in CKFinder.
+function SetFileField1( fileUrl, data )
+{
+	document.getElementById( data["selectActionData"] ).value = fileUrl;
+	return true;
+}
+
+// This is a sample function which is called when a thumbnail is selected in CKFinder.
+function ShowThumbnails1( fileUrl, data )
+{
+
+	// this = CKFinderAPI
+	var sFileName = this.getSelectedFile().name;
+	document.getElementById('uploader_v5_filelist').innerHTML +=
+		'<li><div class="widgetButtons">' +                        
+        '<div class="bb" id="boanh1">' +
+            '<a href="#" class="tipb" title="" data-original-title="Edit item" style="padding: 0">' +
+			'<div class="imgItem lm10 rm10" style=" position: relative; width: 110px; height: 110px;' + 
+			'background-image: url(' + "'" + fileUrl + "'" + '); background-size: cover; background-position: initial initial;' + 
+			'background-repeat: no-repeat no-repeat;">' +
+			'<div class="op trans" style="position: absolute; top: -10px; right: -10px; width: 25px; height: 25px;' + 
+			'cursor: pointer; border-radius: 25px;"></div></div>' +
+			'</a>' +
+			'<input type="hidden" name="imageshow[]" value="' + fileUrl + '" />'+
+            '<div class="caption red"><i class="icon-remove"></i></div>' +
+        '</div>' +
+        
+		'</div></li>';
+
+	// It is not required to return any value.
+	// When false is returned, CKFinder will not close automatically.
+	
+	return true;
+}
+$(document).on("click", ".icon-remove", function(){
+	$(this).closest(".plupload_filelist li").fadeOut(function(){$(this).remove();});
+	
+});
+</script>
+<?php echo $this->render('layout/bread.phtml')?>
+
+<div class="workplace">
+	<div class="page-header">
+		<h1>
+			Đăng <small>sản phẩm</small>
+		</h1>
+
+	</div>
+	<?php echo $this->render('layout/menusanpham.phtml')?>
+
+
+	<div class="row-fluid">
+	           <?php
+				$form = $this->form;
+				$form->setAttributes ( array (
+				'id' => 'validation' ) );
+				$form->setAttribute ( 'action', $this->url ( 'sanpham', array (
+				'action' => 'add' ) ) );
+				$form->prepare ();
+				echo $this->form ()->openTag ( $form );
+				?>
+			
+            <div class="span12">
+			<input type="hidden" name="id" />
+			<div class="head">
+				<div class="isw-list"></div>
+				<h1>Sản phẩm mới</h1>
+				<ul class="buttons">
+					<li><a href="#" class="isw-ok"></a></li>
+
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<div class="block-fluid tabs">
+
+				<ul>
+					<li><a href="#tabs-1">Thông tin sản phẩm</a></li>
+					<li><a href="#tabs-2">Chọn danh mục & nhà sản xuất</a></li>
+					<li><a href="#tabs-3">Hình ảnh</a></li>
+					<li><a href="#tabs-4">Mô tả</a></li>
+					<li><a href="#tabs-5">Thông số</a></li>
+					<li><a href="#tabs-6">Liên hệ</a></li>
+					<li><a href="#tabs-7">SEO</a></li>
+				</ul>
+
+
+
+				<div id="tabs-1">
+					<div class="block-fluid">
+
+
+						<div class="row-form">
+							<div class="span2">Mã sản phẩm (*) :</div>
+							<div class="span3"><?php echo $this->forminput($form->get('proid'))?> <span>Example:
+									ATN-101</span>
+							</div>
+							<div class="span2 offset1">Tên sản phẩm (*) :</div>
+							<div class="span3"><?php echo $this->forminput($form->get('proname'))?> <span>Example:
+									Laptop Dell Inprison 1152</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="row-form">
+							<div class="span2">Đường dẫn tối ưu (*) :</div>
+							<div class="span3"><?php echo $this->forminput($form->get('alias'))?> <span>Example:
+									lap-top-dell-inprison-1152</span>
+							</div>
+							<div class="span2 offset1">Thứ tự sắp xếp :</div>
+							<div class="span3"><?php echo $this->forminput($form->get('order'))?> <span>Example:
+									10</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="row-form">
+							<div class="span2">Giá sản phẩm (*) :</div>
+							<div class="span3"><?php echo $this->forminput($form->get('price'))?> <span>Example:
+									100.000 </span>
+							</div>
+							<div class="span2 offset1">Giá khuyến mãi :</div>
+							<div class="span3"><?php echo $this->forminput($form->get('pricesales'))?> <span>Example:
+									50.000 </span>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="row-form">
+							<div class="span2">Khuyến mãi từ ngày :</div>
+							<div class="span3"><?php echo $this->forminput($form->get('salesto'))?> <span>Example:
+									30/04/2014 </span>
+							</div>
+							<div class="span2 offset1">Khuyến mãi đến ngày :</div>
+							<div class="span3"><?php echo $this->forminput($form->get('salesfrom'))?> <span>Example:
+									01/05/2014 </span>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="row-form">
+							<div class="span2">VAT :</div>
+							<div class="span3">
+									<?php echo $this->formcheckbox($form->get('vat'))?>
+									<br /> <span>Example: Có/Không </span>
+							</div>
+							<div class="span2 offset1">Khu vực bán :</div>
+							<div class="span3">
+										<?php echo $this->formselect($form->get('district'))?>
+	
+									<span>Click chọn khu vực bán sản phẩm </span>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="row-form">
+							<div class="span2">Tag :</div>
+							<div class="span3"><?php echo $this->forminput($form->get('tag'))?> <span>
+									Nhập tag rồi nhấn nút " Tab " để nhập tab tiếp theo </span>
+							</div>
+							<div class="span2 offset1">Tình trạng :</div>
+							<div class="span3">
+										<?php echo $this->formselect($form->get('active'))?>
+
+									<span>Click chọn tình trạng sản phẩm </span>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="row-form">
+							<div class="span2">Video :</div>
+							<div class="span3"><?php echo $this->forminput($form->get('video'))?> <span>
+									Nhập đường link từ youtube </span>
+							</div>
+							<div class="span2 offset1">Số lượng sản phẩm :</div>
+							<div class="span3">
+										<?php echo $this->forminput($form->get('quantity'))?>
+
+									<span>Click chọn tình trạng sản phẩm </span>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="row-form">
+							<div class="span2">Sản phẩm mới :</div>
+							<div class="span1"><?php echo $this->formcheckbox($form->get('pronew'))?></div>
+							<div class="span2">Sản phẩm bán chạy :</div>
+							<div class="span1">
+									<?php echo $this->formcheckbox($form->get('proselling'))?>
+									</div>
+							<div class="span2">Sản phẩm sắp về :</div>
+							<div class="span1"><?php echo $this->formcheckbox($form->get('procomming'))?></div>
+							<div class="span2">Hiển thị trang chủ :</div>
+							<div class="span1"><?php echo $this->formcheckbox($form->get('proindex'))?></div>
+							<div class="clear"></div>
+						</div>
+
+					</div>
+				</div>
+
+				<div id="tabs-2">
+
+
+					<div class="block">
+						<div class="row-form">
+							<select multiple class="multiselect cate" id="fmultiselect"
+								name="cate[]">                                
+										<?php for($icate = 0; $icate < count($procate); $icate++) :?>
+											<option value="<?php echo $procate[$icate]['id'] ?>"><?php echo $procate[$icate]['name'] ?></option>
+										<?php endfor;?>
+									</select>
+
+							<div class="btn-group">
+								<button class="btn btn-mini" id="multiselect-selectAll"
+									type="button">Select All</button>
+								<button class="btn btn-mini" id="multiselect-deselectAll"
+									type="button">Deselect All</button>
+								<button class="btn btn-mini" id="multiselect-selectIndia"
+									type="button">Select India</button>
+							</div>
+						</div>
+
+						<div class="row-form">
+
+							<div class="span5">
+								<h4
+									style="font-family: Cambria, Georgia, serif; font-style: italic">
+									Nhà sản xuất</h4>
+								<select name="select" multiple="multiple">
+									<option value="0">choose a option...</option>
+									<option value="1">Andorra</option>
+									<option value="2">Antarctica</option>
+									<option value="3">Bulgaria</option>
+									<option value="4">Germany</option>
+									<option value="5">Dominican Republic</option>
+									<option value="6">Micronesia</option>
+									<option value="7">United Kingdom</option>
+									<option value="8">Greece</option>
+									<option value="9">Italy</option>
+									<option value="10">Ukraine</option>
+								</select>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+					</div>
+
+
+				</div>
+
+				<div id="tabs-3">
+					<div class="block">
+						<div class="row-form">
+							<div class="span3">
+								<h4
+									style="font-family: Cambria, Georgia, serif; font-style: italic">
+									Ảnh đại diện</h4>
+								<div class="widgetButtons" style="text-align: left">
+
+									<div class="bb" id="thumbnails">
+										<a href="#" class="tipb" title=""
+											data-original-title="Add new"> <span class="ibw-plus"></span></a>
+									</div>
+								</div>
+							<?php echo $this->forminput($form->get('image'))?>
+							<input type="button" value="Chọn ảnh"
+									onclick="BrowseServer( 'Images:/', 'xImagePath' );" />
+							</div>
+
+							<div class="clear"></div>
+						</div>
+						<div class="row-form">
+							<div class="span12">
+								<h4
+									style="font-family: Cambria, Georgia, serif; font-style: italic">
+									Bộ ảnh sản phẩm</h4>
+								<ul id="uploader_v5_filelist" class="plupload_filelist">
+
+
+								</ul>
+								<div class="plupload_buttons">
+									<a href="javascript::void()"
+										class="plupload_button plupload_add" id="uploader_v5_browse"
+										style="position: relative; z-index: 0;"
+										onclick="BrowseServer1( 'Images:/', 'xImagePath1' );"> Thêm
+										hình ảnh </a>
+
+
+								</div>
+
+							</div>
+							<div class="clear"></div>
+						</div>
+
+					</div>
+				</div>
+
+				<div id="tabs-4">
+					<div class="block">
+						<div class="row-form">
+							<div class="span12">
+								<h4
+									style="font-family: Cambria, Georgia, serif; font-style: italic">
+									Mô tả ngắn sản phẩm</h4>
+									<?php echo $this->formtextarea($form->get('summary'))?>
+								</div>
+							<div class="clear"></div>
+						</div>
+						<div class="row-form">
+							<div class="span12">
+								<h4
+									style="font-family: Cambria, Georgia, serif; font-style: italic">
+									Mô tả chi tiết sản phẩm</h4>
+									<?php echo $this->formtextarea($form->get('description'))?>
+								</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+
+				<div id="tabs-5">
+					<div class="block-fluid">
+						<?php foreach ($cate as $cates):?>
+						<div class="row-form">
+							<div class="span12 param">
+								<h4
+									style="font-family: Cambria, Georgia, serif; font-style: italic">
+									<?php echo $cates['name']?></h4>
+								<div class="block-fluid accordion">
+									<?php 
+									foreach ($param0 as $param0s):
+									if($cates['id'] == $param0s['category']) :
+									?>
+									<h3><?php echo $param0s['name']?></h3>
+									<div>
+										<div class="row-form">
+										<?php $i=1; foreach ($param1 as $param1s):
+										if($param0s['id'] == $param1s['parents']):
+										?>
+											<div class="span2 <?php if($i%2 == 0) echo "offset1"?>"><?php echo $param1s['name'] ?> :</div>
+											<div class="span3">
+												<input value="" class="" type="text" name="param<?php echo $param1s['id']?>" id="video" />
+												<span> Nhập đường link từ youtube </span>
+											</div>
+										<?php if($i%2==0):?>
+											<div class="clear"></div>
+											</div>
+											<div class="row-form">
+										<?php endif;?>
+										<?php $i++; endif; endforeach;?>
+										</div>
+										
+									</div>
+									<?php endif; endforeach;?>
+								</div>
+							</div>
+
+							<div class="clear"></div>
+						</div>
+						<?php endforeach;?>
+
+					</div>
+				</div>
+
+				<div id="tabs-6">
+					<div class="block lienhe">
+						<div class="row-form">
+							<div class="span2">
+								<button class="btn themlienhe" type="button">+ Thêm liên hệ</button>
+							</div>
+
+							<div class="clear"></div>
+						</div>
+						<div class="row-form chonlienhe">
+							<select multiple class="multiselect1" id="fmultiselect1"
+								name="contact[]">
+								<?php foreach ($contact as $contacts):?>
+								<option value="<?php echo $contacts['id']?>"><?php echo $contacts['namecontact']?></option>
+								<?php endforeach;?>
+								
+							</select>
+
+							<div class="btn-group">
+								<button class="btn btn-mini" id="multiselect-selectAll1"
+									type="button">Select All</button>
+								<button class="btn btn-mini" id="multiselect-deselectAll1"
+									type="button">Deselect All</button>
+								<button class="btn btn-mini" id="multiselect-selectIndia1"
+									type="button">Select India</button>
+							</div>
+						</div>
+						<div class="lienhe1" style="display: none">
+							<div class="row-form">
+								<div class="span2">Tên liên hệ chọn đăng SP :</div>
+								<div class="span3">
+									<input value="" class="validate[required]" type="text" name="tenlienhe[]"
+										id="name" /> <span> Tên khi chọn đăng trong phần đăng
+										sản phẩm </span>
+								</div>
+								<div class="span2 offset1">Tên người liên hệ :</div>
+								<div class="span3">
+									<input value="" class="validate[required]" type="text" name="contactperson[]" 
+									id="contactperson" /> <span>Tên
+										của người liên hệ đại lý nào đó ?</span>
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Tên doanh nghiệp :</div>
+								<div class="span3">
+									<input value="" class="" type="text" name="business[]"
+										id="business" />
+								</div>
+								<div class="span2 offset1">Địa chỉ :</div>
+								<div class="span3">
+									<input value="" class="" type="text" name="address[]"
+										id="address" />
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Giấy phép kinh doanh :</div>
+								<div class="span3">
+									<input value="" class="" type="text" name="license[]"
+										id="license" />
+								</div>
+								<div class="span2 offset1">Mã số thuế :</div>
+								<div class="span3">
+									<input value="" class="" type="text" name="taxcode[]" id="taxcode" />
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Điện thoại :</div>
+								<div class="span3">
+									<input value="" class="" type="text" name="phone[]" id="phone" />
+								</div>
+								<div class="span2 offset1">Email :</div>
+								<div class="span3">
+									<input value="" class="" type="text" name="email[]" id="email" />
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Yahoo :</div>
+								<div class="span3">
+									<input value="" class="" type="text" name="yahoo[]" id="yahoo" />
+								</div>
+								<div class="span2 offset1">Skype :</div>
+								<div class="span3">
+									<input value="" class="" type="text" name="skype[]" id="skype" />
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<button class="btn btn-danger xoalienhe" type="button"
+									data-id="1">Xóa</button>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+				<div id="tabs-7">
+					<div class="block">
+						<div class="row-form">
+							<div class="span12">
+								<h4
+									style="font-family: Cambria, Georgia, serif; font-style: italic">
+									Mô tả nội dung</h4>
+								<?php echo $this->formtextarea($form->get('meta'))?>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="row-form">
+							<div class="span12">
+								<h4
+									style="font-family: Cambria, Georgia, serif; font-style: italic">
+									Từ khóa</h4>
+							<?php echo $this->forminput($form->get('keyword'))?>
+							</div>
+							<div class="clear"></div>
+						</div>
+
+					</div>
+				</div>
+				<div class="footer tar">
+					<button class="btn">Thêm sản phẩm</button>
+				</div>
+
+			</div>
+		</div>
+		</form>
+	</div>
+
+	<div class="dr">
+		<span></span>
+	</div>
+
+</div>

@@ -1,0 +1,77 @@
+
+<script type="text/javascript">
+				$(document).ready(function(){
+					$("#validation").submit(function(){
+					    parent.closeModal();
+					});
+				})
+			</script>
+
+<div class="row-fluid">
+               	<?php
+				$form = $this->form;
+				$form->setAttributes ( array (
+				'id' => 'validation') );
+				$form->setAttribute ( 'action', $this->url ( 'thongtinlienhe', array (
+				'action' => 'edit','id'=>$this->id ) ) );
+				$form->prepare ();
+				echo $this->form ()->openTag ( $form );
+				?>
+                <div class="span12">
+              	<?php echo $this->formhidden($form->get('id')); ?>
+                
+                    <div class="block-fluid">
+						<div class="row-form">
+										<div class="span2">Tên liên hệ chọn đăng SP :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('namecontact'))?><span> Tên khi chọn đăng trong phần đăng sản phẩm  </span></div>
+										<div class="span2 offset1">Tên người liên hệ :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('contactperson'))?>
+
+										<span>Tên của người liên hệ đại lý nào đó ?</span></div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Tên doanh nghiệp :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('business'))?></div>
+										<div class="span2 offset1">Địa chỉ :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('address'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Giấy phép kinh doanh :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('license'))?></div>
+										<div class="span2 offset1">Mã số thuế :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('taxcode'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Điện thoại :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('phone'))?></div>
+										<div class="span2 offset1">Email :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('email'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Yahoo :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('yahoo'))?></div>
+										<div class="span2 offset1">Skype :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('skype'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="footer tar">
+                                <button class="btn"> Thêm danh mục </button>
+							</div>	
+                    </div>
+                </div>                                
+                </form>
+            </div> 
+            

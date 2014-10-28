@@ -1,0 +1,96 @@
+<?php echo $this->render('layout/bread.phtml')?>
+        
+        <div class="workplace">
+			<div class="page-header">
+                    <h1>Quản lý <small>sản phẩm</small></h1>
+            </div>
+           
+            <?php echo $this->render('layout/menusanpham.phtml')?>
+            
+            <div class="row-fluid">
+                
+                <div class="span12">                    
+                    <div class="head">
+                        <div class="isw-grid"></div>
+                        <h1>Danh sách</h1>
+						<ul class="buttons">
+                            <li><a href="#" class="isw-download"></a></li>                                                        
+                            <li><a href="#" class="isw-attachment"></a></li>
+                            <li>
+                                <a href="#" class="isw-settings"></a>
+                                <ul class="dd-list">
+                                    <li><a href="#"><span class="isw-plus"></span> New document</a></li>
+                                    <li><a href="#"><span class="isw-edit"></span> Edit</a></li>
+                                    <li><a href="#"><span class="isw-delete"></span> Delete</a></li>
+                                </ul>
+                            </li>
+                        </ul>               
+                        <div class="clear"></div>
+                    </div>
+                    <div class="block-fluid table-sorting">
+                        <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tSortable">
+                            <thead>
+                                <tr>
+                                    <th width="5%"><input type="checkbox" name="checkall"/></th>
+                                    <th width="5%">STT</th>
+									<th width="20%">Hình ảnh</th>
+                                    <th width="20%">Tên sản phẩm</th>
+									<th width="10%">Số lượng mua</th>
+                                    <th width="10%">Mã SP</th>
+									<th width="10%">Tình trạng</th>
+                                    <th width="10%">Giá</th>
+									<th width="10%">Hành động</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($sanpham as $sanphams):?>
+                                <tr>
+                                    <td><input type="checkbox" name="checkbox"/></td>
+                                    <td><?php echo $sanphams->id ?></td>
+                                    <td><img src="<?php echo $sanphams->image ?>" width="100"  /></td>
+                                    <td><?php echo $sanphams->proname ?></td>
+                                    <td><?php echo $sanphams->quantity?></td>
+									<td><?php echo $sanphams->proid ?></td>
+                                    <td><?php if($sanphams->active == 0) echo "Hết hàng"; elseif($sanphams->active == 1) echo "Còn hàng"; 
+                                    elseif($sanphams->active == 2) echo "Đang nhập hàng"; elseif($sanphams->active == 3) echo "Hàng đang về";  ?></td>
+                                    <td><?php echo $sanphams->price ?></td>
+                                    <td><a href="javascript::void()" id="dialogBtn" data-href="<?php echo $this->url('sanpham', array('action'=>'edit','id'=>$sanphams->id))?>">Edit</a></td>
+                                    
+                                </tr>
+                            <?php endforeach;?>                                
+                            </tbody>
+                        </table>
+                        <div class="clear"></div>
+                    </div>
+                </div>                                
+                
+            </div>            
+            
+            <div class="dr"><span></span></div>            
+            
+        </div>
+	<script type='text/javascript'>
+		$(document).ready(function(){
+			$("#dialog").dialog({
+				autoOpen: false,
+				modal: true,
+				height: 600,
+				width: 960,
+				show: 'blind',
+				
+				 
+			});
+
+			
+			$('body').on('click','a#dialogBtn', function(){
+				var ahref = $(this).attr('data-href');
+				$('#dialog').dialog('open');
+				$('#myIframe').attr('src', ahref);
+			})
+			
+			
+		})
+	</script>
+	<div id="dialog">
+			<iframe id="myIframe" src="" width="100%" height="100%" style="border: 1px solid #ccc"></iframe>
+	</div>

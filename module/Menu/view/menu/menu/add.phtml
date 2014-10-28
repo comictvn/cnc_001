@@ -1,0 +1,50 @@
+
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$("#validation").submit(function(){
+					    parent.closeModal1();
+					});
+				})
+			</script>
+
+<div class="row-fluid">
+               	<?php
+				$form = $this->form;
+				$form->setAttributes ( array (
+				'id' => 'validation') );
+				$form->setAttribute ( 'action', $this->url ( 'menu', array (
+				'action' => 'add') ) );
+				$form->prepare ();
+				echo $this->form ()->openTag ( $form );
+				?>
+                <div class="span12">
+              	<?php echo $this->formhidden($form->get('id')); ?>
+                <?php echo $this->formhidden($form->get('active')); ?>
+                    <div class="block-fluid">
+							<div class="row-form">
+										<div class="span2">Tên menu (*) :</div>
+										<div class="span3">
+										<?php echo $this->forminput($form->get('name'))?></div>
+					
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Kiểu menu :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('alias'))?></div>
+										
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Mô tả :</div>
+										<div class="span3"><?php echo $this->formtextarea($form->get('description'))?></div>
+										<div class="clear"></div>
+							</div>
+							
+							<div class="footer tar">
+                                <button class="btn"> Thêm danh mục </button>
+							</div>	
+                    </div>
+                </div>                                
+                </form>
+            </div> 
+            

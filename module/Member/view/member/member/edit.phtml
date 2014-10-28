@@ -1,0 +1,79 @@
+
+<script type="text/javascript">
+				$(document).ready(function(){
+					$("#validation").submit(function(){
+					    parent.closeModal();
+					});
+				})
+			</script>
+
+<div class="row-fluid">
+               	<?php
+				$form = $this->form;
+				$form->setAttribute ( 'action', $this->url ( 'member', array (
+						'action' => 'edit' , 'id'=>$this->id
+				) ) );
+				$form->setAttributes ( array (
+						'id' => 'validation',
+					
+				) );
+				$form->prepare ();
+				echo $this->form ()->openTag ( $form );
+				?>
+				<?php echo $this->formhidden($form->get('id'))?>
+                
+                    <div class="block-fluid">
+						<div class="row-form">
+										<div class="span2">Tên quản trị  :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('fullname'))?></div>
+										<div class="span2 offset1">Username :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('username'))?>
+
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Mật khẩu :</div>
+										<div class="span3"><?php echo $this->formpassword($form->get('password'))?></div>
+										<div class="span2 offset1">Ngày sinh :</div>
+										<div class="span3">
+											<?php echo $this->formdate($form->get('birthdate'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Giới tính :</div>
+										<div class="span3"><?php echo $this->formselect($form->get('gender'))?></div>
+										<div class="span2 offset1">Địa chỉ :</div>
+										<div class="span3">
+											<?php echo $this->formtextarea($form->get('address'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Điện thoại :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('mobiphone'))?></div>
+										<div class="span2 offset1">Email :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('email'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">CMND :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('identitycard'))?></div>
+										<div class="span2 offset1">Quyền :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('role'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="footer tar">
+                                <button class="btn"> Cập nhập </button>
+							</div>	
+                    </div>
+                </div>                                
+                </form>
+            </div> 
+            

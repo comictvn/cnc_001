@@ -1,0 +1,10 @@
+<?php $intro = $this->intro(); ?>
+<?php  if($intro[0]['active'] == 1): ?>
+<?php include 'header.phtml' ;?>
+		
+			<?php echo $this->content ?>
+		</section>
+<?php include 'footer.phtml' ;?>
+<?php else :?>
+<?php echo $intro[0]['desactive'] ?>
+<?php endif;?>	

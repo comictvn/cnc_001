@@ -1,0 +1,120 @@
+<?php echo $this->render('layout/bread.phtml')?>
+        
+        <div class="workplace">
+			<div class="page-header">
+                    <h1>Quản lý <small>thông tin liên hệ</small></h1>
+            </div>
+            <?php echo $this->render('layout/menuchucnang.phtml')?>
+            <div class="row-fluid">
+                
+                <div class="span12">                    
+                    <div class="head">
+                        <div class="isw-grid"></div>
+                        <h1>Danh sách</h1>
+						<ul class="buttons">
+                            <li><a href="#" class="isw-download"></a></li>                                                        
+                            <li><a href="#" class="isw-attachment"></a></li>
+                            <li>
+                                <a href="#" class="isw-settings"></a>
+                                <ul class="dd-list">
+                                    <li><a href="#"><span class="isw-plus"></span> New document</a></li>
+                                    <li><a href="#"><span class="isw-edit"></span> Edit</a></li>
+                                    <li><a href="#"><span class="isw-delete"></span> Delete</a></li>
+                                </ul>
+                            </li>
+                        </ul>               
+                        <div class="clear"></div>
+                    </div>
+                    <div class="block-fluid table-sorting">
+                        <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tSortable">
+                            <thead>
+                                <tr>
+                                    <th width="5%"><input type="checkbox" name="checkall"/></th>
+                                    <th width="5%">ID</th>
+									<th width="10%">Tiêu đề</th>
+                                    <th width="20%">Họ tên</th>
+									<th width="10%">Số điện thoại</th>
+									<th width="15%">Email</th>
+									<th width="15%">Địa chỉ</th>
+                                    <th width="10%">Thời gian</th>
+									<th width="10%">Hành động</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($lienhe as $row): ?>
+                                <tr>
+                                    <td><input type="checkbox" name="checkbox"/></td>
+                                    <td><?php echo $row->id ?></td>
+                                    <td><?php echo $row->title ?></td>
+                                    <td><?php echo $row->name ?></td>
+                                    <td><?php echo $row->phone ?></td>
+									<td><?php echo $row->email ?></td>
+                                    <td><?php echo $row->address ?></td>
+                                    <td><?php echo $row->date ?></td>
+                                    <td class="action_hanhdong"><a href="javascript::void()" title="Xem" data-href="<?php echo $this->url('lienhe', array('action'=>'edit','id'=>$row->id))?>" id="dialogBtn"><i class="fa fa-pencil-square-o"></i></a>
+									<a data-href="<?php echo $this->url('lienhe', array('action'=>'delete','id'=>$Danhmucs->id))?>" href="javascript::void()" class="delete"><i class="fa fa-trash-o" title="Xóa"></i></a></td>
+                                    
+                                </tr>
+                            <?php endforeach;?>
+                                             
+                            </tbody>
+                        </table>
+                        <div class="clear"></div>
+                    </div>
+                </div>                                
+                
+            </div>            
+            
+            <div class="dr"><span></span></div>            
+            
+        </div>
+        <script type='text/javascript'>
+		$(document).ready(function(){
+			$("#dialog").dialog({
+				autoOpen: false,
+				modal: true,
+				height: 600,
+				width: 960,
+				show: 'blind',
+				
+				 
+			});
+
+			
+			$('body').on('click','a#dialogBtn', function(){
+				var ahref = $(this).attr('data-href');
+				$('#dialog').dialog('open');
+				$('#myIframe').attr('src', ahref);
+				
+			})
+			
+			$('body').on('click','a.delete', function()
+			{
+				var r = confirm(" Bạn chắc chắn thực hiện điều đó");
+				if (r == true) {
+					var URL = $(this).attr("data-href");
+					
+					$.ajax({
+						type: "POST",
+						url: URL,
+						cache: false,
+						success: function(html){
+							
+							notify_s('Thông báo','Bạn đã xóa thành công');
+							
+						}
+					})
+					$(this).closest("tbody.category tr").fadeOut(function(){$(this).remove()});
+				} 
+				
+			});
+		})
+	</script>
+	<div id="dialog">
+			<iframe id="myIframe" src="" width="100%" height="100%" style="border: 1px solid #ccc"></iframe>
+	</div>
+			<script type="text/javascript">
+			function closeModal() {
+			    $("#dialog").dialog("close");
+			}
+			</script>

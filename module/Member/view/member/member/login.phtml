@@ -1,0 +1,25 @@
+ <div class="loginBox">        
+        <div class="loginHead">
+            <img src="<?php echo $this->basepath()?>/template/admin/img/logo.png" alt="Aquarius -  responsive admin panel" title="Aquarius -  responsive admin panel"/>
+        </div>
+        	<?php
+			$form = $this->form;
+			$action = $this->url('member',array('action'=>'login'));
+			$form->prepare();
+			echo $this->form()->openTag($form);
+			?>       
+            <div class="control-group">
+                <label for="inputEmail">Email</label>                
+                <?php echo $this->forminput($form->get('username')) ?>
+            </div>
+            <div class="control-group">
+                <label for="inputPassword">Password</label>                
+                <?php echo $this->forminput($form->get('password')) ?>
+            </div>
+          
+            <div class="form-actions">
+                <button type="submit" class="btn btn-block">Sign in</button>
+            </div>
+        	<?php echo $this->form()->closeTag();?>   
+        
+    </div> 

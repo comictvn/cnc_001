@@ -1,0 +1,35 @@
+<div id="main">
+
+	<div class="clear"></div>
+
+
+	<div class="full_w">
+		<div class="h_title">THÊM DANH MỤC BÀI VIẾT</div>
+		<?php 
+		$form = $this->form;
+		$form->setAttribute('action',$this->url('category',array('action'=>'add')));
+		$form->prepare();
+		echo $this->form()->openTag($form);
+		?>
+
+			<input type="hidden" name="id" value="">
+			<div class="element">
+				<label for="name">Tên <span class="red">(required)</span></label>
+				<?php echo $this->forminput($form->get("name")) ; ?>
+				<?php echo $this->formElementErrors($form->get('name'));?>
+			</div>
+			<div class="element">
+				<label for="name">Tên ( English )<span class="red">(required)</span></label>
+				<?php echo $this->forminput($form->get("name_en")) ; ?>
+				<?php echo $this->formElementErrors($form->get('name_en'));?>
+			</div>
+			
+			
+			<div class="entry">
+				<button type="submit" class="add">Lưu lại</button>
+			</div>
+		<?php echo $this->form()->closeTag($form);?>
+	</div>
+
+
+</div>

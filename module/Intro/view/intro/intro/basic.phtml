@@ -1,0 +1,126 @@
+<?php echo $this->render('layout/bread.phtml')?>
+        
+        <div class="workplace">
+			<div class="page-header">
+                    <h1>Thông tin <small> cơ bản</small></h1>
+            </div>
+            <?php echo $this->render('layout/menuintro.phtml')?>
+            
+            <div class="row-fluid">
+                <?php
+				$form = $this->form;
+				$form->setAttributes ( array (
+				'id' => 'validation' ) );
+				$form->setAttribute ( 'action', $this->url ( 'intro', array (
+				'action' => 'basic' ) ) );
+				$form->prepare ();
+				echo $this->form ()->openTag ( $form );
+				?>
+                <div class="span12">   
+                <?php echo $this->formhidden($form->get('id')) ?>              
+                    <div class="head">
+                        <div class="isw-list"></div>
+                        <h1>Thông tin liên hệ</h1>
+						<ul class="buttons">
+                                <li><a href="#" class="isw-ok"></a></li>
+                                
+                            </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="block-fluid">
+						<div class="row-form">
+										<div class="span2">Namesite :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('namesite'))?><span> Tên đăng ký website  </span></div>
+										<div class="span2 offset1">Tên doanh nghiệp :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('namebus'))?>
+
+										<span>Tên doanh nghiệp sử dụng website </span></div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Favicon :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('favicon'))?><span> Ảnh icon hiển thị trên trình duyệt  </span></div>
+										<div class="span2 offset1">Địa chỉ :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('address'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Quận/Huyện :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('district'))?></div>
+										<div class="span2 offset1">Tỉnh/Thành phố :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('city'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Điện thoại :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('phone'))?></div>
+										<div class="span2 offset1">Email :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('email'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Facebook :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('facebook'))?></div>
+										<div class="span2 offset1">Google+ :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('google'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Twitter :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('twitter'))?></div>
+										<div class="span2 offset1">Tình trạng hoạt động :</div>
+										<div class="span3">
+											<?php echo $this->formselect($form->get('active'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span12">
+									<h4
+										style="font-family: Cambria, Georgia, serif; font-style: italic">
+										Lý do ngừng hoạt động trang web</h4>
+										<?php echo $this->formtextarea($form->get('desactive'))?>
+									</div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span12">
+									<h4
+										style="font-family: Cambria, Georgia, serif; font-style: italic">
+										Google anlytics</h4>
+										<?php echo $this->formtextarea($form->get('googleanalytic'))?>
+										<span> Chèn đoạn mã javascript xác thực tại đây  </span>
+								</div>
+								<div class="clear"></div>
+							</div><div class="row-form">
+								<div class="span12">
+									<h4
+										style="font-family: Cambria, Georgia, serif; font-style: italic">
+										Footer</h4>
+										<?php echo $this->formtextarea($form->get('footer'))?>
+										<span> Chèn đoạn mã javascript xác thực tại đây  </span>
+								</div>
+								<div class="clear"></div>
+							</div>
+							
+							<div class="footer tar">
+                                <button class="btn"> Cập nhập </button>
+							</div>	
+                    </div>
+                </div>                                
+                </form>
+            </div> 
+            
+            <div class="dr"><span></span></div>            
+            
+        </div>
+       

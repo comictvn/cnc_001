@@ -1,0 +1,49 @@
+
+<?php if ($this->pageCount): ?>
+<ul class="insPagination">
+
+      	
+	<li class="insPaginationSide">
+	<?php if (isset($this->previous)): ?>
+	<a href="<?php echo $this->url('danhmucsanpham',array('alias'=>$action,'page'=>$this->previous)); ?>"
+		class="insPaginationSide__link"> <i
+			class="insPaginationSide__arrow insPaginationSide__arrow_prev"></i>
+			Previous
+	</a>
+	<?php else: ?>
+	<a href="#"
+		class="insPaginationSide__link"> <i
+			class="insPaginationSide__arrow insPaginationSide__arrow_prev"></i>
+			Previous
+	</a>
+	<?php endif;?>
+	</li>
+	<?php foreach ($this->pagesInRange as $page): ?>
+	<?php if ($page != $this->current): ?>
+	<li class="insPagination__item">
+	
+      
+	<a href="<?php echo $this->url('danhmucsanpham',array('alias'=>$action,'page'=>$page)); ?>" class="insPagination__link"> <?php echo  $page; ?></a>
+	</li>
+	<?php else: ?>
+	<li class="insPagination__item insPagination__item_active">
+	<a href="#" class="insPagination__link"> <?php echo  $page; ?></a>
+	</li>
+	<?php endif; ?>
+	
+	<?php endforeach; ?>
+	<li class="insPaginationSide">
+	<?php if (isset($this->next)): ?>
+	<a href="<?php echo $this->url('danhmucsanpham',array('alias'=>$action,'page'=>$this->next)); ?>"
+		class="insPaginationSide__link"> Next <i
+			class="insPaginationSide__arrow insPaginationSide__arrow_next"></i>
+	</a>
+	<?php else: ?>
+	<a href="#"
+		class="insPaginationSide__link"> Next <i
+			class="insPaginationSide__arrow insPaginationSide__arrow_next"></i>
+	</a>
+	<?php endif; ?>
+	</li>
+</ul>
+<?php endif; ?>

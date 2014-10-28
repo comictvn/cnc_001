@@ -1,0 +1,248 @@
+
+<script type="text/javascript">
+
+function BrowseServer( startupPath, functionData )
+{
+	// You can use the "CKFinder" class to render CKFinder in a page:
+	var finder = new CKFinder();
+
+	// The path for the installation of CKFinder (default = "/ckfinder/").
+	finder.basePath = '../';
+
+	//Startup path in a form: "Type:/path/to/directory/"
+	finder.startupPath = startupPath;
+
+	// Name of a function which is called when a file is selected in CKFinder.
+	finder.selectActionFunction = SetFileField;
+
+	// Additional data to be passed to the selectActionFunction in a second argument.
+	// We'll use this feature to pass the Id of a field that will be updated.
+	finder.selectActionData = functionData;
+
+	// Name of a function which is called when a thumbnail is selected in CKFinder.
+	finder.selectActionFunction = ShowThumbnails;
+
+	// Launch CKFinder
+	finder.popup();
+}
+
+// This is a sample function which is called when a file is selected in CKFinder.
+function SetFileField( fileUrl, data )
+{
+	document.getElementById( data["selectActionData"] ).value = fileUrl;
+	return true;
+}
+
+// This is a sample function which is called when a thumbnail is selected in CKFinder.
+function ShowThumbnails( fileUrl, data )
+{
+
+	// this = CKFinderAPI
+	var sFileName = this.getSelectedFile().name;
+	document.getElementById('thumbnails').innerHTML = '';
+	document.getElementById('thumbnails').innerHTML +=
+			
+			'<div class="thumb">' +
+				'<img src="' + fileUrl + '" />' +
+				'<div class="caption">' +
+					'<a href="' + data["fileUrl"] + '" target="_blank">' + sFileName + '</a> (' + data["fileSize"] + 'KB)' +
+				'</div>' +
+			'</div>';
+
+	
+	// It is not required to return any value.
+	// When false is returned, CKFinder will not close automatically.
+	document.getElementById( data["selectActionData"] ).value = fileUrl;
+	return true;
+}
+
+</script>
+<?php echo $this->render('layout/bread.phtml')?>
+        
+        <div class="workplace">
+			<div class="page-header">
+                    <h1>Quản lý <small>block</small></h1>
+            </div>
+           
+            <?php echo $this->render('layout/menublock.phtml')?>
+            <div class="row-fluid">
+                <form action="" method="post">
+                <div class="span12">   
+                     
+                    <div class="head">
+                        <div class="isw-list"></div>
+                        <h1>Slide</h1>
+						<ul class="buttons">
+                                <li><a href="#" class="isw-ok"></a></li>
+                                
+                            </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="block-fluid">
+						<div class="row-form">
+										<div class="span2">Tên banner :</div>
+										<div class="span3"><input type="text" name="value1" /></div>
+										<div class="span2 offset1">Hình ảnh</div>
+										<div class="span3">
+										<div class="widgetButtons" style="text-align: left">
+
+											<div class="bb" id="thumbnails">
+												<a href="#" class="tipb" title=""
+													data-original-title="Add new"> <span class="ibw-plus"></span></a>
+											</div>
+										</div>
+										<input type="text" name="value2[]" id="xImagePath" value="">
+										<input type="button" value="Chọn ảnh"
+												onclick="BrowseServer( 'Images:/', 'xImagePath' );" />
+										<input type="hidden" name="idblockcontent2[]" value="9" />
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Đường dẫn :</div>
+										<div class="span3">
+											<input type="text" name="value2[]" />
+											<input type="hidden" name="idblockcontent2[]" value="10" />
+										</div>
+										<div class="span2 offset1">Tiêu đề :</div>
+										<div class="span3">
+											<input type="text" name="value2[]" />
+											<input type="hidden" name="idblockcontent2[]" value="11" />
+										</div>
+										<div class="clear"></div>
+							</div>
+							
+							<div class="row-form">
+										<div class="span2">Mô tả :</div>
+										<div class="span3">
+											<textarea name="value2[]"></textarea>
+											<input type="hidden" name="idblockcontent2[]" value="12" />
+										</div>
+										<div class="span2 offset1">Thứ tự :</div>
+										<div class="span3">
+											<input type="text" name="value2[]" />
+											<input type="hidden" name="idblockcontent2[]" value="13" />
+										</div>
+										<div class="clear"></div>
+							</div>
+							
+							<div class="footer tar">
+                                <button class="btn"> Thêm slide </button>
+							</div>	
+                    </div>
+                </div>                                
+                </form>
+            </div> 
+            <div class="row-fluid">
+                
+                <div class="span12">                    
+                    <div class="head">
+                        <div class="isw-grid"></div>
+                        <h1>Danh sách</h1>
+						<ul class="buttons">
+                            <li><a href="#" class="isw-download"></a></li>                                                        
+                            <li><a href="#" class="isw-attachment"></a></li>
+                            <li>
+                                <a href="#" class="isw-settings"></a>
+                                <ul class="dd-list">
+                                    <li><a href="#"><span class="isw-plus"></span> New document</a></li>
+                                    <li><a href="#"><span class="isw-edit"></span> Edit</a></li>
+                                    <li><a href="#"><span class="isw-delete"></span> Delete</a></li>
+                                </ul>
+                            </li>
+                        </ul>               
+                        <div class="clear"></div>
+                    </div>
+                    <div class="block-fluid table-sorting">
+                        <table cellpadding="0" cellspacing="0" width="100%" class="table" id="">
+                            <thead>
+                                <tr>
+                                    <th width="5%"><input type="checkbox" name="checkall"/></th>
+                                    <th width="5%">STT</th>
+									<th width="10%">Tên banner</th>
+                                    <th width="10%">Hình ảnh</th>
+									<th width="15%">Link</th>
+                                    <th width="10%">Thứ tự</th>
+									
+									<th width="10%">Hành động</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody class="category">
+                            <?php $i = 0; foreach ($slide as $slides):?>
+                                <tr class="edit_<?php echo $slides['id'] ?>">
+                                <td><input type="checkbox" name="checkbox"/></td>
+                                <td><?php echo $slides['id'] ?></td>
+                                <td><?php echo $slides['value'] ?></td>
+                                <?php  foreach ($slidevalue[$i] as $slidevaules):  if($slides['id'] == $slidevaules['parent']): ?>
+                                    <td><?php if($slidevaules['meta'] == 'image_banner') :?><img src="<?php  echo $slidevaules['value'] ?>" />
+                                    <?php else : echo $slidevaules['value'] ;?>
+                                    <?php  endif;?></td><?php endif;?>
+                                <?php  endforeach;?>
+                                   
+                                    <td class="action_hanhdong">
+										<a href="javascript::void()" title="Sửa" data-href="<?php echo $this->url('slide',array('action'=>'editimage','id'=>$slides['id']))?>" id="dialogBtn"><i class="fa fa-pencil-square-o"></i></a>
+										<a data-href="<?php echo $this->url('slide', array('action'=>'deleteimage','id'=>$slides['id']))?>" href="javascript::void()" class="delete"><i class="fa fa-trash-o" title="Xóa"></i></a>
+									</td>
+                                </tr>
+                            <?php $i++; endforeach;?>                                
+                            </tbody>
+                        </table>
+                        <div class="clear"></div>
+                    </div>
+                </div>                                
+                
+            </div>            
+            
+            <div class="dr"><span></span></div>            
+            
+        </div>
+	<script type='text/javascript'>
+		$(document).ready(function(){
+			$("#dialog").dialog({
+				autoOpen: false,
+				modal: true,
+				height: 600,
+				width: 960,
+				show: 'blind',
+				
+				 
+			});
+
+			
+			$('body').on('click','a#dialogBtn', function(){
+				var ahref = $(this).attr('data-href');
+				$('#dialog').dialog('open');
+				$('#myIframe').attr('src', ahref);
+				
+			})
+			
+			$('body').on('click','a.delete', function()
+			{
+				var r = confirm("Nếu xóa thì các liên kết đến slide sẽ được xóa bỏ. Bạn có chắc chắn xóa thông tin này");
+				if (r == true) {
+					var URL = $(this).attr("data-href");
+					
+					$.ajax({
+						type: "POST",
+						url: URL,
+						cache: false,
+						success: function(html){
+							
+							notify_s('Thông báo','Bạn đã xóa thành công');
+							
+						}
+					})
+					$(this).closest("tbody.category tr").fadeOut(function(){$(this).remove()});
+				} 
+				
+			});
+		})
+	</script>
+	<div id="dialog">
+			<iframe id="myIframe" src="" width="100%" height="100%" style="border: 1px solid #ccc"></iframe>
+	</div>
+        	<script type="text/javascript">
+			function closeModal() {
+			    $("#dialog").dialog("close");
+			}
+			</script>

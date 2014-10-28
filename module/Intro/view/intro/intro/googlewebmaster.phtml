@@ -1,0 +1,105 @@
+<?php echo $this->render('layout/bread.phtml')?>
+
+<div class="workplace">
+	<div class="page-header">
+		<h1>
+			Quản lý <small>thông tin liên hệ</small>
+		</h1>
+	</div>
+            <?php echo $this->render('layout/menuintro.phtml')?>
+            
+            <div class="row-fluid">
+		<form
+			action="<?php echo $this->url('intro', array('action'=>'googlewebmaster'))?>">
+			<div class="span12">
+				<div class="head">
+					<div class="isw-list"></div>
+					<h1>Google webmaster tools</h1>
+					<ul class="buttons">
+						<li><a href="#" class="isw-ok"></a></li>
+
+					</ul>
+					<div class="clear"></div>
+				</div>
+				<div class="block-fluid">
+					<div class="row-form">
+						<div class="span12">
+
+							<div class="well well-small"><p><strong>Sitemap</strong> ( bản đồ trang web hoặc sơ
+								đồ trang web ) là một danh sách các trang của một trang web được
+								thiết kế dành cho bộ máy tìm kiếm thu thập dữ liệu. Nó là một
+								page liệt kê các trang trên một trang web, thường tổ chức theo
+								thứ tự thời gian. <strong>Sitemap</strong> giúp công cụ tìm kiếm dễ dàng tìm thấy
+								các trang trên trang web của bạn. Tóm lại <strong>Sitemap</strong> là thể các
+								tổng quan về hệ thống website của bạn. <strong>Sitemap</strong> được lưu trữ dưới
+								định dạng XML. </p><p> <strong>Sitemap</strong> là cách dễ dàng khi webmaster muốn thông
+								báo cho công cụ tìm kiếm về các trang trên trang web của họ.
+								Hình thức đơn giản nhất của Sitemap là một tập tin XML liệt kê
+								các URL của một trang web (thời điểm được cập nhật lần cuối, mức
+								độ thường xuyên thay đổi, mức độ quan trọng như thế nào, so với
+								các URL khác trong trang web ) để các công cụ tìm kiếm có thể
+								thu thập dữ liệu trang web một cách thông minh hơn. </p>
+								<p> Các bộ máy
+								tìm kiếm thu thập từ các liên kết trong trang web của bạn (
+								Internal link ) và từ các trang web khác ( backlink ). Sitemap
+								bổ sung dữ liệu này để cho phép trình thu thập dữ liệu của công
+								cụ tìm kiếm tìm hiểu kỹ hơn về những URL với các siêu dữ liệu
+								liên quan. Sử dụng sitemap là cách dễ nhất cung cấp gợi ý cho
+								các bộ máy tìm kiếm thu thập để công cụ tìm kiếm làm việc tốt
+								hơn khi thu thập dữ liệu trang web của bạn. <strong>( Ví dụ :
+								http://0/sitemap.xml hoặc
+								http://webcnc.net/tuixachfake1/sitemap.xml )</strong> </p>
+								
+								<p> ! Để báo cáo sitemap
+								website của bạn với Google bạn chỉ cần thực hiện 4 bước hết sức
+								đơn giản . </p>
+								
+								<p> <strong>Bước 1</strong> : Nếu bạn chưa có đăng ký <strong>Google Analytics</strong> hệ
+								thống BNC đã cho phép thì bạn cần phải có một tài khoản Gmail
+								sau đó bạn đăng ký Google Analytics hệ thống BNC đã tích hợp. </p>
+
+								<p> <strong>Bước 2</strong> : Bạn truy cập vào
+								<strong><a href="https://www.google.com/webmasters/tools">https://www.google.com/webmasters/tools</a></strong> (Công cụ Quản trị Trang
+								Web của Google cung cấp ) Bạn nháy vào nút Thêm trang web , sau
+								đó điền tên miền website bạn muốn quản lý vào. </p>
+								
+								<p> <strong>Bước 3</strong> :Xác minh
+								thông tin bạn chọn xác minh bằng Google Analytics nếu phần
+								phương thức đề nghị bạn thấy nút chọn xác minh bằng Google
+								Analytics thì bạn nháy chọn rồi nhấn nút xác minh . Nếu phần
+								phương thức đề nghị không thấy xác minh bằng Google Analytics
+								bạn nháy vào Tad các phương thức thay thế rồi bạn chọn sử dụng
+								tài khoản Google Analytics của bạn để xác minh sau đó bạn nháy
+								vào nút xác minh để hoàn tất xác minh thành công sau đó bạn nháy
+								vào tiếp tục để sang bước tiếp theo. - Ngoài ra bạn có thể chọn
+								xác minh bằng cách : Chọn Tab "Các phương thức thay thế" chọn
+								mục đầu tiên HTML tag. Tại đây website sẽ hiển thị ra một đoạn
+								mã tương ứng với website của bạn. Bạn hãy copy đoạn mã này và
+								dán xuống cuối cùng của phần lưu "Google Analytics" trong hệ
+								thống này. </p>
+								
+								<p> <strong>Bước 4</strong> : Bạn sẽ thấy bảng điều kiển tiếp đó bạn nháy
+								vào Thẻ Meta toàn trangtrang web , sau đó bạn nháy vào nút thêm
+								kiểm tra sơ đồ trang web nó sẽ hiện ra một khung để bạn điền vào
+								, bạn chỉ cần điền chữ (sitemap.xml) rồi nháy nút gửi sơ đồ
+								trang web vậy là đã hoàn thành báo cáo sitemap website của bạn
+								với Google. Bạn nháy vào làm mới trang hoặc nhấn F5 chờ trong
+								vài phút để Google xử lý thông tin sơ đồ website của bạn vừa gửi
+								lên, sau đó sẽ thấy kết quả . </p></div>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+					<div class="footer tar">
+						<button class="btn">Thêm danh mục</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="dr">
+		<span></span>
+	</div>
+
+</div>

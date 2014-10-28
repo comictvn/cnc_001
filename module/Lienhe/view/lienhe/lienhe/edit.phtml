@@ -1,0 +1,66 @@
+
+<script type="text/javascript">
+				$(document).ready(function(){
+					$("#validation").submit(function(){
+					    parent.closeModal();
+					});
+				})
+			</script>
+
+<div class="row-fluid">
+                <form id="validation" method="POST" action="">
+					<div class="span12">                    
+                    
+                    <div class="block-fluid">
+							<div class="row-form">
+								<div class="span5"><h4 style="font-family: Cambria, Georgia, serif; "> Thông tin liên hệ </h4></div>
+								
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Tiêu đề :</div>
+								<div class="span3"> <?php echo $lienhe->title ?></div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Người liên hệ :</div>
+								<div class="span3">  <?php echo $lienhe->name ?></div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Email :</div>
+								<div class="span3">  <?php echo $lienhe->email ?></div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2"> Số điện thoại :</div>
+								<div class="span3">  <?php echo $lienhe->phone ?></div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2"> Địa chỉ :</div>
+								<div class="span3">  <?php echo $lienhe->address ?></div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Công ty :</div>
+								<div class="span3"> <?php echo $lienhe->company ?></div>
+								<div class="clear"></div>
+							</div>
+							
+							
+							<div class="row-form">
+								<div class="span12">
+									 <?php echo $lienhe->content ?>
+								</div>
+								
+								<div class="clear"></div>
+							</div>
+							
+							<div class="footer tar">
+                                <button class="btn"> Cập nhập </button>
+							</div>	
+                    </div>
+                </div>							
+                </form>
+            </div>

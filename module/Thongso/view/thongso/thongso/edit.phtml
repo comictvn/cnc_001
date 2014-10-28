@@ -1,0 +1,58 @@
+
+<script type="text/javascript">
+				$(document).ready(function(){
+					$("#validation").submit(function(){
+					    parent.closeModal();
+					});
+				})
+			</script>
+
+<div class="row-fluid">
+               	<?php
+				$form = $this->form;
+				$form->setAttributes ( array (
+				'id' => 'validation') );
+				$form->setAttribute ( 'action', $this->url ( 'thongso', array (
+				'action' => 'edit','id'=>$this->id ) ) );
+				$form->prepare ();
+				echo $this->form ()->openTag ( $form );
+				?>
+                <div class="span12">
+              	<?php echo $this->formhidden($form->get('id')); ?>
+                
+                    <div class="block-fluid">
+						<div class="row-form">
+										<div class="span2">Tên thông số :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('name'))?></div>
+										<div class="span2 offset1">Đơn vị :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('units'))?></div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Mô tả :</div>
+										<div class="span3"><?php echo $this->formtextarea($form->get('description'))?></div>
+										<div class="span2 offset1">Danh mục :</div>
+										<div class="span3">
+											<?php echo $this->formselect($form->get('category'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Thuộc thông số :</div>
+										<div class="span3"><?php echo $this->formselect($form->get('parents'))?></div>
+										<div class="span2 offset1">Kích hoạt :</div>
+										<div class="span3">
+											<?php echo $this->formselect($form->get('active'))?>
+										</div>
+										<div class="clear"></div>
+							</div>
+							
+							<div class="footer tar">
+                                <button class="btn"> Thêm thông số </button>
+							</div>	
+                    </div>
+                </div>                                
+                </form>
+            </div> 
+            

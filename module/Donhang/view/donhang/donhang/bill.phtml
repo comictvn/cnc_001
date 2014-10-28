@@ -1,0 +1,118 @@
+
+<script type="text/javascript">
+				$(document).ready(function(){
+					$("#validation").submit(function(){
+					    parent.closeModal();
+					});
+				})
+			</script>
+
+<div class="row-fluid">
+                <form id="validation" method="POST" action="<?php echo $this->url('donhang',array('action'=>'bill','id'=>$bill[0]['bill_id']))?>">
+					<div class="span12">                    
+                    
+                    <div class="block-fluid">
+							<div class="row-form">
+								<div class="span5"><h4 style="font-family: Cambria, Georgia, serif; "> Thông tin đặt hàng </h4></div>
+								
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Mã hóa đơn :</div>
+								<div class="span3"> <?php echo $bill[0]['bill_id'] ?></div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Mã khách hàng :</div>
+								<div class="span3"> <?php echo $bill[0]['customers_id'] ?></div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Tên khách hàng :</div>
+								<div class="span3"> <?php echo $bill[0]['customers_name']?></div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Địa chỉ giao hàng :</div>
+								<div class="span3"> <?php echo $bill[0]['address'] ?></div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Số điện thoại :</div>
+								<div class="span3"> <?php echo $bill[0]['phone_number'] ?></div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Email :</div>
+								<div class="span3"> <?php echo $bill[0]['email']?></div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Hình thức thanh toán :</div>
+								<div class="span3"> 123</div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2">Ghi chú :</div>
+								<div class="span5"> 123</div>
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span5"><h4 style="font-family: Cambria, Georgia, serif; "> Sản phẩm 2/05/2014 17:05:24 </h4></div>
+								
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span12">
+									<table width="100%" cellpadding="5px" border="1px" bordercolor="#ccc" cellspacing="0">
+										<tbody>
+											<tr>
+												<td>Mã SP</td>
+												<td>Hình ảnh</td>
+												<td>Tên sản phẩm</td>
+												<td>Số lượng</td>
+												<td>Đơn giá</td>
+												<td>Thành tiền</td>
+											</tr>
+											<?php $trigia=0; ?>
+											<?php for($i=0;$i<count($bill);$i++):?>
+											<tr>
+												<td><?php echo $bill[$i]['proid'] ?></td>
+												<td><img src="<?php echo $bill[$i]['image']?>" width="100" height="100"/></td>
+												<td><?php echo $bill[$i]['proname'] ?></td>
+												<td><?php echo $bill[$i]['qty']?></td>
+												<td align="right"><?php echo number_format($bill[$i]['price'],'0',',','.')?></td>
+												<td align="right"><?php echo number_format($bill[$i]['price']*$bill[$i]['qty'],'0',',','.')?></td>
+											</tr>
+											<?php $trigia+=$bill[$i]['price']*$bill[$i]['qty']; ?>
+											<?php endfor?>
+												<tr>
+												<td colspan="3">&nbsp;</td>
+												<td colspan="2" align="right">Trị giá hóa đơn</td>
+												<td align="right"><?php echo number_format($trigia)?></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								
+								<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span2"><h4 style="font-family: Cambria, Georgia, serif; "> Trạng thái </h4></div>
+								<div class="span5">
+										<select name="active" id="active" id="active">
+											<option value="" >Chọn tình trạng</option>
+											<option value="0" <?php if($bill[0]['active'] == 0) echo "selected"?>>Chưa xử lý</option>
+											<option value="1" <?php if($bill[0]['active'] == 1) echo "selected"?>>Đã giao hàng</option>
+											<option value="2" <?php if($bill[0]['active'] == 2) echo "selected"?>>Hủy</option>
+										</select>
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="footer tar">
+                                <button class="btn"> Cập nhập </button>
+							</div>	
+                    </div>
+                </div>							
+                </form>
+            </div>

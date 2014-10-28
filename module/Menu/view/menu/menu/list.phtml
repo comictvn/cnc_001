@@ -1,0 +1,156 @@
+<?php echo $this->render('layout/bread.phtml')?>
+        
+        <div class="workplace">
+			<div class="page-header">
+                    <h1>Quản lý <small>menu</small></h1>
+            </div>
+            <?php echo $this->render('layout/menumenu.phtml')?>
+            
+     
+            <div class="row-fluid">
+                
+                <div class="span12">                    
+                    <div class="head">
+                        <div class="isw-grid"></div>
+                        <h1>Danh sách</h1>
+						<ul class="buttons">
+                            <li><a href="#" class="isw-download"></a></li>                                                        
+                            <li><a href="#" class="isw-attachment"></a></li>
+                            <li>
+                                <a href="#" class="isw-settings"></a>
+                                <ul class="dd-list">
+                                    <li><a href="#"><span class="isw-plus"></span> New document</a></li>
+                                    <li><a href="#"><span class="isw-edit"></span> Edit</a></li>
+                                    <li><a href="#"><span class="isw-delete"></span> Delete</a></li>
+                                </ul>
+                            </li>
+                        </ul>               
+                        <div class="clear"></div>
+                    </div>
+					
+                    <div class="block-fluid table-sorting">
+                        <table cellpadding="0" cellspacing="0" width="100%" class="table" >
+                            <thead>
+                                <tr>
+                                    <th width="5%"><input type="checkbox" name="checkall"/></th>
+                                    <th width="5%">STT</th>
+									<th width="10%">Tên menu</th>
+									<th width="20%">Kiểu menu</th>
+									<th width="15%">Items</th>
+                                    <th width="15%">Trạng thái</th>
+									<th width="10%">Hành động</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody class="category">
+                            <?php foreach ($Menu as $Menus):?>
+                                <tr class="edit_<?php echo $Menus->id ?>">
+                                    <td><input type="checkbox" name="checkbox"/></td>
+                                    <td><?php echo $Menus->id ?></td>
+                                    <td><input class="name" type="text" value="<?php echo $Menus->name ?>" disabled /></td>
+                                    <td><input class="alias" type="text" value="<?php echo $Menus->alias ?>" disabled /></td>
+                                    <td><a href="<?php echo $this->url('menuitem', array('action'=>'list','id'=>$Menus->id))?>">( <?php echo $count[$Menus->id]?> ) Click để xem danh sách menu</a></td>
+                                    <td><select class="active" disabled>
+                                    <option value="0" <?php if($Menus->active == 0 ) echo "selected"?>>Ngưng</option>
+                                    <option value="1" <?php if($Menus->active == 1 ) echo "selected"?>>Hoạt động</option>
+                                    </select></td>
+                                    <td class="action_hanhdong">
+										<a href="javascript::void()" title="Sửa" id="edit" edit-id="<?php echo $Menus->id?>" ><i class="fa fa-pencil-square-o"></i></a>
+										<a href=""><i class="fa fa-trash-o" title="Xóa"></i></a>
+									</td>
+                                </tr>
+                             <?php endforeach;?>
+								
+                            </tbody>
+                        </table>
+                        <div class="clear"></div>
+                    </div>
+                </div>                                
+                
+            </div> 
+            
+            <div class="dr"><span></span></div>            
+            
+        </div>
+        <script type='text/javascript'>
+		$(document).ready(function(){
+			$("#dialog").dialog({
+				autoOpen: false,
+				modal: true,
+				height: 600,
+				width: 960,
+				show: 'blind',
+				
+				 
+			});
+
+			$('#dialogBtn').click(function(){
+				var ahref = $(this).attr('data-href');
+				$('#dialog').dialog('open');
+				$('#myIframe').attr('src', ahref);
+			});
+			
+			$("#taomenu1").dialog({
+				autoOpen: false,
+				modal: true,
+				height: 500,
+				width: 400,
+				show: 'blind',
+				
+				 
+			});
+
+			$('#taomenu').click(function(){
+				var ahref = $(this).attr('data-href');
+				$('#taomenu1').dialog('open');
+				$('#myIframe1').attr('src', 'add');
+			});
+
+			$('body').on('click','.action_hanhdong #edit', function(){
+				var edit_id = $(this).attr('edit-id');
+				
+				if($(this).children('i').attr('class') == 'fa fa-pencil-square-o')
+				{
+					$(this).children('i').attr('class','fa fa-floppy-o');
+					$('tr.edit_'+edit_id+ ' input').prop('disabled', false);
+					$('tr.edit_'+edit_id+ ' select').prop('disabled', false);
+				} else {
+					$(this).children('i').attr('class','fa fa-pencil-square-o');
+					$('tr.edit_'+edit_id+ ' input').prop('disabled', true);
+					$('tr.edit_'+edit_id+ ' select').prop('disabled', true);
+					var url = "<?php echo $this->url('menu', array('action'=>'edit'))?>" + '/' + edit_id;
+					var name = $('tr.edit_'+edit_id+ ' input.name').val();
+					var alias = $('tr.edit_'+edit_id+ ' input.alias').val();
+					var active = $('tr.edit_'+edit_id+ ' select.active').val();
+				
+					var dataString = 'name=' + name +'&alias='+ alias +'&active='+ active;
+					$.ajax({
+						type: "POST",
+						url: url,
+						data: dataString,
+						cache: false,
+						success: function(html){
+							
+							notify_s('Thông báo','Bạn đã cập nhập thành công');
+							
+						}
+					})
+					
+				}
+			})
+		})
+	</script>
+	<div id="dialog">
+			<iframe id="myIframe" src="" width="100%" height="100%" style="border: 1px solid #ccc"></iframe>
+	</div>
+	<div id="taomenu1">
+			<iframe id="myIframe1" src="" width="100%" height="100%" style="border: 1px solid #ccc"></iframe>
+	</div>
+    <script type="text/javascript">
+			function closeModal() {
+			  $("#dialog").dialog("close");
+			}
+
+			function closeModal1() {
+			  $("#taomenu1").dialog("close");
+			}
+	</script>

@@ -1,0 +1,24 @@
+<?php $event = $this->newhome() ; ?>
+<aside class="events">
+	<h1 class="title title_size_big title_family_raleway">Tin Tức</h1>
+
+	<div class="posts">
+	<?php foreach ($event as $events): ?>
+		<article class="post">
+			<header class="post__header">
+				<time datetime="2014-09-25" class="post__date"><?php echo $events['date']?></time>
+				<h1 class="post__title">
+					<a href=""><?php echo $events['title'] ?></a>
+				</h1>
+			</header>
+			<p>
+				<?php echo mb_substr($events['summary'], 0, 200, 'UTF-8')?>...
+			</p>
+		</article>
+	<?php endforeach;?>
+		
+	</div>
+
+	<a href="" class="btn">Xem thêm</a>
+</aside>
+<!-- END: EVENTS -->

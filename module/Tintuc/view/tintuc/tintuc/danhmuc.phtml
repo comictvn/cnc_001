@@ -1,0 +1,77 @@
+<div class="row breadcrumb">
+				<ul>
+					<li><a href="/"><img src="<?php echo $this->basepath()?>/template/main/img/iconhome.png" style="vertical-align: top;"/> Trang chủ</a></li>
+					<li><img src="<?php echo $this->basepath()?>/template/main/img/arrow.png" /></li>
+					<li><a href=""><?php echo $title ?></a></li>
+				</ul>
+			</div><!-- End breadcrumb -->
+		</header><!-- End header -->
+<section class="content">
+<div class="row">
+				<div class="col-sm-2" style="padding-left:0">
+					<div class="ads-left">
+					<?php foreach ($block as $service): if($service['module'] == 2 && $service['position'] == 'ads_left'): ?>
+							<?php echo $service['html'] ?>
+							<style>
+							<!--
+							<?php echo $service['css'] ?>
+							-->
+							</style>
+				        	<?php endif; endforeach;?>
+					
+					</div><!-- End ads-left -->
+					
+				</div>
+				<div class="col-sm-8 news">
+					<div class="row">
+						<div class="col-sm-12">
+							
+							
+						</div>
+					</div>
+					
+					<div class="row service-list">
+					<?php foreach ($new as $news):?>
+						<div class="col-sm-12">
+							<div class="title">
+								<a href="<?php echo $this->url('chitiettintuc',array('alias'=>$news->alias))?><?php if(@$_GET['lang'] == 'en') echo "?lang=en"?>">
+								<?php if(@$_GET['lang'] == 'en') echo $news->title_en ; else echo $news->title ?></a>
+							</div>
+							<div class="item-list">
+								<div class="media">
+								  <a class="pull-left" href="#">
+									<img class="media-object" src="<?php echo $news->image ?>" alt="<?php echo $news->title ?>">
+								  </a>
+								  <div class="media-body1">
+								  <?php if(@$_GET['lang'] == 'en') echo $news->summary_en ; else echo $news->summary ?>
+									
+								  </div>
+								</div>
+								
+							</div><!-- End item-list -->
+						</div>
+						<?php endforeach;?>	
+					</div>
+					<div class="row service-list">
+						<div class="col-sm-12">
+						<?php echo ( count($new) > 0) ? $this->paginationcontrol($new, 'All', 'pagerdanhmuc.phtml', array('alias'=>$alias)) : "" ;
+	?>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2">
+							<div class="project">
+								<?php include 'include/duan.phtml';?>
+							</div><!-- End project -->
+							<div class="ads2" style="margin-top: 10px">
+							<?php foreach ($block as $service): if($service['module'] == 2 && $service['position'] == 'ads_right'): ?>
+							<?php echo $service['html'] ?>
+							<style>
+							<!--
+							<?php echo $service['css'] ?>
+							-->
+							</style>
+				        	<?php endif; endforeach;?>
+							</div><!-- End ads2 -->
+				</div>
+			</div>

@@ -1,0 +1,216 @@
+<!--  ==========  -->
+    <!--  = Breadcrumbs =  -->
+    <!--  ==========  -->
+    <div class="darker-stripe">
+        <div class="container">
+        	<div class="row">
+        		<div class="span12">
+        		    <ul class="breadcrumb">
+	                    <li>
+	                        <a href="index-2.html">Webmarket</a>
+	                    </li>
+	                    <li><span class="icon-chevron-right"></span></li>
+	                    <li>
+	                        <a href="shop.html">Shop</a>
+	                    </li>
+	                    <li><span class="icon-chevron-right"></span></li>
+	                    <li>
+	                        <a href="#">Horsefeathers</a>
+	                    </li>
+	                    <li><span class="icon-chevron-right"></span></li>
+	                    <li>
+	                        <a href="product.html">Horsefeathers Shot Surfers T-shirt</a>
+	                    </li>
+	                </ul>
+        		</div>
+        	</div>
+        </div>
+    </div>
+<!--  ==========  -->
+    <!--  = Main container =  -->
+    <!--  ==========  -->
+    <div class="container">
+        <div class="push-up top-equal blocks-spacer">
+
+            <!--  ==========  -->
+            <!--  = Product =  -->
+            <!--  ==========  -->
+            <div class="row blocks-spacer">
+
+                <!--  ==========  -->
+                <!--  = Preview Images =  -->
+                <!--  ==========  -->
+                <div class="span5">
+                    <div class="product-preview">
+                        <div class="picture">
+                            <img src="<?php echo $result->image ?>" alt="" width="940" height="940" id="mainPreviewImg"/>
+                        </div>
+                        <!-- <div class="thumbs clearfix">
+                            <div class="thumb active">
+                                <a href="#mainPreviewImg"><img src="images/dummy/products/shirt-1.jpg.pagespeed.ce.Pi4WnL75ui.jpg" alt="" width="940" height="940"/></a>
+                            </div>
+                            <div class="thumb">
+                                <a href="#mainPreviewImg"><img src="images/dummy/products/shirt-2.jpg.pagespeed.ce.1mS04Ek51W.jpg" alt="" width="940" height="940"/></a>
+                            </div>
+                            <div class="thumb">
+                                <a href="#mainPreviewImg"><img src="images/dummy/products/shirt-3.jpg.pagespeed.ce.NeiPCCrCap.jpg" alt="" width="940" height="940"/></a>
+                            </div>
+                            <div class="thumb">
+                                <a href="#mainPreviewImg"><img src="images/dummy/products/shirt-3.jpg.pagespeed.ce.NeiPCCrCap.jpg" alt="" width="940" height="940"/></a>
+                            </div>
+                            <div class="thumb">
+                                <a href="#mainPreviewImg"><img src="images/dummy/products/shirt-3.jpg.pagespeed.ce.NeiPCCrCap.jpg" alt="" width="940" height="940"/></a>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+
+                <!--  ==========  -->
+                <!--  = Title and short desc =  -->
+                <!--  ==========  -->
+                <div class="span7">
+                    <div class="product-title">
+                        <h1 class="name"><span class="light"><?php echo $result->proname ?></span> </h1>
+                        <div class="meta">
+                            <span class="tag"><?php echo number_format($result->price) ?> đ</span>
+                            <span class="stock">
+                                <span class="btn btn-success">In Stock</span>
+                                <span class="btn btn-danger">Out of Stock</span>
+                                <span class="btn btn-warning">Ask for availability</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="product-description">
+                        <?php echo $result->summary ?>
+                        <hr/>
+
+                        <!--  ==========  -->
+                        <!--  = Add to cart form =  -->
+                        <!--  ==========  -->
+                        <form action="#" class="form form-inline clearfix">
+                            <div class="numbered">
+                            	<input type="text" name="num" value="1" class="tiny-size"/>
+                            	<span class="clickable add-one icon-plus-sign-alt"></span>
+                            	<span class="clickable remove-one icon-minus-sign-alt"></span>
+                            </div>
+                            &nbsp;
+                            <button class="btn btn-danger pull-right"><i class="icon-shopping-cart"></i> &nbsp; Mua hàng</button>
+                        </form>
+
+                        <hr/>
+
+                        <!--  ==========  -->
+                        <!--  = Share buttons =  -->
+                        <!--  ==========  -->
+                        <div class="share-item push-down-20">
+                            <div class="row-fluid">
+                                <div class="span5">
+                                    Share this item with friends:
+                                </div>
+                                <div class="span7">
+                                    <div class="social-networks">
+                               <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_native_toolbox"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    
+
+                    </div>
+                </div>
+            </div>
+
+            <!--  ==========  -->
+            <!--  = Tabs with more info =  -->
+            <!--  ==========  -->
+            <div class="row">
+                <div class="span12">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab-1" data-toggle="tab">Description</a>
+                        </li>
+                        <li>
+                            <a href="#tab-2" data-toggle="tab">Comment</a>
+                        </li>
+                        
+                    </ul>
+                    <div class="tab-content">
+                        <div class="fade in tab-pane active" id="tab-1">
+                           <?php echo $result->description ?>
+                        </div>
+                        <div class="fade tab-pane" id="tab-2">
+                            <?php $uri = $this->serverUrl(true)  ?>
+                        <div class="fb-comments" data-width="100%" data-href="<?php echo $uri ?>" data-numposts="5" data-colorscheme="light"></div>
+                        
+                        </div>
+             
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- /container -->
+
+    <!--  ==========  -->
+    <!--  = Related Products =  -->
+    <!--  ==========  -->
+    <div class="boxed-area no-bottom">
+        <div class="container">
+
+            <!--  ==========  -->
+            <!--  = Title =  -->
+            <!--  ==========  -->
+            <div class="row">
+                <div class="span12">
+                    <div class="main-titles lined">
+                    	<h2 class="title"><span class="light">Related </span> Products</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!--  ==========  -->
+            <!--  = Related products =  -->
+            <!--  ==========  -->
+            <div class="row popup-products">
+                
+                <!--  ==========  -->
+                <!--  = Products =  -->
+                <!--  ==========  -->
+                <?php foreach($other_product as $other_products): ?>
+            	<div class="span3">
+            	    <div class="product">
+                        <div class="product-inner">
+                	        <div class="product-img">
+                                <div class="picture">
+                                    <a href="product.html"><img src="<?php echo $other_products->image ?>" alt="<?php echo $other_products->proname ?>" width="540" height="374"/></a>
+                                    <div class="img-overlay">
+                                        <a class="btn more btn-primary" href="<?php echo $this->url('chitietsanpham', array('alias'=>$other_products->alias))?>">Chi tiết</a>
+                                        <a href="#" class="btn buy btn-danger">Mua hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="main-titles no-margin">
+                                <h4 class="title"> <span class="red"><?php echo number_format($other_products->price) ?> đ</span></h4>
+                                <h5 class="no-margin"><?php echo $other_products->proname ?></h5>
+                            </div>
+                            <p class="desc"><?php echo $other_products->summary ?></p>
+                            <p class="center-align stars">
+                                <span class="icon-star stars-clr"></span>
+                                <span class="icon-star stars-clr"></span>
+                                <span class="icon-star stars-clr"></span>
+                                <span class="icon-star stars-clr"></span>
+                                <span class="icon-star"></span>
+                            </p>
+                        </div>
+            	    </div>
+            	</div> <!-- /product -->
+            	<?php endforeach ?>
+                <!--  ==========  -->
+                <!--  = Products =  -->
+                <!--  ==========  -->
+            	
+            	
+            </div>
+        </div>
+    </div>

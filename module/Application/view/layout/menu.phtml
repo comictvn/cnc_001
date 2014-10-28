@@ -1,0 +1,31 @@
+
+<ul class="navigation">
+<?php foreach ($this->container as $page): ?>
+
+    <li <?= $page->isActive()? 'class="openable active"' : '' ?><?php if(count($page) > 0) echo "class='openable'"?> ><?php echo $this->navigation()->menu()->htmlify($page, '')?> 
+    <ul>
+    <?php  foreach ($page as $catpage) :?>
+
+                    
+
+                              <li <?= $catpage->isActive()? 'class="active"' : 'class="drop"' ?> >
+            <?= $this->navigation()->menu()->htmlify($catpage, ''). PHP_EOL ?>
+                   </li>
+                        <ul>
+
+                           <?php  foreach ($catpage as $subpage) :?>
+
+                           <li  <?= $subpage->isActive()? 'class="active"' : 'class="drop"' ?>>
+            <?= $this->navigation()->menu()->htmlify($subpage, ''). PHP_EOL ?></li>
+
+
+                           <?php endforeach; ?>
+                        </ul>   
+
+                  
+
+                      <?php endforeach; ?>
+                       </ul>
+    </li>
+<?php endforeach; ?>
+</ul>

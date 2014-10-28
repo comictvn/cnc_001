@@ -1,0 +1,171 @@
+<?php echo $this->render('layout/bread.phtml')?>
+        
+        <div class="workplace">
+			<div class="page-header">
+                    <h1>Quản lý <small>block</small></h1>
+            </div>
+           
+            <?php echo $this->render('layout/menublock.phtml')?>
+            
+            <div class="row-fluid">
+                
+                <div class="span12">                    
+                    <div class="head">
+                        <div class="isw-grid"></div>
+                        <h1>Danh sách</h1>
+						<ul class="buttons">
+                            <li><a href="#" class="isw-download"></a></li>                                                        
+                            <li><a href="#" class="isw-attachment"></a></li>
+                            <li>
+                                <a href="#" class="isw-settings"></a>
+                                <ul class="dd-list">
+                                    <li><a href="#"><span class="isw-plus"></span> New document</a></li>
+                                    <li><a href="#"><span class="isw-edit"></span> Edit</a></li>
+                                    <li><a href="#"><span class="isw-delete"></span> Delete</a></li>
+                                </ul>
+                            </li>
+                        </ul>               
+                        <div class="clear"></div>
+                    </div>
+                    <div class="block-fluid table-sorting">
+                        <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tSortable">
+                            <thead>
+                                <tr>
+                                    <th width="5%"><input type="checkbox" name="checkall"/></th>
+                                    <th width="5%">STT</th>
+									<th width="10%">Tên block</th>
+                                    <th width="10%">Vị trí</th>
+									<th width="15%">Example</th>
+                                    <th width="10%">Tình trạng</th>
+									<th width="15%">Hiển thị tại các trang</th>
+                                    <th width="20%">Giá trị</th>
+									<th width="10%">Hành động</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($Block as $Blocks):?>
+                                <tr class="edit_<?php echo $Blocks->id ?>">
+                                    <td><input type="checkbox" name="checkbox"/></td>
+                                    <td><?php echo $Blocks->id ?></td>
+                                    <td><?php echo $Blocks->name ?></td>
+                                    <td><select name="position" class="position" style="width: 100%">
+                                    <?php foreach ($position as $positions):?>
+                                    	<option value="<?php echo $positions['alias']?>" <?php if($Blocks->position == $positions['alias']) echo "selected"; ?>>
+                                    		<?php echo $positions['alias']?>
+                                    	</option>
+                                    <?php endforeach;?>
+                                    </select></td>
+                                    <td>
+                                    
+                                    </td>
+									<td>
+									<select class="active" style="width: 100%" disabled>
+                                    <option value="0" <?php if($Blocks->active == 0 ) echo "selected"?>>Ngưng</option>
+                                    <option value="1" <?php if($Blocks->active == 1 ) echo "selected"?>>Hoạt động</option>
+                                    </select>
+									
+                                    <td>
+	                                   	<ul style="list-style:none; margin: 0">
+	                                   	<?php foreach ($page as $pages):?>
+	                                   		<li><input type="checkbox" name="page[]" class="page" value="<?php echo $pages['id']?>" 
+	                                   		<?php foreach ($pageblock as $pageblocks) { if($Blocks->id == $pageblocks['idblock'] && $pages['id'] == $pageblocks['idpage']) { echo "checked"; } }?>
+	                                   		/>
+	                                   		 <?php echo $pages['name']?>  </li>
+	                                   	<?php endforeach;?>
+	                                   	</ul>
+                                    </td>
+                                    <td>
+                                    <?php $i=0; foreach ($blockcontent as $blockcontents): if($blockcontents['idblock'] == $Blocks->id) : ?>
+                                    <p><?php echo $blockcontents['name']?></p>
+                                    <input type="text" name="value1[]" class="value1" value="<?php echo $blockcontents['value']?>" />
+                                    <input type="hidden" name="idblockcontent1" class="idblockcontent1" value="<?php echo $blockcontents['idblockcontent'] ?>" />
+                                    <input type="hidden" name="idparent[]" class="idparent" value="<?php echo $blockcontents['id'] ?>" />
+                                    <?php  foreach ($blockcontent0 as $blockcontent0s): if($blockcontent0s['parent'] == $blockcontents['id']): ?>
+                                    <p><?php echo $blockcontent0s['name'] ?></p>
+                                    <input type="text" name="value2[]" class="value2" value="<?php echo $blockcontent0s['value']?>"/>
+                                    <?php if($i == 0) :?>
+                                        <input type="hidden" name="idblockcontent2[]" class="idblockcontent2" value="<?php echo $blockcontent0s['idblockcontent'] ?>" />
+                                    <?php endif ?>
+                                    <?php endif; endforeach;?>
+                                    <?php $i++; endif; endforeach;?>
+                                    </td>
+                                    <td class="action_hanhdong">
+										<a href="javascript::void()" title="Sửa" id="edit" edit-id="<?php echo $Blocks->id?>" ><i class="fa fa-pencil-square-o"></i></a>
+									
+									</td>
+                                </tr>
+                            <?php endforeach;?>                                
+                            </tbody>
+                        </table>
+                        <div class="clear"></div>
+                    </div>
+                </div>                                
+                
+            </div>            
+            
+            <div class="dr"><span></span></div>            
+            
+        </div>
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+		$('body').on('click','.action_hanhdong #edit', function(){
+			var edit_id = $(this).attr('edit-id');
+			
+			if($(this).children('i').attr('class') == 'fa fa-pencil-square-o')
+			{
+				$(this).children('i').attr('class','fa fa-floppy-o');
+				$('tr.edit_'+edit_id+ ' input').prop('disabled', false);
+				$('tr.edit_'+edit_id+ ' select').prop('disabled', false);
+			} else {
+				$(this).children('i').attr('class','fa fa-pencil-square-o');
+				$('tr.edit_'+edit_id+ ' input').prop('disabled', true);
+				$('tr.edit_'+edit_id+ ' select').prop('disabled', true);
+				var url = "<?php echo $this->url('block', array('action'=>'edit'))?>" + '/' + edit_id;
+				var position = $('tr.edit_'+edit_id+ ' select.position').val();
+				var page = $('tr.edit_'+edit_id+ ' input:checkbox:checked.page'),
+			    names  = [].map.call(page, function( input ) {
+			        return input.value;
+			    });
+				var active = $('tr.edit_'+edit_id+ ' select.active').val();
+
+				var valueblock1 = $('tr.edit_'+edit_id+ ' input.value1'),
+			    blockvalue1  = [].map.call(valueblock1, function( input ) {
+			        return input.value;
+			    });
+			    var idblockcontent1 = $('tr.edit_'+edit_id+ ' input.idblockcontent1').val();
+
+				var valueblock2 = $('tr.edit_'+edit_id+ ' input.value2'),
+			    blockvalue2  = [].map.call(valueblock2, function( input ) {
+			        return input.value;
+			    });
+
+                var id_parent = $('tr.edit_'+edit_id+ ' input.idparent'),
+                id_parent_value  = [].map.call(id_parent, function( input ) {
+                    return input.value;
+                });
+
+
+				var id_blockcontent2 = $('tr.edit_'+edit_id+ ' input.idblockcontent2'),
+                idblockcontent2  = [].map.call(id_blockcontent2, function( input ) {
+                    return input.value;
+                });
+				
+				var dataString = 'position=' + position +'&page='+ names +'&active='+ active +'&blockvalue1='+ blockvalue1 +'&blockvalue2='+ blockvalue2 +'&idblockcontent1='+ idblockcontent1 +'&parent='+ id_parent_value +'&idblockcontent2='+ idblockcontent2;
+				
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: dataString,
+					cache: false,
+					success: function(html){
+						
+						notify_s('Thông báo','Bạn đã cập nhập thành công');
+						
+					}
+				})
+				
+			}
+		})
+	})
+	</script>

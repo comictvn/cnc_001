@@ -1,0 +1,134 @@
+
+<script type="text/javascript">
+
+function BrowseServer( startupPath, functionData )
+{
+	// You can use the "CKFinder" class to render CKFinder in a page:
+	var finder = new CKFinder();
+
+	// The path for the installation of CKFinder (default = "/ckfinder/").
+	finder.basePath = '../';
+
+	//Startup path in a form: "Type:/path/to/directory/"
+	finder.startupPath = startupPath;
+
+	// Name of a function which is called when a file is selected in CKFinder.
+	finder.selectActionFunction = SetFileField;
+
+	// Additional data to be passed to the selectActionFunction in a second argument.
+	// We'll use this feature to pass the Id of a field that will be updated.
+	finder.selectActionData = functionData;
+
+	// Name of a function which is called when a thumbnail is selected in CKFinder.
+	finder.selectActionFunction = ShowThumbnails;
+
+	// Launch CKFinder
+	finder.popup();
+}
+
+// This is a sample function which is called when a file is selected in CKFinder.
+function SetFileField( fileUrl, data )
+{
+	document.getElementById( data["selectActionData"] ).value = fileUrl;
+	return true;
+}
+
+// This is a sample function which is called when a thumbnail is selected in CKFinder.
+function ShowThumbnails( fileUrl, data )
+{
+
+	// this = CKFinderAPI
+	var sFileName = this.getSelectedFile().name;
+	document.getElementById('thumbnails').innerHTML = '';
+	document.getElementById('thumbnails').innerHTML +=
+			
+			'<div class="thumb">' +
+				'<img src="' + fileUrl + '" />' +
+				'<div class="caption">' +
+					'<a href="' + data["fileUrl"] + '" target="_blank">' + sFileName + '</a> (' + data["fileSize"] + 'KB)' +
+				'</div>' +
+			'</div>';
+
+	
+	// It is not required to return any value.
+	// When false is returned, CKFinder will not close automatically.
+	document.getElementById( data["selectActionData"] ).value = fileUrl;
+	return true;
+}
+
+</script>
+<script type="text/javascript">
+				$(document).ready(function(){
+					$("#validation").submit(function(){
+					    parent.closeModal();
+					});
+				})
+			</script>
+
+<div class="row-fluid">
+               	<?php
+				$form = $this->form;
+				$form->setAttributes ( array (
+				'id' => 'validation') );
+				$form->setAttribute ( 'action', $this->url ( 'albumanh', array (
+				'action' => 'edit','id'=>$this->id ) ) );
+				$form->prepare ();
+				echo $this->form ()->openTag ( $form );
+				?>
+                <div class="span12">  
+                <?php echo $this->formhidden($form->get('id'))?>               
+                   
+                    <div class="block-fluid">
+						<div class="row-form">
+										<div class="span2">Tên album :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('name'))?> <span> Tên đại diện album ảnh  </span></div>
+										<div class="span2 offset1">Đường dẫn tối ưu :</div>
+										<div class="span3">
+											<?php echo $this->forminput($form->get('alias'))?>
+
+										<span>Example : album-1 </span></div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Tag :</div>
+										<div class="span3"><?php echo $this->forminput($form->get('tag'))?></div>
+										<div class="span2 offset1">Tình trạng :</div>
+										<div class="span3">
+											<?php echo $this->formselect($form->get('active'))?>
+										</div>
+										
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Mô tả ngắn :</div>
+										<div class="span3"><?php echo $this->formtextarea($form->get('summary'))?></div>
+										<div class="span2 offset1">Hình ảnh :</div>
+										<div class="span3">
+											<div class="widgetButtons" style="text-align: left">                        
+								   
+												<div class="bb" id="thumbnails">
+												<a href="#" class="tipb" title="" data-original-title="Add new">
+												<span class="ibw-plus"></span></a>
+												</div>
+											</div>
+											<?php echo $this->forminput($form->get('image'))?>
+											<input type="button" value="Chọn ảnh"
+									onclick="BrowseServer( 'Images:/', 'xImagePath' );" />
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+								<div class="span12">
+									<h4 style="font-family: Cambria, Georgia, serif; font-style: italic"> Mô tả</h4>
+									<?php echo $this->formtextarea($form->get('description'))?>						</div>
+								<div class="clear"></div>
+							</div>
+							
+							<div class="footer tar">
+                                <button class="btn"> Thêm album </button>
+							</div>	
+                    </div>
+                </div>                                   
+                </form>
+            </div> 
+            

@@ -1,0 +1,12 @@
+<div class="container cf">
+                    <ul class="insCategories">
+                    <?php $catepro = $this->catepro() ; foreach ($catepro as $catepros):?>
+                        <li class="insCategories__item insCategories__item">
+                            <a href="<?php echo $this->url('danhmucsanpham', array('alias'=>$catepros['alias'] ))?>" class="insCategories__link"><?php echo $catepros['name']?></a>
+                        </li>
+                    <?php endforeach;?>
+                     
+                    </ul>
+
+                    <a href="#" class="pull pull_insCategory">Danh mục</a>
+                </div>

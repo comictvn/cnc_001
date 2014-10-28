@@ -1,0 +1,84 @@
+<?php echo $this->render('layout/bread.phtml')?>
+        
+        <div class="workplace">
+			<div class="page-header">
+                    <h1>Tối ưu <small>tìm kiếm</small></h1>
+            </div>
+            <?php echo $this->render('layout/menuintro.phtml')?>
+            <div class="alert alert-info">                
+            Phục vụ cho Seo website của bạn lên các bộ máy tìm kiếm như Google, Yahoo, Bing, vv...
+            </div>
+            <div class="row-fluid">
+                <?php
+				$form = $this->form;
+				$form->setAttributes ( array (
+				'id' => 'validation' ) );
+				$form->setAttribute ( 'action', $this->url ( 'intro', array (
+				'action' => 'seo' ) ) );
+				$form->prepare ();
+				echo $this->form ()->openTag ( $form );
+				?>
+                <div class="span12">   
+                <?php echo $this->formhidden($form->get('id')) ?>              
+                    <div class="head">
+                        <div class="isw-list"></div>
+                        <h1>Tối ưu hóa các trang tìm kiếm</h1>
+						<ul class="buttons">
+                                <li><a href="#" class="isw-ok"></a></li>
+                                
+                            </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="block-fluid tabs">
+
+				<ul>
+					<li><a href="#tabs-1">Trang chủ</a></li>
+					<li><a href="#tabs-2">Trang sản phẩm</a></li>
+					<li><a href="#tabs-3">Trang tin tức</a></li>
+					<li><a href="#tabs-4">Trang album ảnh</a></li>
+					<li><a href="#tabs-5">Trang liên hệ</a></li>
+					
+				</ul>
+
+
+				<?php $i=1; foreach ($seo as $seos):?>
+				<div id="tabs-<?php echo $i?>">
+					<div class="block-fluid">
+
+						<input type="hidden"  name="id[]" value="<?php echo $seos['id'] ?>"/>
+						<input type="hidden"  name="page[]" value="<?php echo $seos['page'] ?>"/>
+						<div class="row-form">
+							<div class="span2">Tiêu đề trang :</div>
+							<div class="span10"><input type="text" name="title[]" value="<?php echo $seos['title'] ?>"/></div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="row-form">
+							<div class="span2">Từ khóa :</div>
+							<div class="span10"><input type="text" name="tag[]" class="tags" value="<?php echo $seos['keywork'] ?>"/></div>
+							<div class="clear"></div>
+						</div>
+
+						<div class="row-form">
+							<div class="span2">Mô tả nội dung :</div>
+							<div class="span10"><textarea name="meta[]"><?php echo $seos['meta'] ?></textarea></div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<?php $i++; endforeach;?>
+				
+
+				<div class="footer tar">
+					<button class="btn">Cập nhập</button>
+				</div>
+
+			</div>
+                </div>                                
+                </form>
+            </div> 
+            
+            <div class="dr"><span></span></div>            
+            
+        </div>
+       

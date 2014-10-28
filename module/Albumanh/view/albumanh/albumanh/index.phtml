@@ -1,0 +1,77 @@
+
+<nav class="breadcrumb">
+    <div class="container">
+        <ul class="insBreadcrumb">
+            <li class="insBreadcrumb__item">
+                <a href="#" class="insBreadcrumb__link">Home</a>
+            </li>
+            <li class="insBreadcrumb__item insBreadcrumb__item_arrow">
+
+            </li>
+            <li class="insBreadcrumb__item">
+                Gallery
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- END: BREADCRUMB -->
+
+<div class="container">
+<div class="wrapper">
+    <h1 class="title_main text-center">Bộ sưu tập</h1>
+
+    <div class="gallery_container">
+        <ul class="gallery archive_gallery">
+        <?php foreach ($result as $row): ?>
+            <li class="gallery__item gallery__item_width">
+                <figure class="gallery__photo">
+                    <img src="css/images/gallery/photo1.jpg" alt="#"/>
+                    <figcaption class="gallery__over">
+                        <a href="blogInside.html" class="btn btn_over">More</a>
+                    </figcaption>
+                </figure>
+            </li>
+		<?php endforeach;?>
+       
+        </ul>
+    </div>
+    <!-- END: GALLERY -->
+
+</div>
+<nav class="pagination">
+    <ul class="insPagination">
+        <li class="insPaginationSide">
+            <a href="#" class="insPaginationSide__link">
+                <i class="insPaginationSide__arrow insPaginationSide__arrow_prev"></i>
+                Previous
+            </a>
+        </li>
+        <li class="insPagination__item">
+            <a href="#" class="insPagination__link">1</a>
+        </li>
+        <li class="insPagination__item insPagination__item_active">
+            <a href="#" class="insPagination__link">2</a>
+        </li>
+        <li class="insPagination__item">
+            <a href="#" class="insPagination__link">3</a>
+        </li>
+        <li class="insPagination__item">
+            <a href="#" class="insPagination__link">4</a>
+        </li>
+        <li class="insPagination__item">
+            <a href="#" class="insPagination__link">5</a>
+        </li>
+        <li class="insPagination__item">...</li>
+        <li class="insPagination__item">
+            <a href="#" class="insPagination__link">124</a>
+        </li>
+        <li class="insPaginationSide">
+            <a href="#" class="insPaginationSide__link">
+                Next
+                <i class="insPaginationSide__arrow insPaginationSide__arrow_next"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+<!-- END: insPagination -->
+</div>

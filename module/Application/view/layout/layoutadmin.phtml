@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>        
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+    <title>Hệ thống quản trị website</title>
+
+    <link rel="icon" type="image/ico" href="favicon.ico"/>
+    
+    <link href="<?php echo $this->basepath()?>/template/admin/css/stylesheets.css" rel="stylesheet" type="text/css" />
+    <link rel='stylesheet' type='text/css' href='<?php echo $this->basepath()?>/template/admin/css/fullcalendar.print.css' media='print' />
+    <link href="<?php echo $this->basepath()?>/template/admin/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js'></script>
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js'></script>
+	<script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/ckeditor/ckeditor.js'></script>
+	<script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/ckfinder/ckfinder.js'></script>
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/jquery/jquery.mousewheel.min.js'></script>
+    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/cookie/jquery.cookies.2.2.0.min.js'></script>
+    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/bootstrap.min.js'></script>
+    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/charts/jquery.flot.js'></script>    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/charts/jquery.flot.stack.js'></script>    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/charts/jquery.flot.pie.js'></script>
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/charts/jquery.flot.resize.js'></script>
+    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/sparklines/jquery.sparkline.min.js'></script>
+    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/fullcalendar/fullcalendar.min.js'></script>
+    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/select2/select2.min.js'></script>
+    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/uniform/uniform.js'></script>
+    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/maskedinput/jquery.maskedinput-1.3.min.js'></script>
+    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/validation/languages/jquery.validationEngine-en.js' charset='utf-8'></script>
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/validation/jquery.validationEngine.js' charset='utf-8'></script>
+    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js'></script>
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/animatedprogressbar/animated_progressbar.js'></script>
+    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/qtip/jquery.qtip-1.0.0-rc3.min.js'></script>
+    
+    
+    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/dataTables/jquery.dataTables.min.js'></script>    
+    
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins/fancybox/jquery.fancybox.pack.js'></script>
+    <script type='text/javascript' src='http://aqvatarius.com/themes/aquarius_v17/js/plugins/ibutton/jquery.ibutton.min.js'></script>
+	<script type='text/javascript' src='http://aqvatarius.com/themes/aquarius_v17/js/plugins/tagsinput/jquery.tagsinput.min.js'></script>
+	<script type='text/javascript' src='http://aqvatarius.com/themes/aquarius_v17/js/plugins/multiselect/jquery.multi-select.js'></script>
+    <script type="text/javascript" src="http://aqvatarius.com/themes/aquarius_v17/js/plugins/pnotify/jquery.pnotify.min.js"></script>
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/cookies.js'></script>
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/actions.js'></script>
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/charts.js'></script>
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/plugins.js'></script>
+    <script type='text/javascript' src='<?php echo $this->basepath()?>/template/admin/js/script.js'></script>
+</head>
+<body class="grid">
+    
+    <div class="header">
+        <a class="logo" href="index.html"><img src="<?php echo $this->basepath()?>/template/admin/img/logo.png" alt="Comictvn" title="Comictvn"/></a>
+        <ul class="header_menu">
+            <li class="list_icon"><a href="#">&nbsp;</a></li>
+        </ul>    
+    </div>
+    
+    <div class="menu">                
+        
+        <div class="breadLine">            
+            <div class="arrow"></div>
+            <div class="adminControl active">
+                Hi, Comictvn
+            </div>
+        </div>
+        
+        <div class="admin">
+            <div class="image">
+                <img src="<?php echo $this->basepath()?>/template/admin/img/cnclogo.png" class="img-polaroid"/>                
+            </div>
+            <ul class="control">                
+                <li><span class="icon-comment"></span> <a href="">Messages</a> <a href="messages.html" class="caption red">12</a></li>
+                <li><span class="icon-cog"></span> <a href="<?php echo $this->url('member', array('action'=>'index'))?>">Settings</a></li>
+                <li><span class="icon-share-alt"></span> <a href="<?php echo $this->url('member', array('action'=>'logout'))?>">Logout</a></li>
+            </ul>
+            <div class="info">
+                <span>Welcom back! Your last visit: 24.10.2014 in 19:55</span>
+            </div>
+        </div>
+        <?php $partial = array('layout/menu.phtml', 'default');
+		$this->navigation()->menu()->setPartial($partial);
+		echo $this->navigation()->menu(); ?>
+      
+        <div class="dr"><span></span></div>
+        
+       
+        
+        <div class="dr"><span></span></div> 
+        
+        <div class="widget">
+
+            <div class="input-append">
+                <input id="appendedInputButton" style="width: 118px;" type="text"><button class="btn" type="button">Search</button>
+            </div>            
+            
+        </div>
+        
+        <div class="dr"><span></span></div>        
+        
+        
+    </div>
+        
+    <div class="content">
+        
+        <?php echo $this->content ?>
+        
+    </div>   
+    
+</body>
+</html>

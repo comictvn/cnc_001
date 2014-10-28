@@ -1,0 +1,286 @@
+ <!--  ==========  -->
+    <!--  = Slider Revolution =  -->
+    <!--  ==========  -->
+    <div class="fullwidthbanner-container">
+        <div class="fullwidthbanner">
+            <ul>
+            <?php foreach($slide as $slides): ?>
+                <li data-transition="premium-random" data-slotamount="3">
+                    <img src="<?php echo $this->basepath() ?>/template/main/images/dummy/slides/1/slide.jpg.pagespeed.ce.r-PVKaMylg.jpg" alt="slider img" width="1400" height="377"/>
+
+                    <!-- baloons -->
+                    <div class="caption lft ltt" data-x="570" data-y="50" data-speed="4000" data-start="1000" data-easing="easeOutElastic">
+                        <img src="<?php echo $this->basepath() ?>/template/main/images/dummy/slides/1/baloon1.png.pagespeed.ce.L7q7sfZEL8.png" alt="baloon" width="135" height="186"/>
+                    </div>
+
+                    <div class="caption lft ltt" data-x="770" data-y="60" data-speed="4000" data-start="1200" data-easing="easeOutElastic">
+                        <img src="<?php echo $this->basepath() ?>/template/main/images/dummy/slides/1/baloon3.png.pagespeed.ce.cAr5bF6HxS.png" alt="baloon" width="40" height="55"/>
+                    </div>
+
+                    <div class="caption lft ltt" data-x="870" data-y="80" data-speed="4000" data-start="1500" data-easing="easeOutElastic">
+                        <img src="<?php echo $this->basepath() ?>/template/main/images/dummy/slides/1/baloon2.png.pagespeed.ce.n-ztXRj3O3.png" alt="baloon" width="60" height="83"/>
+                    </div>
+
+                    <!-- texts -->
+                    <div class="caption lfl big_theme" data-x="120" data-y="120" data-speed="1000" data-start="500" data-easing="easeInOutBack">
+                        With Webmarket, the Sky Is the Limit
+                    </div>
+
+                    <div class="caption lfl small_theme" data-x="120" data-y="190" data-speed="1000" data-start="700" data-easing="easeInOutBack">
+                        Take a tour on Webmarket HTML Template
+                    </div>
+
+                    <a href="features.html" class="caption lfl btn btn-primary btn_theme" data-x="120" data-y="260" data-speed="1000" data-start="900" data-easing="easeInOutBack">
+                        ALL THEME FEATURES
+                    </a>
+                </li><!-- /slide -->
+            <?php endforeach ?>
+              
+            </ul>
+            <div class="tp-bannertimer"></div>
+        </div>
+        <!--  ==========  -->
+        <!--  = Nav Arrows =  -->
+        <!--  ==========  -->
+        <div id="sliderRevLeft"><i class="icon-chevron-left"></i></div>
+        <div id="sliderRevRight"><i class="icon-chevron-right"></i></div>
+    </div> <!-- /slider revolution -->
+
+    <!--  ==========  -->
+    <!--  = Main container =  -->
+    <!--  ==========  -->
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="push-up over-slider blocks-spacer">
+
+                    <!--  ==========  -->
+                    <!--  = Three Banners =  -->
+                    <!--  ==========  -->
+                    <div class="row">
+                        <div class="span4">
+                            <a href="#" class="btn btn-block banner">
+                                <span class="title"><span class="light">SUMMER</span> SALE</span>
+                                <em>up to 60% off on all shoes</em>
+                            </a>
+                        </div>
+                        <div class="span4">
+                            <a href="#" class="btn btn-block colored banner">
+                                <span class="title"><span class="light">FREE</span> SHIPPING</span>
+                                <em>on orders over $69</em>
+                            </a>
+                        </div>
+                        <div class="span4">
+                            <a href="#" class="btn btn-block banner">
+                                <span class="title"><span class="light">NEW</span> PRODUCTS</span>
+                                <em>for running on lorem ipsum dolor</em>
+                            </a>
+                        </div>
+                    </div> <!-- /three banners -->
+                </div>
+            </div>
+        </div>
+
+        <!--  ==========  -->
+        <!--  = Featured Items =  -->
+        <!--  ==========  -->
+        <div class="row featured-items blocks-spacer">
+            <div class="span12">
+
+                <!--  ==========  -->
+                <!--  = Title =  -->
+                <!--  ==========  -->
+            	<div class="main-titles lined">
+            	    <h2 class="title"><span class="light">Featured</span> Products</h2>
+            	    <div class="arrows">
+                        <a href="#" class="icon-chevron-left" id="featuredItemsLeft"></a>
+                        <a href="#" class="icon-chevron-right" id="featuredItemsRight"></a>
+                    </div>
+            	</div>
+            </div>
+
+            <div class="span12">
+                <!--  ==========  -->
+                <!--  = Carousel =  -->
+                <!--  ==========  -->
+                <div class="carouFredSel" data-autoplay="false" data-nav="featuredItems">
+                    <div class="slide">
+                        <div class="row">
+                    	                    	
+                    	
+    	            	<!--  ==========  -->
+    					<!--  = Product =  -->
+    					<!--  ==========  -->
+                        <?php foreach($product_selling as $product_sellings) : ?>
+    	            	<div class="span4">
+    	            	    <div class="product">
+    	            	        <div class="product-img featured">
+    	            	            <div class="picture">
+    	            	        	    <a href=""><img src="<?php echo $product_sellings['image'] ?>" alt="<?php echo $product_sellings->proname ?>" width="518" height="358"/></a>
+    	            	        		<div class="img-overlay">
+    	            	        		    <a href="<?php echo $this->url('chitietsanpham', array('alias'=>$product_sellings['alias']))?>" class="btn more btn-primary">MORE</a>
+    	            	        		    <a href="#" class="btn buy btn-danger">ADD TO CART</a>
+    	            	        		</div>
+    	            	            </div>
+    	            	        </div>
+    	            	        <div class="main-titles">
+    	            	            <h4 class="title">$ <?php echo $product_sellings['price'] ?></h4>
+    	            	            <h5 class="no-margin"><a href=""><?php echo $product_sellings['proname'] ?></a></h5>
+    	            	        </div>
+    	            	        <p class="desc"><?php echo $product_sellings['summary'] ?></p>
+    	            	    </div>
+                	      </div> <!-- /product -->
+    	            	                    	
+                    	<?php endforeach ?>
+    	            	
+    	            	</div>
+                	</div>
+                </div> <!-- /carousel -->
+            </div>
+
+        </div>
+    </div> <!-- /container -->
+
+    <!--  ==========  -->
+    <!--  = New Products =  -->
+    <!--  ==========  -->
+    <div class="boxed-area blocks-spacer">
+        <div class="container">
+
+            <!--  ==========  -->
+            <!--  = Title =  -->
+            <!--  ==========  -->
+            <div class="row">
+                <div class="span12">
+                    <div class="main-titles lined">
+                    	<h2 class="title"><span class="light">Most</span> Popular Products</h2>
+                    </div>
+                </div>
+            </div> <!-- /title -->
+
+            <div class="row popup-products blocks-spacer">
+                                                <!--  ==========  -->
+                <!--  = Product =  -->
+                <!--  ==========  -->
+                <?php foreach($product_new as $product_news): ?>
+            	<div class="span3">
+                    <div class="product">
+            	       <div class="product-inner">
+                	        <div class="product-img">
+                                <div class="picture">
+                                    <a href=""><img src="<?php echo $product_news['image'] ?>" alt="<?php echo $product_news['proname'] ?>" width="540" height="374"/></a>
+                                    <div class="img-overlay">
+                                        <a href="<?php echo $this->url('chitietsanpham', array('alias'=>$product_news['alias']))?>" class="btn more btn-primary">MORE</a>
+                                        <a href="#" class="btn buy btn-danger">ADD TO CART</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="main-titles no-margin">
+                                <h4 class="title">$ <?php echo $product_news['price'] ?></h4>
+                                <h5 class="no-margin"><?php echo $product_news['proname'] ?></h5>
+                            </div>
+                            <p class="desc"><?php echo $product_news['summary'] ?></p>
+                           
+                            </div>
+            	    </div>
+            	</div> <!-- /product -->
+            <?php endforeach ?>
+
+                    	    </div>
+    	</div>
+    </div> <!-- /most popular -->
+
+    <!--  ==========  -->
+    <!--  = Lastest News =  -->
+    <!--  ==========  -->
+    <div class="darker-stripe blocks-spacer more-space latest-news with-shadows">
+    	<div class="container">
+
+    	    <!--  ==========  -->
+			<!--  = Title =  -->
+			<!--  ==========  -->
+    		<div class="row">
+    			<div class="span12">
+    			    <div class="main-titles center-align">
+    			        <h2 class="title">
+    			            <span class="clickable icon-chevron-left" id="tweetsLeft"></span> &nbsp;&nbsp;&nbsp;
+    			            <span class="light">Latest</span> News &nbsp;&nbsp;&nbsp;
+    			            <span class="clickable icon-chevron-right" id="tweetsRight"></span>
+			            </h2>
+    			    </div>
+    			</div>
+    		</div> <!-- /title -->
+
+    		<!--  ==========  -->
+			<!--  = News content =  -->
+			<!--  ==========  -->
+    		<div class="row">
+    		    <div class="span12">
+    		        <div class="carouFredSel" data-nav="tweets" data-autoplay="false">
+    		            
+		                <!--  ==========  -->
+						<!--  = Slide =  -->
+						<!--  ==========  -->
+                        <div class="slide">
+                        	<div class="row">
+                            <?php $i = 1; foreach($new as $news):  ?>
+                        		<div class="span6">
+                        		    <div class="news-item">
+                        		        <div class="published"><?php echo $news['date'] ?></div>
+                        		        <h6><a href="<?php echo $this->url('chitiettintuc', array('alias'=>$news['alias']))?>"><?php echo $news['summary'] ?></p>
+                        		    </div>
+                        		</div>
+                            <?php if($i % 2 === 0) :  ?>
+                               </div>
+                               </div> 
+                        <div class="slide">
+                            <div class="row">
+                            <?php endif ?>
+                            <?php $i++; endforeach ?>
+                        	
+                        	</div>
+                        </div> <!-- /slide -->
+                        
+		           
+                    </div>
+    		    </div>
+    		</div> <!-- /news content -->
+    	</div>
+    </div> <!-- /latest news -->
+
+    <!--  ==========  -->
+    <!--  = Brands Carousel =  -->
+    <!--  ==========  -->
+	<div class="container blocks-spacer-last">
+
+		<!--  ==========  -->
+		<!--  = Title =  -->
+		<!--  ==========  -->
+		<div class="row">
+		    <div class="span12">
+		    	<div class="main-titles lined">
+	                <h2 class="title"><span class="light">Our </span> Brands</h2>
+                    <div class="arrows">
+                        <a href="#" class="icon-chevron-left" id="brandsLeft"></a>
+                        <a href="#" class="icon-chevron-right" id="brandsRight"></a>
+                    </div>
+	            </div>
+		    </div>
+		</div> <!-- /title -->
+
+		<!--  ==========  -->
+		<!--  = Logos =  -->
+		<!--  ==========  -->
+		<div class="row">
+		    <div class="span12">
+		    	<div class="brands carouFredSel" data-nav="brands" data-autoplay="true">
+                    <img src="<?php echo $this->basepath() ?>/template/main/images/dummy/brands/203x104xbrands_01.jpg.pagespeed.ic.QUopI1wbKR.jpg" alt="" width="203" height="104"/>
+                    <img src="<?php echo $this->basepath() ?>/template/main/images/dummy/brands/203x104xbrands_02.jpg.pagespeed.ic.zNw3oeWBsh.jpg" alt="" width="203" height="104"/>
+                    <img src="<?php echo $this->basepath() ?>/template/main/images/dummy/brands/203x104xbrands_03.jpg.pagespeed.ic.aMVaN5CC1F.jpg" alt="" width="203" height="104"/>
+                    <img src="<?php echo $this->basepath() ?>/template/main/images/dummy/brands/203x104xbrands_04.jpg.pagespeed.ic.2f9iV2LDqU.jpg" alt="" width="203" height="104"/>
+                    <img src="<?php echo $this->basepath() ?>/template/main/images/dummy/brands/203x104xbrands_05.jpg.pagespeed.ic.L5XamUhYAU.jpg" alt="" width="203" height="104"/>
+                    <img src="<?php echo $this->basepath() ?>/template/main/images/dummy/brands/203x104xbrands_06.jpg.pagespeed.ic.BEjiN5VOgP.jpg" alt="" width="203" height="104"/>
+                </div>
+		    </div>
+		</div> <!-- /logos -->
+	</div> <!-- /brands carousel -->

@@ -1,0 +1,117 @@
+<script type="text/javascript">
+
+function BrowseServer( startupPath, functionData )
+{
+	// You can use the "CKFinder" class to render CKFinder in a page:
+	var finder = new CKFinder();
+
+	// The path for the installation of CKFinder (default = "/ckfinder/").
+	finder.basePath = '../';
+
+	//Startup path in a form: "Type:/path/to/directory/"
+	finder.startupPath = startupPath;
+
+	// Name of a function which is called when a file is selected in CKFinder.
+	finder.selectActionFunction = SetFileField;
+
+	// Additional data to be passed to the selectActionFunction in a second argument.
+	// We'll use this feature to pass the Id of a field that will be updated.
+	finder.selectActionData = functionData;
+
+	// Name of a function which is called when a thumbnail is selected in CKFinder.
+	finder.selectActionFunction = ShowThumbnails;
+
+	// Launch CKFinder
+	finder.popup();
+}
+
+// This is a sample function which is called when a file is selected in CKFinder.
+function SetFileField( fileUrl, data )
+{
+	document.getElementById( data["selectActionData"] ).value = fileUrl;
+	return true;
+}
+
+// This is a sample function which is called when a thumbnail is selected in CKFinder.
+function ShowThumbnails( fileUrl, data )
+{
+
+	// this = CKFinderAPI
+	var sFileName = this.getSelectedFile().name;
+	document.getElementById('thumbnails').innerHTML = '';
+	document.getElementById('thumbnails').innerHTML +=
+			
+			'<div class="thumb">' +
+				'<img src="' + fileUrl + '" />' +
+				'<div class="caption">' +
+					'<a href="' + data["fileUrl"] + '" target="_blank">' + sFileName + '</a> (' + data["fileSize"] + 'KB)' +
+				'</div>' +
+			'</div>';
+
+	
+	// It is not required to return any value.
+	// When false is returned, CKFinder will not close automatically.
+	document.getElementById( data["selectActionData"] ).value = fileUrl;
+	return true;
+}
+
+</script>
+<div class="row-fluid">
+                <form action="<?php echo $this->url('slide', array('action'=>'editimage','id'=>$this->id)) ?>" method="post">
+                <div class="span12">   
+                   
+                    <div class="block-fluid">
+						<div class="row-form">
+										<div class="span2">Tên banner :</div>
+										<div class="span3"><input type="text" name="value1" value="<?php echo $data['name'] ?>" /></div>
+										<div class="span2 offset1">Hình ảnh</div>
+										<div class="span3">
+										<div class="widgetButtons" style="text-align: left">
+
+											<div class="bb" id="thumbnails">
+												<a href="#" class="tipb" title=""
+													data-original-title="Add new"> <span class="ibw-plus"></span></a>
+											</div>
+										</div>
+										<input type="text" name="value2[]" id="xImagePath" value="<?php echo $data['image'] ?>">
+										<input type="button" value="Chọn ảnh"
+												onclick="BrowseServer( 'Images:/', 'xImagePath' );" />
+										<input type="hidden" name="idblockcontent2[]" value="9" />
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Đường dẫn :</div>
+										<div class="span3">
+											<input type="text" name="value2[]" value="<?php echo $data['link'] ?>"/>
+											<input type="hidden" name="idblockcontent2[]" value="10" />
+										</div>
+										<div class="span2 offset1">Tiêu đề :</div>
+										<div class="span3">
+											<input type="text" name="value2[]" value="<?php echo $data['title'] ?>"/>
+											<input type="hidden" name="idblockcontent2[]" value="11" />
+										</div>
+										<div class="clear"></div>
+							</div>
+							
+							<div class="row-form">
+										<div class="span2">Mô tả :</div>
+										<div class="span3">
+											<textarea name="value2[]"><?php echo $data['content'] ?></textarea>
+											<input type="hidden" name="idblockcontent2[]" value="12" />
+										</div>
+										<div class="span2 offset1">Thứ tự :</div>
+										<div class="span3">
+											<input type="text" name="value2[]" value="<?php echo $data['order'] ?>"/>
+											<input type="hidden" name="idblockcontent2[]" value="13" />
+										</div>
+										<div class="clear"></div>
+							</div>
+							
+							<div class="footer tar">
+                                <button class="btn"> Thêm slide </button>
+							</div>	
+                    </div>
+                </div>                                
+                </form>
+            </div> 

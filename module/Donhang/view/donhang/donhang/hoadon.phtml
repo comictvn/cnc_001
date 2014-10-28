@@ -1,0 +1,43 @@
+<?php 
+$title='Chuyên cung cấp thời trang trong và ngoài nước';
+$this->headTitle($title);
+?>
+<h2 align="center" style="margin-top: 10px">Hóa đơn của khách hàng</h2>
+
+<table width="100%" cellpadding="5px" border="0px" bordercolor="#FFFFFF" cellspacing="0">
+<tr>
+<td width="150px">Số hóa đơn</td>
+<?php
+if (!$hoadon==NULL)
+{
+	$trigia=0;
+echo '<td>'.$hoadon[0]['sohd'].'</td></tr>';
+echo '<tr><td>Mã khách hàng</td><td>'.$hoadon[0]['MaKH'].'</td></tr>';
+echo '<tr><td>Họ tên</td><td>'.$hoadon[0]['Hoten'].'</td></tr>';
+echo '<tr><td>Địa chỉ gia hàng</td><td>'.$hoadon[0]['Diachigiaohang'].'</td></tr>';
+echo '<tr><td>Email</td><td>'.$hoadon[0]['email'].'</td></tr>';
+echo '<tr><td colspan="2">';
+echo '<table width="100%" cellpadding="5px" border="1px" bordercolor="#FFFFFF" cellspacing="0">';
+echo '<tr bgcolor="#F344D9"><td>Mã SP</td><td>Tên sản phẩm</td><td>Số lượng</td><td>Đơn giá</td><td>Thành tiền</td></tr>';
+for($i=0;$i<count($hoadon);$i++)
+{
+echo '<tr>';
+echo '<td>'.$hoadon[$i]['ma_sp'].'</td>';
+echo '<td>'.$hoadon[$i]['ten_sp'].'</td>';
+echo '<td>'.$hoadon[$i]['soluong'].'</td>';
+echo '<td align="right">'.number_format($hoadon[$i]['don_gia'],'0',',','.').'</td>';
+echo '<td align="right">'.number_format($hoadon[$i]['don_gia']*$hoadon[$i]['soluong'],'0',',','.').'</td>';
+echo '</tr>';
+$trigia+=$hoadon[$i]['don_gia']*$hoadon[$i]['soluong'];
+}
+echo '<tr><td colspan="2">&nbsp;</td>';
+echo '<td colspan="2" align="right"  bgcolor="#F344D9">Trị giá hóa đơn</td>';
+echo '<td  align="right"  bgcolor="#F344D9">'.number_format($trigia).'</td>';
+echo '</tr>';
+echo '</table>';
+}
+?>
+
+    </td>
+  </tr>
+</table>

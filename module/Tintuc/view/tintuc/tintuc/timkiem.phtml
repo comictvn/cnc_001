@@ -1,0 +1,71 @@
+<div class="row breadcrumb">
+				<ul>
+					<li><a href="/"><img src="<?php echo $this->basepath()?>/template/main/img/iconhome.png" style="vertical-align: top;"/> Trang chủ</a></li>
+					<li><img src="<?php echo $this->basepath()?>/template/main/img/arrow.png" /></li>
+					<li><a href="">Tìm kiếm </a></li>
+				</ul>
+			</div><!-- End breadcrumb -->
+		</header><!-- End header -->
+<section class="content">
+<div class="row">
+				<div class="col-sm-2" style="padding-left:0">
+					<div class="ads-left">
+					<?php foreach ($block as $service): if($service['module'] == 2 && $service['position'] == 'ads_right'): ?>
+							<?php echo $service['html'] ?>
+							<style>
+							<!--
+							<?php echo $service['css'] ?>
+							-->
+							</style>
+				        	<?php endif; endforeach;?>
+					
+					</div><!-- End ads-left -->
+					
+				</div>
+				<div class="col-sm-8 news">
+					<div class="row">
+						<div class="col-sm-12">
+							<h1 style="font-size: 20px; font-weight: bold"><?php if(@$_GET['lang'] == 'en') echo "Search" ; else echo "Tìm kiếm" ?></h1>
+						</div>
+					</div>
+					
+					<div class="row service-list">
+					<?php foreach ($timkiem as $gioithieus):?>
+						<div class="col-sm-12">
+							<div class="title">
+							<a href="<?php echo $this->url('chitiettintuc',array('alias'=>$gioithieus->alias))?><?php if(@$_GET['lang'] == 'en') echo "?lang=en"?>"><?php if(@$_GET['lang'] == 'en') echo $gioithieus->title_en ; else echo $gioithieus->title ?></a>
+							
+							</div>
+							<div class="item-list">
+								<div class="media">
+								  <a class="pull-left" href="#">
+									<img class="media-object" src="<?php echo $gioithieus->image ?>" alt="<?php echo $gioithieus->title ?>">
+								  </a>
+								  <div class="media-body1">
+								  <?php if(@$_GET['lang'] == 'en') echo $gioithieus->summary_en ; else echo $gioithieus->summary ?>
+									
+								  </div>
+								</div>
+								
+							</div><!-- End item-list -->
+						</div>
+						<?php endforeach;?>	
+					</div>
+					
+				</div>
+				<div class="col-sm-2">
+							<div class="project">
+								<?php include 'include/duan.phtml';?>
+							</div><!-- End project -->
+							<div class="ads2" style="margin-top: 10px">
+							<?php foreach ($block as $service): if($service['module'] == 2 && $service['position'] == 'ads_right'): ?>
+							<?php echo $service['html'] ?>
+							<style>
+							<!--
+							<?php echo $service['css'] ?>
+							-->
+							</style>
+				        	<?php endif; endforeach;?>
+							</div><!-- End ads2 -->
+				</div>
+			</div>

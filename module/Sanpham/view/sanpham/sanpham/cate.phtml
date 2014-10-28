@@ -1,0 +1,184 @@
+<!--  ==========  -->
+<!--  = Breadcrumbs =  -->
+<!--  ==========  -->
+<div class="darker-stripe">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="index-2.html">Webmarket</a>
+                    </li>
+                    <li><span class="icon-chevron-right"></span>
+                    </li>
+                    <li>
+                        <a href="shop.html">Shop</a>
+                    </li>
+                    <li><span class="icon-chevron-right"></span>
+                    </li>
+                    <li>
+                        <a href="shop.html">Grid View</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="push-up blocks-spacer">
+        <div class="row">
+
+            <!--  ==========  -->
+            <!--  = Sidebar =  -->
+            <!--  ==========  -->
+            <aside class="span3 left-sidebar" id="tourStep1">
+                <div class="sidebar-item sidebar-filters" id="sidebarFilters">
+
+                    <!--  ==========  -->
+                    <!--  = Sidebar Title =  -->
+                    <!--  ==========  -->
+                    <div class="underlined">
+                        <h3><span class="light">Shop</span> by filters</h3>
+                    </div>
+
+                    <!--  ==========  -->
+                    <!--  = Categories =  -->
+                    <!--  ==========  -->
+                    <div class="accordion-group" id="tourStep2">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" href="#filterOne">Categories <b class="caret"></b></a>
+                        </div>
+                        <div id="filterOne" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                                <?php $catepro= $this->catepro() ?>
+                                <?php foreach($catepro as $catepros): ?>
+                                <a href="#" data-target=".filter--<?php echo $catepros['alias'] ?>" class="selectable"><i class="box"></i> <?php echo $catepros['name'] ?></a>
+                                <?php endforeach; ?>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /categories -->
+
+                    <!--  ==========  -->
+                    <!--  = Prices slider =  -->
+                    <!--  ==========  -->
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" href="#filterPrices">Price <b class="caret"></b></a>
+                        </div>
+                        <div id="filterPrices" class="accordion-body in collapse">
+                            <div class="accordion-inner with-slider">
+                                <div class="jqueryui-slider-container">
+                                    <div id="pricesRange"></div>
+                                </div>
+                                <input type="text" data-initial="432" class="max-val pull-right" disabled />
+                                <input type="text" data-initial="99" class="min-val" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /prices slider -->
+
+                    
+
+                    <a href="#" class="remove-filter" id="removeFilters"><span class="icon-ban-circle"></span> Remove All Filters</a>
+
+                </div>
+            </aside>
+            <!-- /sidebar -->
+
+            <!--  ==========  -->
+            <!--  = Main content =  -->
+            <!--  ==========  -->
+            <section class="span9">
+
+                <!--  ==========  -->
+                <!--  = Title =  -->
+                <!--  ==========  -->
+                <div class="underlined push-down-20">
+                    <div class="row">
+                        <div class="span4">
+                            <h3><span class="light">All</span> Products</h3>
+                        </div>
+                        <div class="span5 align-right sm-align-left">
+                            <div class="form-inline sorting-by" id="tourStep4">
+                                <label for="isotopeSorting" class="black-clr">Sort:</label>
+                                <select id="isotopeSorting" class="span3">
+                                    <option value='{"sortBy":"price", "sortAscending":"true"}'>By Price (Low to High) &uarr;</option>
+                                    <option value='{"sortBy":"price", "sortAscending":"false"}'>By Price (High to Low) &darr;</option>
+                                    <option value='{"sortBy":"name", "sortAscending":"true"}'>By Name (Low to High) &uarr;</option>
+                                    <option value='{"sortBy":"name", "sortAscending":"false"}'>By Name (High to Low) &darr;</option>
+                                    <option value='{"sortBy":"popularity", "sortAscending":"true"}'>By Popularity (Low to High) &uarr;</option>
+                                    <option value='{"sortBy":"popularity", "sortAscending":"false"}'>By Popularity (High to Low) &darr;</option>
+                                </select>
+                            </div>
+                            <div class="view-switch">
+                                <a href="shop.html" class="btn btn-primary"><i class="icon-th"></i></a>
+                                <a href="shop-list-view.html" class="btn"><i class="icon-list"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /title -->
+
+                <!--  ==========  -->
+                <!--  = Products =  -->
+                <!--  ==========  -->
+                <div class="row popup-products">
+                    <div id="isotopeContainer" class="isotope-container">
+
+
+                        <!--  ==========  -->
+                        <!--  = Single Product =  -->
+                        <!--  ==========  -->
+                        <?php foreach($result as $results):?>
+                        <div class="span3 isotope--target filter--<?php echo $results->cate_alias ?>" data-price="<?php echo $results->price ?>" data-popularity="1" data-size="s|xxl" data-color="orange" data-brand="shred">
+                            <div class="product">
+                                <div class="product-inner">
+                                    <?php if($results->pronew) : ?>
+                                    <div class="stamp green">New</div>
+                                    <?php endif ?>
+                                    <div class="product-img">
+                                        <div class="picture">
+                                            <a href="product.html">
+                                                <img width="540" height="374" alt="" src="<?php echo $results->image ?>" />
+                                            </a>
+                                            <div class="img-overlay">
+                                                <a class="btn more btn-primary" href="<?php echo $this->url('chitietsanpham', array('alias'=>$results->alias)) ?>">More</a>
+                                                <a class="btn buy btn-danger" href="#">Add to Cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="main-titles no-margin">
+                                        <h4 class="title">$ <?php echo number_format($results->price) ?></h4>
+                                        <h5 class="no-margin isotope--title"><?php echo $results->proname ?></h5>
+                                    </div>
+                                    <div class="row-fluid hidden-line">
+                                        <div class="span6">
+                                            <a href="#" class="btn btn-small"><i class="icon-heart"></i></a>
+                                            <a href="#" class="btn btn-small"><i class="icon-exchange"></i></a>
+                                        </div>
+                                        <div class="span6 align-right">
+                                            <span class="icon-star stars-clr"></span>
+                                            <span class="icon-star"></span>
+                                            <span class="icon-star"></span>
+                                            <span class="icon-star"></span>
+                                            <span class="icon-star"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endforeach ?>
+                        <!-- /single product -->
+                        
+                    </div>
+                </div>
+                <hr/>
+            </section>
+            <!-- /main content -->
+        </div>
+    </div>
+</div>
+<!-- /container -->

@@ -1,0 +1,217 @@
+<?php echo $this->render('layout/bread.phtml')?>
+        
+        <div class="workplace">
+			<div class="page-header">
+                    <h1>Quản lý <small>menu item</small></h1>
+            </div>
+       
+            
+            <div class="row-fluid">
+                <?php
+				$form = $this->form;
+				$form->setAttributes ( array (
+				'id' => 'validation' ) );
+				$form->setAttribute ( 'action', $this->url ( 'menuitem', array (
+				'action' => 'list' ) ) );
+				$form->prepare ();
+				echo $this->form ()->openTag ( $form );
+				?>
+                <div class="span12">   
+                <input type="hidden" name="id" />                 
+                    <div class="head">
+                        <div class="isw-list"></div>
+                        <h1>Menu</h1>
+						<ul class="buttons">
+                                <li><a href="#" class="isw-ok"></a></li>
+                                
+                            </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="block-fluid">
+						<div class="row-form">
+										<div class="span2">Tên menu items :</div>
+										<div class="span3"><input value="" class="" type="text" name="title_name" id="title_name"/></div>
+										<div class="span2 offset1">Đường dẫn tối ưu :</div>
+										<div class="span3">
+											<input value="" class="" type="text" name="alias" id="alias" />
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Chọn nội dung :</div>
+										<div class="span3"><input value="" class="" type="text" name="name_busi" id="name_busi"/>
+										<button class="btn btn-link" type="button">Link chọn</button>
+										</div>
+										<div class="span2 offset1">Link đến  :</div>
+										<div class="span3">
+											<input value="" class="" type="text" name="link" id="link" />
+											<span> Nếu chọn link đến thì chọn nội dụng bạn để trống</span>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Menu cha :</div>
+										<div class="span3">
+											<select name="parent" id="parent" id="parent">
+												<option value="">Menu cha</option>
+												<option value="option1">Toàn quốc</option>
+												<option value="option2">Hà Nội</option>
+												<option value="option3">Đà Nẵng</option>
+												<option value="option3">Hồ Chí Minh</option>
+											</select>
+										</div>
+										<div class="span2 offset1">Thứ tự :</div>
+										<div class="span3">
+											<input value="" class="" type="text" name="thutu" id="thutu" />
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Biểu tượng ( icon ) :</div>
+										<div class="span3"><input value="" class="" type="file" /></div>
+										<div class="span2 offset1">Click mở ra :</div>
+										<div class="span3">
+											<select name="click" id="click" id="click">
+												<option value="">Mở ra tab hiện tại</option>
+												<option value="option1">Mở ra tab mới</option>
+												<option value="option2">Mở ra cửa sổ mới</option>
+											</select>
+										</div>
+										<div class="clear"></div>
+							</div>
+							<div class="row-form">
+										<div class="span2">Nofollow :</div>
+										<div class="span3"><input type="checkbox" value="checkbox"/></div>
+										<div class="span2 offset1">Trạng thái :</div>
+										<div class="span3">
+											<select name="active" id="active" id="active">
+												<option value="">Xuất bản</option>
+												<option value="option1">Chưa công bố</option>
+												<option value="option2">Thùng rác</option>
+											</select>
+										</div>
+										<div class="clear"></div>
+							</div>
+							
+							<div class="footer tar">
+                                <button class="btn"> Thêm menu </button>
+							</div>	
+                    </div>
+                </div>                                
+                </form>
+            </div> 
+            <div class="row-fluid">
+                
+                <div class="span12">                    
+                    <div class="head">
+                        <div class="isw-grid"></div>
+                        <h1>Danh sách</h1>
+						<ul class="buttons">
+                            <li><a href="#" class="isw-download"></a></li>                                                        
+                            <li><a href="#" class="isw-attachment"></a></li>
+                            <li>
+                                <a href="#" class="isw-settings"></a>
+                                <ul class="dd-list">
+                                    <li><a href="#"><span class="isw-plus"></span> New document</a></li>
+                                    <li><a href="#"><span class="isw-edit"></span> Edit</a></li>
+                                    <li><a href="#"><span class="isw-delete"></span> Delete</a></li>
+                                </ul>
+                            </li>
+                        </ul>               
+                        <div class="clear"></div>
+                    </div>
+					
+                    <div class="block-fluid table-sorting">
+                        <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tSortable">
+                            <thead>
+                                <tr>
+                                    <th width="5%"><input type="checkbox" name="checkall"/></th>
+                                    <th width="5%">STT</th>
+									<th width="10%">Tên menu</th>
+									<th width="20%">Nội dung</th>
+									<th width="15%">Link</th>
+                                    <th width="15%">Menu cha</th>
+									<th>Nofollow</th>
+                                    <th>Trạng thái</th>
+									<th width="10%">Hành động</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody class="category">
+                            <?php foreach ($Menuitem as $Menuitems): ?>
+                                <tr>
+                                    <td><input type="checkbox" name="checkbox"/></td>
+                                    <td><?php echo $Menuitems->id ?></td>
+                                    <td><?php echo $Menuitems->name?></td>
+                                    <td>dmitry@domain.com</td>
+                                    <td><?php echo $Menuitems->link ?></td>
+                                    <td><?php echo $Menuitems->parent?></td>
+									<td><?php if($Menuitems->nofollow == 1) echo "Có"; else echo "Không"?></td>
+                                    <td><?php if($Menuitems->active == 1) echo "Hoạt động"; else echo "Ngưng"?></td>
+                                    <td class="action_hanhdong">
+										<a href="javascript::void()" title="Sửa" data-href="editmenuitem.html" id="dialogBtn"><i class="fa fa-pencil-square-o"></i></a>
+										<a href=""><i class="fa fa-trash-o" title="Xóa"></i></a>
+									</td>
+                                </tr>
+							<?php endforeach;?>	
+                                               
+                            </tbody>
+                        </table>
+                        <div class="clear"></div>
+                    </div>
+                </div>                                
+                
+            </div> 
+            
+            <div class="dr"><span></span></div>            
+            
+        </div>
+        <script type='text/javascript'>
+		$(document).ready(function(){
+			$("#dialog").dialog({
+				autoOpen: false,
+				modal: true,
+				height: 600,
+				width: 960,
+				show: 'blind',
+				
+				 
+			});
+
+			
+			$('body').on('click','a#dialogBtn', function(){
+				var ahref = $(this).attr('data-href');
+				$('#dialog').dialog('open');
+				$('#myIframe').attr('src', ahref);
+				
+			})
+			
+			$('body').on('click','a.delete', function()
+			{
+				var r = confirm("Nếu xóa thì các liên kết đến thông tin liên hệ sẽ được xóa bỏ. Bạn có chắc chắn xóa thông tin này");
+				if (r == true) {
+					var URL = $(this).attr("data-href");
+					
+					$.ajax({
+						type: "POST",
+						url: URL,
+						cache: false,
+						success: function(html){
+							
+							notify_s('Thông báo','Bạn đã xóa thành công');
+							
+						}
+					})
+					$(this).closest("tbody.category tr").fadeOut(function(){$(this).remove()});
+				} 
+				
+			});
+		})
+	</script>
+	<div id="dialog">
+			<iframe id="myIframe" src="" width="100%" height="100%" style="border: 1px solid #ccc"></iframe>
+	</div>
+        	<script type="text/javascript">
+			function closeModal() {
+			    $("#dialog").dialog("close");
+			}
+			</script>

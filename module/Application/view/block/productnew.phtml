@@ -1,0 +1,21 @@
+<ul class="rooms">
+
+<?php $i=0; foreach ($this->productnewvalue() as $productnew_values ): foreach ($this->productnew() as $product):
+if($i < $productnew_values['value']):
+?>
+	<li class="room">
+		<div class="room__thumb">
+			<img src="<?php echo $product['image'] ?>" alt="<?php echo $product['proname'] ?>" />
+			<div class="room__overText">
+				<?php echo $product['proname'] ?>
+			</div>
+		</div>
+		<div class="room__entry">
+			<p><?php echo $product['summary'] ?>...</p>
+		</div> <footer class="room__details">
+			<a href="" class="btn">Đặt hàng</a>
+		</footer>
+	</li>
+<?php endif;  $i++; endforeach ; endforeach; ?>
+	
+</ul>

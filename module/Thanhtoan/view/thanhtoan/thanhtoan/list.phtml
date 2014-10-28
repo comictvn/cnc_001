@@ -1,0 +1,144 @@
+<?php echo $this->render('layout/bread.phtml')?>
+        
+        <div class="workplace">
+			<div class="page-header">
+                    <h1>Cài đặt <small>thanh toán</small></h1>
+            </div>
+             <?php echo $this->render('layout/menusanpham.phtml')?>
+            
+            <div class="row-fluid">
+               <?php
+				$form = $this->form;
+				$form->setAttributes ( array (
+				'id' => 'validation' ) );
+				$form->setAttribute ( 'action', $this->url ( 'thanhtoan', array (
+				'action' => 'list' ) ) );
+				$form->prepare ();
+				echo $this->form ()->openTag ( $form );
+				?>
+                <div class="span12">   
+                <?php echo $this->formhidden($form->get('id'))?>
+                <?php echo $this->formhidden($form->get('paybank'))?>                 
+                    <div class="head">
+                        <div class="isw-list"></div>
+                        <h1>Thanh toán</h1>
+						<ul class="buttons">
+                                <li><a href="#" class="isw-ok"></a></li>
+                                
+                            </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="block-fluid tabs">
+                        
+                        <ul>
+                            <li><a href="#tabs-1">Thông tin hiển thị</a></li>
+                            <li><a href="#tabs-2">Thanh toán tại nhà</a></li>
+                            <li><a href="#tabs-3">Thanh toán ngân hàng</a></li>
+                        </ul>                        
+                        
+                                                
+                        
+                        <div id="tabs-1">
+                            <div class="block-fluid">                        
+								
+								<div class="row-form">
+								<div class="span12">
+									<?php echo $this->formtextarea($form->get('description'))?>
+								</div>
+								<div class="clear"></div>
+								</div>
+							
+							</div>
+                        </div>
+						
+						
+                                                
+                        <div id="tabs-2">
+                            <div class="block">
+								<div class="row-form">
+											<div class="span2">Hiển thị thanh toán tại nhà :</div>
+											<div class="span3"><?php echo $this->formcheckbox($form->get('cod'))?> </div>
+										
+											<div class="clear"></div>
+								</div>
+								<div class="row-form">
+								<div class="span12">
+									Nội dung hiển thị thanh toán tại nhà :
+									<?php echo $this->formtextarea($form->get('coddes'))?>
+								</div>
+								<div class="clear"></div>
+								</div>
+							
+							</div>
+                        </div>
+						
+						
+						<div id="tabs-3">
+                            <div class="block-fluid">                        
+								<div class="row-form">
+								<div class="span12">
+									Nội dung hiển thị thanh toán tại ngân hàng :
+									<?php echo $this->formtextarea($form->get('bankdes'))?>
+								</div>
+								<div class="clear"></div>
+								</div>
+								<div class="row-form">
+									<div class="span12">
+                  
+                    <div class="block-fluid accordion">
+                        <?php foreach ($bank as $banks):?>
+                        <h3><?php echo $banks['namebank']?></h3>
+                        <div>
+                            <div class="row-form">
+									<div class="span2">Tên ngân hàng :</div>
+									<div class="span3"><input value="<?php echo $banks['namebank']?>" class="" type="text" name="namebank<?php echo $banks['id']?>" id="name"/></div>
+									<div class="span2 offset1">Địa chỉ chi nhánh :</div>
+									<div class="span3">
+										<input value="<?php echo $banks['address']?>" class="" type="text" name="address<?php echo $banks['id']?>" id="address" />
+									</div>
+									<div class="clear"></div>
+							</div>
+							<div class="row-form">
+									<div class="span2">Tên chủ tài khoản :</div>
+									<div class="span3"><input value="<?php echo $banks['person']?>" class="" type="text" name="person<?php echo $banks['id']?>" id="chutk"/></div>
+									<div class="span2 offset1">Số tài khoản ngân hàng :</div>
+									<div class="span3">
+										<input value="<?php echo $banks['numberaccount']?>" class="" type="text" name="numberaccount<?php echo $banks['id']?>" id="numberaccount" />
+									</div>
+									<div class="clear"></div>
+							</div>
+							<div class="row-form">
+									<div class="span2">Số CMND :</div>
+									<div class="span3"><input value="<?php echo $banks['cmnd']?>" class="" type="text" name="cmnd<?php echo $banks['id']?>" id="cmnd"/></div>
+									<div class="span2 offset1">Số điện thoại :</div>
+									<div class="span3">
+										<input value="<?php echo $banks['phone']?>" class="" type="text" name="phone<?php echo $banks['id']?>" id="phone" />
+									</div>
+									<div class="clear"></div>
+							</div>
+                        </div>
+                        <?php endforeach; ?>
+                        
+                        
+                    </div>
+                </div> 
+						
+									<div class="clear"></div>
+								</div>
+                            
+                                                      
+							</div>
+						</div>
+						<div class="footer tar">
+                                <button class="btn"> Cập nhập </button>
+								</div>	
+                        
+                    </div>
+                </div>                                
+                </form>
+            </div> 
+                        
+            
+            <div class="dr"><span></span></div>            
+            
+        </div>
