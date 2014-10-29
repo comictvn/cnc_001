@@ -119,7 +119,7 @@
     	            	        	    <a href=""><img src="<?php echo $product_sellings['image'] ?>" alt="<?php echo $product_sellings->proname ?>" width="518" height="358"/></a>
     	            	        		<div class="img-overlay">
     	            	        		    <a href="<?php echo $this->url('chitietsanpham', array('alias'=>$product_sellings['alias']))?>" class="btn more btn-primary">MORE</a>
-    	            	        		    <a href="#" class="btn buy btn-danger">ADD TO CART</a>
+    	            	        		    <a href="<?php echo $this->url('giohang',array('action'=>'mua','id'=>$product_sellings['id'],'sl'=>'1','dg'=>$product_sellings['sales']))?>" class="btn buy btn-danger">ADD TO CART</a>
     	            	        		</div>
     	            	            </div>
     	            	        </div>
