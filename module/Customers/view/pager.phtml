@@ -1,0 +1,34 @@
+<?php if ($this->pageCount): ?>
+<div class="paginationControl">
+    <p align='center'>
+	    <!--<div style="float:left">-->
+      <!-- Previous page link -->
+      <?php if (isset($this->previous)): ?>
+     <a class="first" href="<?php echo $this->url('Khachhang',array('action'=>'index','id'=>1)); ?>">&lt;&lt; Trang đầu&nbsp;&nbsp;</a>
+     <a class="Previous" href="<?php echo $this->url('Khachhang',array('action'=>'index','id'=>$this->previous)); ?>">&lt; Trang trước&nbsp;&nbsp;</a>      
+      <?php else: ?>
+      <b><i>&lt;&lt; Trang đầu&nbsp;&nbsp;</i></b>
+      <b><i>&lt; Trang trước&nbsp;&nbsp;</i></b>      
+      <?php endif; ?>
+      <?php foreach ($this->pagesInRange as $page): ?>
+      <?php if ($page != $this->current): ?>
+        <a class="nopage" href="<?php echo $this->url('Khachhang',array('action'=>'index','id'=>"$page")); ?>">
+      <?php echo $page; ?>
+      </a>&nbsp;
+      <?php else: ?>
+            <span class="nopage">
+      <?php echo $page; ?>
+    </span>
+      </b>&nbsp;
+      <?php endif; ?>
+      <?php endforeach; ?>
+      <?php if (isset($this->next)): ?>
+      <a class="next" href="<?php echo $this->url('Khachhang',array('action'=>'index','id'=>$this->next)); ?>">&nbsp;Trang tiếp theo &gt;</a>
+      <a class="next" href="<?php echo $this->url('Khachhang',array('action'=>'index','id'=>$this->pageCount)); ?>">&nbsp;Trang cuối &gt;&gt;</a>
+      <?php else: ?>      	
+	   <b><i>&nbsp;Trang tiếp theo &gt;&nbsp;</i></b>
+	   <b><i>&nbsp;Trang cuối &gt;&gt;&nbsp;</i></b>
+      <?php endif; ?>
+    </p>
+</div>
+<?php endif; ?>

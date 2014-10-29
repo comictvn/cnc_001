@@ -1,0 +1,59 @@
+<div id="main">
+
+	<div class="clear"></div>
+
+
+	<div class="full_w">
+		<div class="h_title">Danh sách sản phẩm hoa giấy</div>
+		<h2>Danh sách</h2>
+
+
+		<div class="entry">
+			<div class="sep"></div>
+		</div>
+		<table width="100%" cellpadding="5px" border="0px" bordercolor="#FFFFFF" cellspacing="0">
+<tr>
+<td width="150px">Số hóa đơn</td>
+<?php
+if (!$bill==NULL)
+{
+	$trigia=0;
+echo '<td>'.$bill[0]['bill_id'].'</td></tr>';
+echo '<tr><td>Mã khách hàng</td><td>'.$bill[0]['customers_id'].'</td></tr>';
+echo '<tr><td>Họ tên</td><td>'.$bill[0]['customers_name'].'</td></tr>';
+echo '<tr><td>Địa chỉ giao hàng</td><td>'.$bill[0]['address'].'</td></tr>';
+echo '<tr><td>Số điện thoại</td><td>'.$bill[0]['phone_number'].'</td></tr>';
+echo '<tr><td>Email</td><td>'.$bill[0]['email'].'</td></tr>';
+echo '<tr><td colspan="2">';
+echo '<table width="100%" cellpadding="5px" border="1px" bordercolor="#FFFFFF" cellspacing="0">';
+echo '<tr><td>Mã SP</td><td>Tên sản phẩm</td><td>Số lượng</td><td>Đơn giá</td><td>Thành tiền</td></tr>';
+for($i=0;$i<count($bill);$i++)
+{
+echo '<tr>';
+echo '<td>'.$bill[$i]['product_id'].'</td>';
+echo '<td>'.$bill[$i]['product_name'].'</td>';
+echo '<td>'.$bill[$i]['qty'].'</td>';
+echo '<td align="right">'.number_format($bill[$i]['price'],'0',',','.').'</td>';
+echo '<td align="right">'.number_format($bill[$i]['price']*$bill[$i]['qty'],'0',',','.').'</td>';
+echo '</tr>';
+$trigia+=$bill[$i]['price']*$bill[$i]['qty'];
+}
+echo '<tr><td colspan="2">&nbsp;</td>';
+echo '<td colspan="2" align="right" >Trị giá hóa đơn</td>';
+echo '<td  align="right" >'.number_format($trigia).'</td>';
+echo '</tr>';
+echo '</table>';
+}
+?>
+
+    </td>
+  </tr>
+</table>
+
+		<div class="entry">
+			
+			<div class="sep"></div>
+			<a class="button add" href="<?php echo $this->url('customers',array('action'=>'index'));?>">Quay Về</a>
+		</div>
+	</div>
+</div>

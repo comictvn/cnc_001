@@ -1,0 +1,59 @@
+
+
+<div id="main">
+
+	<div class="clear"></div>
+
+
+	<div class="full_w">
+		<div class="h_title">Danh sách sản phẩm hoa giấy</div>
+		<h2>Danh sách</h2>
+
+
+		<div class="entry">
+			<div class="sep"></div>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th scope="col" style="width: 50px;"> Mã KH</th>
+					<th scope="col" style="width: 100px;">Họ tên KH</th>
+					<th scope="col" style="width: 150px;">Địa chỉ</th>
+					<th scope="col">Điện thoại</th>
+					<th scope="col">Email</th>
+					<th scope="col" style="width: 100px;">Cập nhập</th>
+				</tr>
+			</thead>
+
+			<tbody>
+			
+			<?php foreach ($customers as $row) : 
+			
+			?>
+				<tr align="center">
+
+					<td class="align-center"><?php echo $row->customers_id ?></td>
+					<td><a href="<?php echo $this->url('customers',array('action'=>'bill','id'=>$row->customers_id)) ?>"> <?php echo $row->customers_name ?></a></td>
+					<td><?php echo $row->address ?></td>
+					<td><?php echo $row->phone_number ?></td>
+					<td><?php echo $row->email ?></td>
+					<td><a href="<?php echo $this->url('customers',array('action'=>'delete','id'=>$row->customers_id))?>"
+						class="table-icon delete" title="Delete"></a> </td>
+
+				</tr>
+			<?php endforeach;?>
+				
+
+
+
+				<input type="hidden" name="dieukien" value="">
+			</tbody>
+		</table>
+		<div class="entry">
+		<?php echo ( count($customers) > 0 ) ? $this->paginationControl($customers, 'All', 'pager_customers.phtml') : "";?>
+			
+			<div class="sep"></div>
+			<a class="button add" href="<?php echo $this->url('sanpham', array('action'=>'add'))?>">THÊM SẢN PHẨM</a>
+		</div>
+	</div>
+</div>

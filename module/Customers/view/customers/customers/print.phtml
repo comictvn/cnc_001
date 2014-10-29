@@ -1,0 +1,108 @@
+<?php echo $this->headtitle("OK DEAL | Đặt hàng thành công")?>
+<?php 
+		date_default_timezone_set('Asia/Ho_Chi_Minh');
+		$now = getdate();
+		$currentTime = $now["hours"] . ":" . $now["minutes"] . ":" . $now["seconds"];
+		$currentDate = $now["year"] . "-" . $now["mon"] . "-" . $now["mday"];
+		$timenow = $currentDate . " " . $currentTime;
+		?>
+<div class="top-title-area">
+        <div class="container">
+            <h1 class="title-page">Thành công</h1>
+        </div>
+    </div>
+	<?php echo $this->render('layout/search')?>
+
+<div class="gap"></div>
+
+<!-- //////////////////////////////////
+//////////////END MAIN HEADER////////// 
+////////////////////////////////////-->
+
+
+<!-- //////////////////////////////////
+//////////////PAGE CONTENT///////////// 
+////////////////////////////////////-->
+
+
+<div class="container">
+<div class="col_center_shipping1">
+            <div class="success">
+                <img src="<?php echo $this->basepath()?>/template/img/success.png" width="195" height="214">
+                <div class="success_co">
+                        <ul>
+                            <li>Cám ơn bạn đã đặt hàng tại OK DEAL</li>
+                            <li class="order">
+                                Mã số đơn hàng của bạn là <span class="maso" style="font-size: 25px; color: #025d8c; font-weight: bold"><?php echo $bill[0]['id'] ?></span>.
+                            </li>
+                            <li>Để theo dõi trạng thái của đơn hàng vui lòng vào <a href="">Quản lý đơn hàng </a></li>
+                        </ul>
+                </div>
+            </div>
+            <p style="overflow: hidden; padding-bottom: 20px;text-align: center;">
+                <input type="button" class="btn_tieptucmuahangcam " value="" onclick="window.location = '/'">
+            </p>
+
+        </div>
+    <div class="row-fluid">
+            <div class="span10">
+                <h3>Sản phẩm khác</h3>
+            </div>
+            <div class="span2">
+                <ul class="wilto-controls pull-right top">
+                    <li>
+                        <a href="#wilto-slider" class="prev"></a>
+                    </li>
+                    <li>
+                        <a href="#wilto-slider" class="next"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- START CONTENT SLIDER -->
+        <div class="wilto-slider-wrap" id="wilto-slider-wrap">
+            <div id="wilto-slider" class="wilto-slider">
+                 <div class="wilto-slide row-fluid row-wrap">
+                    <?php $a = 1; foreach ($sanphamkhac as $sanphamkhacs):
+                    $image = explode(',', $sanphamkhacs->image);
+                    $ngayhethan = strtotime($sanphamkhacs->date_fail) - strtotime($timenow) ;
+                    $conlai = date('d \n\g\à\y\  h \g\i\ờ',$ngayhethan);
+                    ?>
+                    <div class="span3">
+                        <!-- COUPON THUMBNAIL -->
+                        <a href="<?php echo $this->url('chitiet',array('danhmuc'=>$subject[$sanphamkhacs->subject_id],'sanpham'=>$sanphamkhacs->alias . "-" . $sanphamkhacs->id))?>" class="coupon-thumb coupon-thumb-hold">
+                            <img src="<?php echo $this->basepath()?>/img/hinh_san_pham/<?php echo $image[0] ?>" 
+                            alt="<?php echo $sanphamkhacs->product_name ?>" title="<?php echo $sanphamkhacs->product_name ?>" style="height: 200px">
+                            <div class="coupon-inner">
+                                <h5 class="coupon-title"><?php echo $sanphamkhacs->product_name ?></h5>
+                                <p class="coupon-desciption">
+                                <?php echo mb_substr($sanphamkhacs->info, 0, 50, 'UTF-8')?>
+                                </p>
+                                <div class="coupon-meta"><span class="coupon-time"><?php echo $conlai ?> hết hạn</span>
+                                <span class="coupon-save">Giảm <?php echo round(($sanphamkhacs->sales * 1) / $sanphamkhacs->price , 2) . "%" ;?></span>
+                                   <div class="coupon-price"><span class="coupon-old-price"><?php echo number_format($sanphamkhacs->price) ?> VND</span>
+                                   <span class="coupon-new-price"><?php echo number_format($sanphamkhacs->sales) ?> VND</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <?php if($a % 4 == 0): ?>
+                    </div>
+                    <div class="wilto-slide row-fluid row-wrap">
+                    <?php endif;?>
+                    <?php $a++; endforeach;?>
+                    
+                </div>
+               
+                
+            </div>
+        </div>
+        <!-- END CONTENT SLIDER -->
+        <div class="gap gap-small"></div>
+</div>
+
+
+<!-- //////////////////////////////////
+//////////////END PAGE CONTENT///////// 
+////////////////////////////////////-->
