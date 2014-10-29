@@ -329,6 +329,12 @@ class SanphamTable
 		return $result;
 	}
 
+	public function cartlist($ds_masp)
+	{
+		$resultSet = $this->tableGateway->select(array("id in($ds_masp)"));
+		return $resultSet;
+	}
+
 	public function saveMember(Sanpham $member)
 	{
 		$data = array(
