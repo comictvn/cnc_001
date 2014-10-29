@@ -377,7 +377,7 @@ class SanphamController extends AbstractActionController
             }
         }
 
-        $giohang = $this->giohang->product_gio_hang();
+       
 
         if(!empty($giohang))
         {
@@ -400,9 +400,6 @@ class SanphamController extends AbstractActionController
             
         }
   
-        return new ViewModel(array('ds_sp'=>@$product_giohang ,'tong_tien'=>$this->giohang->tong_tien(),
-             
-        ));
         
     }
     
