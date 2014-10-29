@@ -376,7 +376,9 @@ class SanphamController extends AbstractActionController
                 }
             }
         }
+
         $giohang = $this->giohang->product_gio_hang();
+
         if(!empty($giohang))
         {
         
@@ -397,16 +399,9 @@ class SanphamController extends AbstractActionController
             }
             
         }
-        $productRandom = $this->getSanphamTable()->fetchAllrandom();
-        $productMax = $this->getSanphamTable()->fetchproductspecial();
-        $Subject = $this->getSubjectTable()->fetchAll();
-        $Adver = $this->getAdverTable()->fetchAll();
+  
         return new ViewModel(array('ds_sp'=>@$product_giohang ,'tong_tien'=>$this->giohang->tong_tien(),
-                'title'=>'Giỏ hàng',
-                'productRandom'=>$productRandom,
-                'subject'=>$Subject,
-                'productMax'=>$productMax,
-                'adver'=>$Adver
+             
         ));
         
     }
