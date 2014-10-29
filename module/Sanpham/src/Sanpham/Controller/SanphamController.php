@@ -15,10 +15,22 @@ use Sanpham\Form\SanphamForm;
 use Sanpham\Model\Sanpham;
 use Zend\Authentication\AuthenticationService;
 
+use Giohang;
+use Zend\Permissions\Acl\Acl;
+use Zend\Permissions\Rbac\Role;
+
 class SanphamController extends AbstractActionController
 {
 	protected $SanphamTable;
 	
+    var $giohang;
+    public function __construct() 
+    {
+        $this->giohang = new Giohang\Controller\GiohangController();
+        $_SESSION['so_sp']=$this->giohang->so_sp();
+        $_SESSION['tong_tien']=$this->giohang->tong_tien();
+    }
+
 	public function getSanphamTable()
 	{
 		if(!$this->SanphamTable)
@@ -338,6 +350,65 @@ class SanphamController extends AbstractActionController
     	return new ViewModel(array('result'=>$paginator,'alias'=>$id,
     		
     	));
+    }
+
+    public function giohangAction()
+    {
+        
+        $request=$this->getRequest();
+        if($request->isPost())
+        {
+            $form=$request->getPost();
+            
+            $giohang=$this->giohang->product_gio_hang();
+            foreach($giohang as $key =>$value)
+            {
+                if($form["xoa$key"])
+                    $this->giohang->xoa_product($form["xoa$key"],$form["price$key"]);
+            }
+            
+            $giohang=$this->giohang->product_gio_hang();
+            foreach($giohang as $key =>$value)
+            {
+                if(is_numeric($form["qty$key"]) && $form["qty$key"]>0 && $form["qty$key"]!= $value)
+                {
+                    $this->giohang->kiem_tra_cap_nhat($form["id$key"],(int)$form["qty$key"],$form["price$key"]);
+                }
+            }
+        }
+        $giohang = $this->giohang->product_gio_hang();
+        if(!empty($giohang))
+        {
+        
+            $ds_masp=array();
+            foreach($giohang as $key =>$value)
+            {
+                $ds_masp[]=$key;
+            }
+            $ds_masp=implode(',',$ds_masp); 
+            $results=$this->getSanphamTable()->cartlist($ds_masp);
+            $product_giohang=array();
+            
+            foreach ($results as $row)
+            {
+                $row->qty = $giohang[$row->id];
+                $product_giohang[]=$row;
+                
+            }
+            
+        }
+        $productRandom = $this->getSanphamTable()->fetchAllrandom();
+        $productMax = $this->getSanphamTable()->fetchproductspecial();
+        $Subject = $this->getSubjectTable()->fetchAll();
+        $Adver = $this->getAdverTable()->fetchAll();
+        return new ViewModel(array('ds_sp'=>@$product_giohang ,'tong_tien'=>$this->giohang->tong_tien(),
+                'title'=>'Giỏ hàng',
+                'productRandom'=>$productRandom,
+                'subject'=>$Subject,
+                'productMax'=>$productMax,
+                'adver'=>$Adver
+        ));
+        
     }
     
     
