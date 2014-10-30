@@ -146,7 +146,7 @@
                                             </a>
                                             <div class="img-overlay">
                                                 <a class="btn more btn-primary" href="<?php echo $this->url('chitietsanpham', array('alias'=>$results->alias)) ?>">More</a>
-                                                <a class="btn buy btn-danger" href="<?php echo $this->url('giohang',array('action'=>'mua','id'=>$results['id'],'sl'=>'1','dg'=>$results['price']))?>">Add to Cart</a>
+                                                <a class="btn buy btn-danger" href="<?php echo $this->url('giohang',array('action'=>'mua','id'=>$results->id,'sl'=>'1','dg'=>$results->price))?>">Add to Cart</a>
                                             </div>
                                         </div>
                                     </div>
