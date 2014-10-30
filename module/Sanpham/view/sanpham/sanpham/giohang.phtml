@@ -1,4 +1,92 @@
+<?php echo $this->headtitle("OK DEAL | Giỏ hàng")?>
+<div class="top-title-area">
+        <div class="container">
+            <h1 class="title-page">Giỏ hàng</h1>
+        </div>
+    </div>
+	
 
+<div class="gap"></div>
+
+<!-- //////////////////////////////////
+//////////////END MAIN HEADER////////// 
+////////////////////////////////////-->
+
+
+<!-- //////////////////////////////////
+//////////////PAGE CONTENT///////////// 
+////////////////////////////////////-->
+
+
+<div class="container">
+<?php
+if (isset ( $ds_sp )) {
+	?>
+<form name="cart_quantity"
+		action="<?php echo $this->url('sanpham',array('action'=>'giohang'));?>"
+		method="post">
+		<table class="shopping_cart_detail_big" border="0" cellspacing="0"
+			cellpadding="0">
+			<tbody>
+				<tr class="th">
+					<th width="5%">&nbsp;</th>
+					<th width="40%" align="left">Sản phẩm</th>
+					<th width="14%" align="center">Đơn giá</th>
+					<th width="15%" align="center">Số lượng</th>
+					<th width="16%" align="center">Thành tiền</th>
+					<th width="6%" align="center">Xóa</th>
+				</tr>
+					<?php foreach($ds_sp as $row) : ?>
+					<?php
+					echo '<input type="hidden" name="id' . $row->id . '" value="' . $row->id . '"/>
+					<input type="hidden" name="price' . $row->id . '" value="' . $row->sales . '"/>';
+					?>
+					<tr>
+					<td><a href=""> <img
+							src="<?php echo $this->basepath()?>/img/hinh_san_pham/<?php echo $row->image ?>"
+							alt="<?php echo $row->product_name?>" width="310" height="310">
+					</a></td>
+					<td align="left" valign="top"><a href=""><?php echo $row->product_name?></a>
+					</td>
+					<td align="center"><strong><?php echo number_format ( $row->sales )?> đ</strong></td>
+					<td align="center" valign="middle"><input type="text"
+						name="<?php echo 'qty' . $row->id ?>"
+						value="<?php echo $row->qty?>" size="2" style="width: 40px; margin:0"></td>
+					<td align="right" style="padding-right: 40px;"><strong><span
+							class="sum_sum2"><?php echo number_format ( $row->sales * $row->qty )?> đ</span></strong></td>
+					<td align="center" class="s_cart_td" valign="middle"><input
+					type="checkbox" name="xoa<?php echo $row->id?>"
+					value="<?php echo $row->id?>"></td>
+				</tr>
+				<?php endforeach;?>
+			<tr class="no_hover">
+					<td colspan="6" align="right"
+						style="border-right: 1px solid #DFDFDF">
+						<div class="form_sum_big1"></div>
+
+						<div class="form_sum_big">
+
+							<div class="row1">
+								<span class="row_L">Tổng cộng:</span><span class="row_R sum"><?php echo number_format ($tong_tien)?> đ</span><br
+									class="clean">
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="btn_form">
+			<input type="submit" class="btn_tieptucmuahang L" value=" Cập nhập ">
+			<input type="button" class="btn_thanhtoan L" value=" Thanh toán " onclick="window.location='<?php echo $this->url('customers', array('action'=>'add'))?>'">
+		</div>
+	</form>
+	<?php } ?>
+</div>
+
+
+<!-- //////////////////////////////////
+//////////////END PAGE CONTENT///////// 
+////////////////////////////////////-->
 
 
 <div class="container">
@@ -22,7 +110,7 @@ if (isset ( $ds_sp )) {
                     		<header>
                     		    <div class="row">
                     		    	<div class="span2">
-                    		    		<a href="index-2.html"><img src="<?php echo $this->basepath()?>/images/logo-bw.png.pagespeed.ce.KeNq9wU_LZ.png" alt="Webmarket Logo" width="48" height="48"/></a>
+                    		    		<a href="index-2.html"><img src="<?php echo $this->basepath()?>/template/main/images/logo-bw.png.pagespeed.ce.KeNq9wU_LZ.png" alt="Webmarket Logo" width="48" height="48"/></a>
                     		    	</div>
                     		    	<div class="span6">
                     		    	    <div class="center-align">
@@ -31,7 +119,7 @@ if (isset ( $ds_sp )) {
                     		    	</div>
                     		    	<div class="span2">
                     		    	    <div class="right-align">
-                    		    	    	<img src="<?php echo $this->basepath()?>/images/buttons/92x65xsecurity.jpg.pagespeed.ic.0kRRD5XXok.jpg" alt="Security Sign" width="92" height="65"/>
+                    		    	    	<img src="<?php echo $this->basepath()?>/template/main/images/buttons/92x65xsecurity.jpg.pagespeed.ic.0kRRD5XXok.jpg" alt="Security Sign" width="92" height="65"/>
                     		    	    </div>
                     		    	</div>
                     		    </div>
@@ -80,7 +168,10 @@ if (isset ( $ds_sp )) {
 										?>
 							        <tr>
 							        	<td class="image"><img src="<?php echo $row->image ?>" alt="" width="124" height="124"/></td>
-							        	<td class="desc"><?php echo $row->proname ?> <a title="Remove Item" class="icon-remove-sign" href="#"></a></td>
+							        	<td class="desc"><?php echo $row->proname ?> <a title="Remove Item" class="icon-remove-sign" href="#"></a>
+										<input type="checkbox" name="xoa<?php echo $row->id?>"
+															value="<?php echo $row->id?>">
+							        	</td>
 							        	<td class="qty">
 							        	    <input type="text" class="tiny-size" value="<?php echo $row->qty?>" name="<?php echo 'qty' . $row->id ?>" />
 					            	    </td>
