@@ -87,14 +87,14 @@
                         <!--  ==========  -->
                         <!--  = Add to cart form =  -->
                         <!--  ==========  -->
-                        <form action="#" class="form form-inline clearfix">
-                            <div class="numbered">
+                        <form action="<?php echo $this->url('giohang',array('action'=>'mua','id'=>$results['id'],'sl'=>'1','dg'=>$results['price']))?>" class="form form-inline clearfix" method="get">
+                            <!-- <div class="numbered">
                             	<input type="text" name="num" value="1" class="tiny-size"/>
                             	<span class="clickable add-one icon-plus-sign-alt"></span>
                             	<span class="clickable remove-one icon-minus-sign-alt"></span>
-                            </div>
+                            </div> -->
                             &nbsp;
-                            <button class="btn btn-danger pull-right"><i class="icon-shopping-cart"></i> &nbsp; Mua hàng</button>
+                            <button class="btn btn-danger pull-right"><i class="icon-shopping-cart"></i> &nbsp; Add Cart</button>
                         </form>
 
                         <hr/>

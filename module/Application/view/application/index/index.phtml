@@ -171,7 +171,7 @@
                                     <a href=""><img src="<?php echo $product_news['image'] ?>" alt="<?php echo $product_news['proname'] ?>" width="540" height="374"/></a>
                                     <div class="img-overlay">
                                         <a href="<?php echo $this->url('chitietsanpham', array('alias'=>$product_news['alias']))?>" class="btn more btn-primary">MORE</a>
-                                        <a href="#" class="btn buy btn-danger">ADD TO CART</a>
+                                        <a href="<?php echo $this->url('giohang',array('action'=>'mua','id'=>$product_sellings['id'],'sl'=>'1','dg'=>$product_sellings['price']))?>" class="btn buy btn-danger">ADD TO CART</a>
                                     </div>
                                 </div>
                             </div>
