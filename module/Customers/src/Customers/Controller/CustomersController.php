@@ -147,10 +147,7 @@ class CustomersController extends AbstractActionController
     		}
     	}
     	
-    	$productRandom = $this->getSanphamTable()->fetchAllrandom();
-    	$productMax = $this->getSanphamTable()->fetchproductspecial();
-    	$Subject = $this->getSubjectTable()->fetchAll();
-    	$Adver = $this->getAdverTable()->fetchAll();
+    	
     	return new ViewModel(array('form'=>$form,'title'=>'Thanh toán',
     			
     			'ds_sp'=>@$product_giohang,
