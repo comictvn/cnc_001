@@ -1,9 +1,15 @@
+
+
+
 <div class="container">
         <div class="row">
 
 <?php
 if (isset ( $ds_sp )) {
 ?>
+<form name="cart_quantity"
+		action="<?php echo $this->url('sanpham',array('action'=>'giohang'));?>"
+		method="post">
 <section class="span12">
                 
                 <div class="checkout-container">
@@ -16,7 +22,7 @@ if (isset ( $ds_sp )) {
                     		<header>
                     		    <div class="row">
                     		    	<div class="span2">
-                    		    		<a href="index-2.html"><img src="images/logo-bw.png.pagespeed.ce.KeNq9wU_LZ.png" alt="Webmarket Logo" width="48" height="48"/></a>
+                    		    		<a href="index-2.html"><img src="<?php echo $this->basepath()?>/images/logo-bw.png.pagespeed.ce.KeNq9wU_LZ.png" alt="Webmarket Logo" width="48" height="48"/></a>
                     		    	</div>
                     		    	<div class="span6">
                     		    	    <div class="center-align">
@@ -25,7 +31,7 @@ if (isset ( $ds_sp )) {
                     		    	</div>
                     		    	<div class="span2">
                     		    	    <div class="right-align">
-                    		    	    	<img src="images/buttons/92x65xsecurity.jpg.pagespeed.ic.0kRRD5XXok.jpg" alt="Security Sign" width="92" height="65"/>
+                    		    	    	<img src="<?php echo $this->basepath()?>/images/buttons/92x65xsecurity.jpg.pagespeed.ic.0kRRD5XXok.jpg" alt="Security Sign" width="92" height="65"/>
                     		    	    </div>
                     		    	</div>
                     		    </div>
@@ -76,7 +82,7 @@ if (isset ( $ds_sp )) {
 							        	<td class="image"><img src="<?php echo $row->image ?>" alt="" width="124" height="124"/></td>
 							        	<td class="desc"><?php echo $row->proname ?> <a title="Remove Item" class="icon-remove-sign" href="#"></a></td>
 							        	<td class="qty">
-							        	    <input type="text" class="tiny-size" value="2"/>
+							        	    <input type="text" class="tiny-size" value="<?php echo $row->qty?>" name="<?php echo 'qty' . $row->id ?>" />
 					            	    </td>
 							        	<td class="price">
 							        	    $<?php echo $row->price ?>
@@ -105,7 +111,8 @@ if (isset ( $ds_sp )) {
 							
 							<p class="right-align">
 							    In the next step you will choose your shipping address &nbsp; &nbsp;
-							    <a href="checkout-step-2.html" class="btn btn-primary higher bold">CONTINUE</a>
+							    <input type="submit" class="btn btn-primary higher bold" value=" Update ">
+							    <a href="<?php echo $this->url('customers', array('action'=>'add'))?>" class="btn btn-primary higher bold">CONTINUE</a>
 							</p>
                     	</div>
                     </div>
@@ -113,6 +120,7 @@ if (isset ( $ds_sp )) {
                 
                 
             </section> <!-- /main content -->
+            </form>
  <?php } ?>
  </div>
  </div>
