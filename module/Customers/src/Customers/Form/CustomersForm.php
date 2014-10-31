@@ -15,6 +15,7 @@ class CustomersForm extends Form
 		
 		$customers_name = new Element\Text('customers_name');
 		$customers_name->setLabel("Họ tên");
+		$customers_name->setAttribute('class', 'span4');
 		$this->add($customers_name);
 		
 		$address = new Element\Text('address');
