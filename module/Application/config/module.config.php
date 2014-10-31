@@ -111,7 +111,53 @@ return array(
 		    				'label' => '<span class="isw-grid"></span><span class="text">Trang chủ</span>',
 		    				'uri'=>'#',
     				),
-    				
+    				array(
+                            'label' => '<span class="text">Sản phẩm</span>',
+                            'uri'=>'#',
+                            'wrapClass' => 'text',
+                            'class'     => 'text',
+                            'data-class' => 'openable',
+                            'pages' => array(
+                                array(
+                                        'label' => '<span class="text">Đăng sản phẩm</span>',
+                                        'route' => 'sanpham',
+                                        'action' => 'add',
+                                
+                                ),
+                                array(
+                                        'label' => '<span class="text">Quản lý sản phẩm</span>',
+                                        'route' => 'sanpham',
+                                        'action' => 'list',
+                                
+                                ),
+                                array(
+                                        'label' => '<span class="text">Quản lý danh mục</span>',
+                                        'route' => 'danhmuc',
+                                        'action' => 'list',
+                                ),
+                                array(
+                                        'label' => '<span class="text">Thông tin liên hệ</span>',
+                                        'route' => 'thongtinlienhe',
+                                        'action' => 'list',
+                                ),
+                                array(
+                                        'label' => '<span class="text">Cài đặt thanh toán</span>',
+                                        'route' => 'thanhtoan',
+                                        'action' => 'list',
+                                ),
+                                array(
+                                        'label' => '<span class="text">Quản lý đơn hàng</span>',
+                                        'route' => 'donhang',
+                                        'action' => 'list',
+                                ),
+                                array(
+                                        'label' => '<span class="text">Thông số sản phẩm</span>',
+                                        'route' => 'thongso',
+                                        'action' => 'list',
+                                ),
+                            )
+                            
+                    ),
 					array(
 							'label' => '<span class="text">Nội dung</span>',
 							'route' => 'tintuc',
