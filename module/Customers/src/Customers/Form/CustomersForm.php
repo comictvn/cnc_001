@@ -15,27 +15,27 @@ class CustomersForm extends Form
 		
 		$customers_name = new Element\Text('customers_name');
 		$customers_name->setLabel("Họ tên");
-		$customers_name->setAttributes(array('class'=>'span4'))
+		$customers_name->setAttribute('class'=>'span4')
 		$this->add($customers_name);
 		
 		$address = new Element\Text('address');
 		$address->setLabel("Địa chỉ");
-		$address->setAttributes(array('class'=>'span4'))
+		$address->setAttribute('class'=>'span4')
 		$this->add($address);
 		
 		$phone_number = new Element\Text('phone_number');
 		$phone_number->setLabel('Điện thoại');
-		$phone_number->setAttributes(array('class'=>'span4'))
+		$phone_number->setAttribute('class'=>'span4')
 		$this->add($phone_number);
 		
 		$delivery_address = new Element\Text('delivery_address');
 		$delivery_address->setLabel('Địa chỉ giao hàng');
-		$delivery_address->setAttributes(array('class'=>'span4'))
+		$delivery_address->setAttribute('class'=>'span4')
 		$this->add($delivery_address);
 		
 		$email = new Element\Text('email');
 		$email->setLabel('Email');
-		$email->setAttributes(array('class'=>'span4'))
+		$email->setAttribute('class'=>'span4')
 		$this->add($email);
 		
 		$submit = new Element\Submit('submit');
