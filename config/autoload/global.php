@@ -1,8 +1,8 @@
 <?php
-
+ 
 return array(
 		'db' => array(
-				//this is for primary adapter....
+				//this is for primary adapter...
 				'driver'         => 'Pdo',
 				'dsn'             => 'mysql:dbname=vnreforg_data;host=localhost',
 				'driver_options'  => array(
