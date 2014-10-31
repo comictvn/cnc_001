@@ -68,31 +68,7 @@ class Customers implements InputFilterAwareInterface
 					),
 			)));
 			
-			$inputFilter->add($factory->createInput(array(
-					'name'     => 'address',
-					'required' => true,
-					'filters'  => array(
-							array('name' => 'StripTags'),
-							array('name' => 'StringTrim'),
-					),
-					'validators' => array(
-							array(
-									'name'    => 'StringLength',
-									'options' => array(
-											'encoding' => 'UTF-8',
-											'min'      => 1,
-											'max'      => 100,
-											'messages' => array(
-													'stringLengthTooShort' => "Phải nhập lớn hơn '%min%' kí tự",
-													'stringLengthTooLong'=> "Phải nhập nhỏ hơn '%max%' kí tự",)
-									),
-							),
-								
-							array('name' => 'NotEmpty',
-									'break_chain_on_failure' => true,
-									'options' => array('message' => array('isEmpty' => 'Phải nhập Địa chỉ'),)),
-					),
-			)));
+			
 			
 			$inputFilter->add($factory->createInput(array(
 					'name'     => 'phone_number',
