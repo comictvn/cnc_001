@@ -1,114 +1,9 @@
-<?php echo $this->headtitle("OK DEAL | Thanh toán")?>
-<div class="top-title-area">
-	<div class="container">
-		<h1 class="title-page">Thanh toán</h1>
-	</div>
-</div>
 
-
-<div class="gap"></div>
-
-<!-- //////////////////////////////////
-//////////////END MAIN HEADER////////// 
-////////////////////////////////////-->
-
-
-<!-- //////////////////////////////////
-//////////////PAGE CONTENT///////////// 
-////////////////////////////////////-->
 
 
 <div class="container">
-<?php if(isset($_SESSION['user_name'])) :?>
-<div class="payment_content_div">
-		<div class="payment_content payment_content_login">
-			<div class="register_div">
-				<div class="col_left_lg fleft">
-					<span class="f_thin title cl_black_4">Đăng nhập bằng</span>
-					<ul class="login_social">
-						<li><a onclick="facebook_login();" class="facebook"><span
-								class="icon_social "></span><span class="f_med cl_white name">Tài
-									khoản Facebook</span></a></li>
-						<li><a onclick="google_login();" class="google"><span
-								class="icon_social "></span><span class="f_med cl_white name">Tài
-									khoản Google<sup>+</sup>
-							</span></a></li>
-						<li><a onclick="yahoo_login();" class="yahoo"><span
-								class="icon_social "></span><span class="f_med cl_white name">Tài
-									khoản Yahoo!</span></a></li>
-					</ul>
-				</div>
-				<div class="col_middle_lg fleft">
-					<span class="cl_black_2 txt_or"><i>hoặc</i></span>
-				</div>
-				<form action="/dang-nhap" method="post" novalidate="novalidate">
-					<input id="ReturnUrl" name="ReturnUrl" type="hidden"
-						value="/checkout/thanh-toan"> <input type="hidden"
-						id="absoluteUrl" value="/checkout/thanh-toan">
-					<div class="col_right_lg fleft">
-						<span class="f_med cl_blue title">Đăng nhập bằng tài khoản OK DEAL</span>
-						<div class="reg_left reg_left_login fleft">
-							<p class="p_input reg_error">
-								<span class="cl_red"><span class="field-validation-valid"
-									data-valmsg-for="IsValidUser" data-valmsg-replace="true"></span></span>
-							</p>
-							<p class="p_input">
-								<span class="txt_input cl_black_4">Email<font class="cl_red"> *</font></span>
-								<input class="fill_input" data-val="true"
-									data-val-required="Vui l&amp;#242;ng nhập email" id="Email"
-									name="Email" placeholder="Địa chỉ email" type="text" value="">
-							</p>
-							<p class="p_input reg_error">
-								<span class="cl_red"><span class="field-validation-valid"
-									data-valmsg-for="Email" data-valmsg-replace="true"></span></span>
-							</p>
-							<p class="p_input">
-								<span class="txt_input cl_black_4">Mật khẩu<font class="cl_red">
-										*</font></span> <input class="fill_input" data-val="true"
-									data-val-required="Vui l&amp;#242;ng nhập mật khẩu"
-									id="Password" name="Password" placeholder="Mật khẩu"
-									type="password">
-							</p>
-							<p class="p_input reg_error">
-								<span class="cl_red"><span class="field-validation-valid"
-									data-valmsg-for="Password" data-valmsg-replace="true"></span></span>
-							</p>
-							<div class="policy_reg_div">
-								<ul>
-									<li class="" style="margin-top: 0"><a href="/quen-mat-khau"
-										class="link_forgot"><b>Bạn quên mật khẩu?</b></a></li>
-								</ul>
-							</div>
-							<div class="reg_btn_div">
-								<input type="submit" value="ĐĂNG NHẬP"
-									class="btn_buy_detail_big f_bold"> <a class="cl_blue reged"
-									href="/dang-ky-tai-khoan?returnUrl=%2Fcheckout%2Fthanh-toan">Bạn
-									chưa có tài khoản?</a>
-							</div>
-							<div class="banner_not_login_div">
-								<div class="banner_not_login">
-									<p class="f_bold txt">
-										<a href="/checkout/thanh-toan">Mua hàng <br> không cần Tài
-											khoản
-										</a>
-									</p>
-									<p class="txt">
-										<span class="icon_not_login"></span>
-									</p>
-									<span class="cover_notlogin_banner"></span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-		<div class="fix"></div>
-	</div>
-    <?php else : ?>
-    <!--Form-->
-
-	<?php
+        <div class="row">
+  <?php
 	$form = $this->form;
 	$form->setAttribute ( 'action', $this->url ( 'customers', array (
 	'action' => 'add' ) ) );
@@ -116,172 +11,125 @@
 	echo $this->form ()->openTag ( $form );
 	echo $this->formHidden ( $form->get ( 'customers_id' ) );
 	
-	?>
-		<div class="content">
-			<div id="orderContainer" class="Col_CC">
-
-				<div class="buy_form">
-					<dl class="buy_form_item">
-						<dt class="non_arrow">1. Tóm tắt đơn hàng</dt>
-						<dd class="col1" id="step1CartListContainer">
-
-
-							<table width="100%" border="0" cellpadding="0" cellspacing="0"
-								class="shop_deal">
-								<tbody>
-								<?php foreach($ds_sp as $row) : ?>
-									<tr>
-										<td width="69" align="left" valign="top" class="left_col"><a
-											href=""> <img
-												src="<?php echo $this->basepath()?>/img/hinh_san_pham/<?php echo $row->image ?>"
-												alt="<?php echo $row->product_name?>"
-												width="57" height="57">
-										</a></td>
-										<td width="264" colspan="2" align="left" valign="top"
-											class="name"><a href=""><?php echo $row->product_name?></a><br>
-											 <span class="price"><?php echo number_format ( $row->sales )?>đ
-												x <?php echo $row->qty?></span> <a href="javascript:;"
-											onclick="RemoveFromCartStep1(51757)" class="delete_icon"> <img
-												src="<?php echo $this->basepath()?>/template/img/delete1.png" width="16" height="16"></a>
-										</td>
-
-									</tr>
-								<?php endforeach;?>
-								</tbody>
-							</table>
-							<a href="/checkout/gio-hang" class="change_shop">Thay đổi giỏ
-								hàng</a>
-						</dd>
-					</dl>
-					<dl class="buy_form_item">
-						<dt class="arrow">2. Địa chỉ giao hàng</dt>
-
-
-						<dd class="form_contact" style="">
-							<input data-val="true"
-								data-val-number="The field ID must be a number." id="ID"
-								name="ID" type="hidden" value="">
-							<div class="row">
-								<span class="row_L">Họ và tên<font class="other_color_star">*</font></span>
-								<span class="row_R"><?php echo $this->formInput ( $form->get ( 'customers_name' ) );
-								echo $this->formElementErrors ( $form->get ( 'customers_name' ) );
-								?></span><br
-									class="clean"> <span><span class="field-validation-valid"
-									data-valmsg-for="ReceiverName" data-valmsg-replace="true"></span></span>
-							</div>
-							<div class="row">
-								<span class="row_L">Điện thoại<font class="other_color_star">*</font></span>
-								<span class="row_R"><?php echo $this->formInput ( $form->get ( 'phone_number' ) );
-								echo $this->formElementErrors ( $form->get ( 'phone_number' ) );
-								?></span><br class="clean"> <span><span
-									class="field-validation-valid" data-valmsg-for="Mobile"
-									data-valmsg-replace="true"></span></span>
-							</div>
-							<div class="row">
-								<span class="row_L">Email<font class="other_color_star">*</font></span>
-								<span class="row_R"><?php echo $this->formInput ( $form->get ( 'email' ) );
-								echo $this->formElementErrors ( $form->get ( 'email' ) );
-								?></span><br
-									class="clean"> <span><span class="field-validation-valid"
-									data-valmsg-for="HouseNumber" data-valmsg-replace="true"></span></span>
-							</div>
-							<div class="row">
-								<span class="row_L">Địa chỉ giao hàng<font class="other_color_star">*</font></span>
-								<span class="row_R"><?php echo $this->formInput ( $form->get ( 'delivery_address' ) );
-								echo $this->formElementErrors ( $form->get ( 'delivery_address' ) );
-								?></span><br class="clean">
-								<span><span class="field-validation-valid"
-									data-valmsg-for="StreetName" data-valmsg-replace="true"></span></span>
-							</div>
-							<div class="row">
-								<span class="row_L">Địa chỉ nhà</span> <span class="row_R">
-								<?php echo $this->formInput ( $form->get ( 'address' ) );
-								echo $this->formElementErrors ( $form->get ( 'address' ) );
-								?></span><br
-									class="clean">
-							</div>
+	?>          
+            <!--  ==========  -->
+            <!--  = Main content =  -->
+            <!--  ==========  -->
+            <section class="span12">
+                
+                <div class="checkout-container">
+                    <div class="row">
+                    	<div class="span10 offset1">
+                    	    
+                    	    <!--  ==========  -->
+							<!--  = Header =  -->
+							<!--  ==========  -->
+                    		<header>
+                    		    <div class="row">
+                    		    	<div class="span2">
+                    		    		<a href="index-2.html"><img src="images/logo-bw.png.pagespeed.ce.KeNq9wU_LZ.png" alt="Webmarket Logo" width="48" height="48"/></a>
+                    		    	</div>
+                    		    	<div class="span6">
+                    		    	    <div class="center-align">
+                    		    	        <h1><span class="light">Billing</span> &amp; Shipping Address</h1>
+                    		    	    </div>
+                    		    	</div>
+                    		    	<div class="span2">
+                    		    	    <div class="right-align">
+                    		    	    	<img src="images/buttons/92x65xsecurity.jpg.pagespeed.ic.0kRRD5XXok.jpg" alt="Security Sign" width="92" height="65"/>
+                    		    	    </div>
+                    		    	</div>
+                    		    </div>
+                    		</header>
+                    		
+                    		<!--  ==========  -->
+							<!--  = Steps =  -->
+							<!--  ==========  -->
+                    		<div class="checkout-steps">
+                    		    <div class="clearfix">
+                    		    	<div class="step done">
+                    		    	    <div class="step-badge"><i class="icon-ok"></i></div>
+                    		    	    <a href="checkout-step-1.html">Shopping Cart</a>
+                    		    	</div>
+                    		    	<div class="step active">
+                    		    	    <div class="step-badge">2</div>
+                    		    	    Shipping Address
+                    		    	</div>
+                    		    	<div class="step">
+                                        <div class="step-badge">2</div>
+                                        Payment Method
+                                    </div>
+                    		    	<div class="step">
+                    		    	    <div class="step-badge">4</div>
+                    		    	    Confirm &amp; Pay
+                    		    	</div>
+                    		    </div>
+                    		</div> <!-- /steps -->
+                    		
+						    <!--  ==========  -->
+							<!--  = Shipping addr form =  -->
+							<!--  ==========  -->
+							    
+						    <form action="#" method="post" class="form-horizontal form-checkout">
+                                <div class="control-group">
+                                    <label class="control-label" for="firstName">Full Name<span class="red-clr bold">*</span></label>
+                                    <div class="controls">
+                                        <?php echo $this->formInput ( $form->get ( 'customers_name' ) );
+										echo $this->formElementErrors ( $form->get ( 'customers_name' ) );
+										?>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="telephone">Telephone<span class="red-clr bold">*</span></label>
+                                    <div class="controls">
+                                        <?php echo $this->formInput ( $form->get ( 'phone_number' ) );
+										echo $this->formElementErrors ( $form->get ( 'phone_number' ) );
+										?>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="email">Email<span class="red-clr bold">*</span></label>
+                                    <div class="controls">
+                                        <?php echo $this->formInput ( $form->get ( 'email' ) );
+										echo $this->formElementErrors ( $form->get ( 'email' ) );
+										?>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="addr1">Address 1<span class="red-clr bold">*</span></label>
+                                    <div class="controls">
+                                        <?php echo $this->formInput ( $form->get ( 'delivery_address' ) );
+										echo $this->formElementErrors ( $form->get ( 'delivery_address' ) );
+										?>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="addr2">Address 2</label>
+                                    <div class="controls">
+                                        <?php echo $this->formInput ( $form->get ( 'address' ) );
+										echo $this->formElementErrors ( $form->get ( 'address' ) );
+										?>
+                                    </div>
+                                </div>
+                                
+                            </form>
 							
-						</dd>
-
-						<!--Info-->
-
-						<!--End info-->
-					</dl>
-					<dl class="buy_form_item">
-						<dt class="arrow">3. Hình thức thanh toán</dt>
-						<dd id="paymentMethodContainer" class="col1">
-							<table width="100%" border="0" cellpadding="0" cellspacing="0"
-								class="shop_deal">
-
-								<tbody>
-									<tr>
-										<td align="left" valign="middle" class="col_TT"><label><input
-												type="radio" checked="checked" name="OrderPaymentMethod"
-												class="L" value="0"><span class="icon_TT2"></span><span
-												class="text_TT"> Bằng tiền mặt khi nhận hàng</span></label></td>
-									</tr>
-									<tr>
-										<td align="left" valign="middle" class="col_TT"><label><input
-												type="radio" name="OrderPaymentMethod" class="L" value="ATM"><span
-												class="1"></span><span class="text_TT"> Bằng thẻ ATM
-													có internet Banking</span></label></td>
-									</tr>
-									<tr>
-										<td align="left" valign="middle" class="col_TT"><label><input
-												type="radio" name="OrderPaymentMethod" class="L"
-												value="2"><span class="icon_TT3"></span><span
-												class="text_TT"> Bằng thẻ quốc tế: Visa, Master Card</span></label></td>
-									</tr>
-
-								</tbody>
-							</table>
-						</dd>
-					</dl>
-				</div>
-				<div class="buy_form_sum" id="OrderInfoContainer">
-					<div class="form_sum">
-						<p>Ghi chú cho đơn hàng</p>
-						<textarea id="orderNote" name="noidung"></textarea>
-					</div>
-					<div class="form_sum" id="step1Summary">
-
-						<div class="row">
-							<span class="row_L">Thành tiền:</span><span class="row_R"><?php echo number_format($_SESSION['tong_tien'])?>đ</span><br
-								class="clean">
-						</div>
-						<div class="row">
-							<span class="row_L">Phí vận chuyển:</span><span class="row_R">Miễn
-								phí</span><br class="clean">
-						</div>
-						<div class="row">
-							<span class="row_L">Tiền thưởng: </span> <span class="row_R">--</span>
-							<br class="clean">
-						</div>
-						<div class="row">
-							<span class="row_L">Tiền giảm giá:</span> <span class="row_R">--</span>
-							<br class="clean">
-						</div>
-						<div class="row">
-							<span class="row_L">Tổng cộng:</span><span class="row_R sum"><?php echo number_format($_SESSION['tong_tien'])?>đ</span><br
-								class="clean">
-						</div>
-
-					</div>
-					<div class="L btn_sum">
-						<input id="submitOrder" type="submit" class="btn_buy1 R"
-							value=" Đặt hàng ">
-					</div>
-				</div>
-			</div>
-		</div>
-	<?php echo $this->form()->closeTag() ?>
-
-
-	<!--End form-->
-    <?php endif;?>
-</div>
-
-
-<!-- //////////////////////////////////
-//////////////END PAGE CONTENT///////// 
-////////////////////////////////////-->
+                            <hr/>
+						    
+						    <p class="right-align">
+						        In the next step you will choose a payment method &nbsp; &nbsp;
+						        
+						        <input id="submitOrder" type="submit" class="btn btn-primary higher bold"
+							value=" CONTINUE ">
+						    </p>
+							    
+							    
+                    	</div>
+                    </div>
+                </div>
+                
+                
+            </section> <!-- /main content -->
+        <?php echo $this->form()->closeTag() ?>
+        </div>
+    </div> <!-- /container -->
