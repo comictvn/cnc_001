@@ -186,6 +186,9 @@ $(document).on("click", ".icon-remove", function(){
 							<div class="span2">Đường dẫn tối ưu (*) :</div>
 							<div class="span3"><?php echo $this->forminput($form->get('alias'))?> <span>Example:
 									lap-top-dell-inprison-1152</span>
+							<span>
+								<?php echo $this->formElementErrors ( $form->get ( 'alias' ) ); ?>
+							</span>
 							</div>
 							<div class="span2 offset1">Thứ tự sắp xếp :</div>
 							<div class="span3"><?php echo $this->forminput($form->get('order'))?> <span>Example:
