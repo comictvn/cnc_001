@@ -40,7 +40,7 @@
 									<th width="10%">Hành động</th>                                    
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="category">
                             <?php foreach ($lienhe as $row): ?>
                                 <tr>
                                     <td><input type="checkbox" name="checkbox"/></td>
@@ -52,7 +52,7 @@
                                     <td><?php echo $row->address ?></td>
                                     <td><?php echo $row->date ?></td>
                                     <td class="action_hanhdong"><a href="javascript::void()" title="Xem" data-href="<?php echo $this->url('lienhe', array('action'=>'edit','id'=>$row->id))?>" id="dialogBtn"><i class="fa fa-pencil-square-o"></i></a>
-									<a data-href="<?php echo $this->url('lienhe', array('action'=>'delete','id'=>$Danhmucs->id))?>" href="javascript::void()" class="delete"><i class="fa fa-trash-o" title="Xóa"></i></a></td>
+									<a data-href="<?php echo $this->url('lienhe', array('action'=>'delete','id'=>$row->id))?>" href="javascript::void()" class="delete"><i class="fa fa-trash-o" title="Xóa"></i></a></td>
                                     
                                 </tr>
                             <?php endforeach;?>

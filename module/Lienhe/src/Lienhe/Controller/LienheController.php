@@ -94,4 +94,14 @@ class LienheController extends AbstractActionController
 		$lienhe = $this->getLienheTable()->getmemberID($id);
 		return new ViewModel(array('lienhe'=>$lienhe));
 	}
+
+	public function deleteAction() {
+		$auth = new AuthenticationService();
+    	if(!$auth->hasIdentity())
+    	{
+    		return $this->redirect()->toRoute('member',array('action'=>'login'));
+    	}
+    	$id = (int) $this->params()->fromRoute('id', 0);
+    	$this->getLienheTable()->delete($id);
+	}
 }
