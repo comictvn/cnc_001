@@ -90,7 +90,7 @@
                                 <a href="" class="gray-link">News</a>
                             </div>&nbsp;
                             <div class="higher-line">
-                                <a href="" class="gray-link">About</a>
+                                <a href="<?php echo $this->url('chitiettintuc', array('alias'=>'about-us')) ?>" class="gray-link">About</a>
                             </div>&nbsp;
                             <div class="higher-line">
                                 <a href="<?php echo $this->url('lienhe') ?>" class="gray-link">Contact</a>
@@ -159,7 +159,7 @@
                 <!--  ==========  -->
                 <div class="nav-collapse collapse">
                   <ul class="nav" id="mainNavigation">
-                   <?php $catepro = $this->catepro() ?>
+                   <?php @$catepro = $this->catepro() ?>
                    <?php foreach($catepro as $catepros): ?>
                     <li class="active"><a href="<?php echo $this->url('categoryProduct', array('alias'=>$catepros['alias'])) ?>"><?php echo $catepros['name'] ?></a></li>
                    <?php endforeach ?>

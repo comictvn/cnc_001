@@ -203,7 +203,7 @@ class TintucController extends AbstractActionController
 		$duan = $this->getTintucTable()->duanthuchien();
 		$block = $sm->get('Tintuc\Model\TintucTable')->fetchblock($dbAdapter);
 		$intro = $this->getTintucTable()->tintuc();
-		return new ViewModel(array('tincu'=>$tincu,'catenew'=>$catenew,'tincate'=>$tin,
+		return new ViewModel(array('tincu'=>$tincu,'catenew'=>$catenew,
 				'tinnong'=>$tinnong,'duan'=>$duan, 'block'=>$block, 'intro'=>$intro, 'title' => $seopage['title']));
 	}
 	
