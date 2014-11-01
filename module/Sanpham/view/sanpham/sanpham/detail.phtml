@@ -177,8 +177,8 @@
                                 <div class="picture">
                                     <a href="product.html"><img src="<?php echo $other_products->image ?>" alt="<?php echo $other_products->proname ?>" width="540" height="374"/></a>
                                     <div class="img-overlay">
-                                        <a class="btn more btn-primary" href="<?php echo $this->url('chitietsanpham', array('alias'=>$other_products->alias))?>">Chi tiết</a>
-                                        <a href="#" class="btn buy btn-danger">Mua hàng</a>
+                                        <a class="btn more btn-primary" href="<?php echo $this->url('chitietsanpham', array('alias'=>$other_products->alias))?>">More</a>
+                                        <a href="<?php echo $this->url('giohang',array('action'=>'mua','id'=>$other_products->id,'sl'=>'1','dg'=>$other_products->price))?>" class="btn buy btn-danger">Add to cart</a>
                                     </div>
                                 </div>
                             </div>
