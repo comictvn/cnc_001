@@ -214,7 +214,8 @@
                         		<div class="span6">
                         		    <div class="news-item">
                         		        <div class="published"><?php echo $news['date'] ?></div>
-                        		        <h6><a href="<?php echo $this->url('chitiettintuc', array('alias'=>$news['alias']))?>"><?php echo $news['summary'] ?></p>
+                        		        <h6><a href="<?php echo $this->url('chitiettintuc', array('alias'=>$news['alias']))?>"><?php echo $news['title'] ?></a></h6>
+                                        <p><?php echo $news['summary'] ?></p>
                         		    </div>
                         		</div>
                             <?php if($i % 2 === 0) :  ?>

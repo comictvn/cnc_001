@@ -89,7 +89,7 @@ class CustomersTable
 		$select->columns(array('customers_id', 'customers_name', 'address', 'phone_number', 'delivery_address', 'email'));
 		$select->join('bill','bill.customers_id=customers.customers_id',array('bill_id', 'bill_date', 'bill_value','payment','content'),$select::JOIN_INNER);
 		$select->join('detail_bill','bill.bill_id=detail_bill.bill_id',array('id', 'qty'),$select::JOIN_INNER);
-		$select->join('product','product.id=detail_bill.id',array('product_id','product_name', 'price','image'),$select::JOIN_INNER);
+		$select->join('product','product.id = detail_bill.id',array('id','proname', 'price','image'),$select::JOIN_INNER);
 		$select->where(array('customers.customers_id'=>$customers_id));
 		$statement = $sql->prepareStatementForSqlObject($select);
 		$results = $statement->execute();

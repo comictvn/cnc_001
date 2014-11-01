@@ -57,24 +57,46 @@
                     <section class="contact-form-container">
                         
                         <h3 class="push-down-25"><span class="light">Send</span> a Message</h3>
+                        <?php
+                        $form=$this->form;
+                        $form->setAttribute('action',$this->url('lienhe',array('action'=>'index')));
+                        $form->prepare();
+                        echo $this->form()->openTag($form);
+                        echo $this->formhidden($form->get('id'));
+                        echo $this->formhidden($form->get('date'));
+                        echo $this->formhidden($form->get('title'));
+                        echo $this->formhidden($form->get('company'));
+                        ?>
                         
-                        <form id="commentform" method="post" action="#" class="form form-inline form-contact">
                             <p class="push-down-20">
-                                <input type="text" aria-required="true" tabindex="1" size="30" value="" id="author" name="author" required>
+                                <?php echo $this->forminput($form->get('name'))?>
                                 <label for="author">Name<span class="red-clr bold">*</span></label>
                             </p>
                             <p class="push-down-20">
-                                <input type="email" aria-required="true" tabindex="2" size="30" value="" id="email" name="email" required>
+                                <?php echo $this->forminput($form->get('email'))?>
                                 <label for="email">Mail<span class="red-clr bold">*</span></label>
                             </p>
                             <p class="push-down-20">
-                                <input type="text" tabindex="3" size="30" value="" id="url" name="url">
-                                <label for="url">Website</label>
+                                <?php echo $this->forminput($form->get('phone'))?>
+                                <label for="url">Phone</label>
+                            </p>
+
+                            <p class="push-down-20">
+                                <?php echo $this->forminput($form->get('address'))?>
+                                <label for="url">Address</label>
                             </p>
     
                             <p class="push-down-20">
-                                <textarea class="input-block-level" tabindex="4" rows="7" cols="70" id="comment" name="comment" placeholder="Your Message goes here ..." required></textarea>
+                               <?php echo $this->formtextarea($form->get('content'))?>
                             </p>
+                            <p class="push-down-20">
+                               <?php echo $this->formcaptcha($form->get('captcha')) ?>
+                            </p>
+                            <?php 
+                            $mss = $form->getMessages();
+                            if(isset($mss['captcha']['badCaptcha']))
+                                echo "<br /> Please Enter Captcha";
+                            ?>
                             <p>
                                 <button class="btn btn-primary bold" type="submit" tabindex="5" id="submit">SEND EMAIL</button>
                             </p>

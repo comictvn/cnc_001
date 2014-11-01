@@ -286,10 +286,6 @@ class SanphamController extends AbstractActionController
     	$page = (int) $this->params()->fromRoute('id', 0);
     	$product=$this->getSanphamTable()->getAllcateindex();
     	
-    	$iteratorAdapter = new \Zend\Paginator\Adapter\Iterator($product);
-    	$paginator = new \Zend\Paginator\Paginator($iteratorAdapter);
-    	$paginator->setCurrentPageNumber($page);
-    	$paginator->setItemCountPerPage(16);
     	$sm=$this->getServiceLocator();
     	$dbAdapter = $sm->get('db1');
     	$seopage = $sm->get('Sanpham\Model\SanphamTable')->getseo($dbAdapter);
@@ -302,7 +298,7 @@ class SanphamController extends AbstractActionController
     	$sm=$this->getServiceLocator();
     	$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
     	$cate = $sm->get('Sanpham\Model\SanphamTable')->getcate($dbAdapter);
-    	return new ViewModel(array('result'=>$paginator,  'cate'=> $cate,
+    	return new ViewModel(array('result'=>$product,  'cate'=> $cate,
     			
     	));
     }

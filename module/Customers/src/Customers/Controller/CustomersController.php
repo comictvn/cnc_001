@@ -121,8 +121,8 @@ class CustomersController extends AbstractActionController
     					'bill_date'=>date('Y-m-d'),
     					'customers_id'		=>$customers_id,
     					'bill_value'	=>$_SESSION['tong_tien'],
-    					'payment'=> $request->getPost('OrderPaymentMethod'),
-    					'content'=>$request->getPost('noidung'),
+    					'payment'=> 1,
+    					'content'=> '',
     					);
     			$sm=$this->getServiceLocator();
     			$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
@@ -142,8 +142,9 @@ class CustomersController extends AbstractActionController
     			
     			$data = $form->getData();
     			
-    			
-    			  	
+    		$giohang->huygiohang();
+            return $this->redirect()->toRoute('sanpham');	
+
     		}
     	}
     	
@@ -162,11 +163,10 @@ class CustomersController extends AbstractActionController
     	$sm=$this->getServiceLocator();
     	$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');    	 
     	$bill= $this->getCustomersTable()->fetchbill($dbAdapter,$customers_id);
-    	$productdif = $this->getSanphamTable()->fetchAllrandom();
     	return new ViewModel(array('bill'=>$bill,'title'=>'Đơn đặt hàng',
-    			'sanphamkhac'=>$productdif,
     	));
     }
+
     public function getCustomersTable()
     {
     	if(!$this->customersTable)
