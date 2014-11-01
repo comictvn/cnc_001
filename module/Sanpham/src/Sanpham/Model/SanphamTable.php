@@ -20,6 +20,13 @@ class SanphamTable
 		return $resultSet;
 	}
 
+	public function search($name) {
+		$select = $this->tableGateway->getSql()->select()->where("proname like '%$name%'")->order(array('id DESC'))->limit(5);
+		$resultSet = $this->tableGateway->selectWith($select);
+		$resultSet->buffer();
+		return $resultSet;
+	}
+
 	public function getOtherProduct($limit)
 	{
 		$select = $this->tableGateway->getSql()->select()->order(array('id DESC'))->where('active != 0')->limit($limit);

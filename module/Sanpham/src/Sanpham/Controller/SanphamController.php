@@ -352,6 +352,28 @@ class SanphamController extends AbstractActionController
     	));
     }
 
+    public function searchAction() {
+        $page = (int) $this->params()->fromRoute('page', 0);
+        $name = @$_GET['search'] ;
+        
+        $product = $this->getSanphamTable()->search($name);
+      
+        $sm=$this->getServiceLocator();
+        $dbAdapter = $sm->get('db1');
+        $seopage = $sm->get('Sanpham\Model\SanphamTable')->getseo($dbAdapter);
+        
+        $renderer = $this->getServiceLocator()->get(
+                'Zend\View\Renderer\PhpRenderer');
+        $renderer->headTitle($seopage['title']);
+        $renderer->headMeta()->appendName('keywords', $seopage['meta']);
+        $renderer->headMeta()->appendName('description', $seopage['keywork']);
+        
+        
+        return new ViewModel(array('result'=>$product,
+            
+        ));
+    }
+
     public function giohangAction()
     {
         
