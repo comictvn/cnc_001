@@ -232,6 +232,24 @@ class Menu extends AbstractTableGateway{
     	}
     	return $product;
     }
+
+    public function cartlist($dbAdapter, $ds_masp)
+    {
+        $sql = new Sql($dbAdapter);
+        $select = $sql->select();
+        $select->from('product');
+        $select->where(array("id in($ds_masp)"));
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $results = $statement->execute();
+        $product=array();
+        for($i=0;$i<$results->count();$i++)
+        {
+        $kq=$results->current();
+        $product[]=$kq;
+        $results->next();
+        }
+        return $product;
+    }
     
     
     public function Data(){

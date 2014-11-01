@@ -26,9 +26,11 @@ class Menus extends AbstractHelper
         $_SESSION['tong_tien']=$this->giohang->tong_tien();
     }
 
+
+
     public function giohang($sm, $table1) {
         $giohang = $this->giohang->product_gio_hang();
-
+        $dbAdapter = $sm->get('db1');
         if(!empty($giohang))
         {
         
@@ -38,19 +40,19 @@ class Menus extends AbstractHelper
                 $ds_masp[]=$key;
             }
             $ds_masp=implode(',',$ds_masp); 
-            $results=$this->getSanphamTable()->cartlist($ds_masp);
+            $results =$sm->get($table1)->cartlist($dbAdapter, $ds_masp); 
             $product_giohang=array();
             
             foreach ($results as $row)
             {
-                $row->qty = $giohang[$row->id];
+                $row['qty'] = $giohang[$row['id']];
                 $product_giohang[]=$row;
                 
             }
             
         }
 
-        $this->data = $product_giohang
+        $this->data = $product_giohang;
         return $this->data;
     }
 
