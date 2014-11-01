@@ -135,6 +135,12 @@ class Module
                 	$helper->block($sm->getServiceLocator(),'Block\Model\Menu');
                 	return $helper;
                 },
+                // GIO HANG
+                'giohang' => function($sm) {
+                  $helper = new menus();
+                  $helper->giohang($sm->getServiceLocator(),'Block\Model\Menu');
+                  return $helper;
+                }
                 
             )
         );
