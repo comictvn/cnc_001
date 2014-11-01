@@ -45,8 +45,9 @@ if (isset ( $ds_sp )) {
                     		    	    <div class="step-badge">1</div>
                     		    	    Shopping Cart
                     		    	</div>
+                                    
                     		    	<div class="step">
-                    		    	    <div class="step-badge">3</div>
+                    		    	    <div class="step-badge">2</div>
                     		    	    Shipping Address
                     		    	</div>
                     		    	
@@ -72,7 +73,7 @@ if (isset ( $ds_sp )) {
 										?>
 							        <tr>
 							        	<td class="image"><img src="<?php echo $row->image ?>" alt="" width="124" height="124"/></td>
-							        	<td class="desc"><?php echo $row->proname ?> <a title="Remove Item" class="icon-remove-sign" href="#"></a>
+							        	<td class="desc"><?php echo $row->proname ?>
 										<input type="checkbox" name="xoa<?php echo $row->id?>"
 															value="<?php echo $row->id?>">
 							        	</td>

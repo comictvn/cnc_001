@@ -52,7 +52,7 @@ class Menus extends AbstractHelper
             
         }
 
-        $this->data = $product_giohang;
+        $this->data = @$product_giohang;
         return $this->data;
     }
 
