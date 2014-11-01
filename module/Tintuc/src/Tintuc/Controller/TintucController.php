@@ -333,7 +333,7 @@ class TintucController extends AbstractActionController
     	
     		$lang = $lang_t ;
     		foreach ($matches[1] as $key => $value) {
-    			if($lang == $value)
+    			if($lang == $value) 
     			{
     				$key_l = $key;
     			}
