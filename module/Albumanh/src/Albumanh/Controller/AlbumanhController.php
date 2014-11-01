@@ -148,16 +148,19 @@ class AlbumanhController extends AbstractActionController
     	$dbAdapter = $sm->get('db1');
     	$anh = $sm->get('Albumanh\Model\AlbumanhTable')->getAlbumanhitem($dbAdapter, $id);
     	$Albumanh = $this->getAlbumanhTable()->getmemberID($id);
-    	if (isset($_POST['imageshow'])) {
-    		$data['album'] = $id;
-    		
+        $request = $this->getRequest();
+    	if ($request->isPost()) {
+    	    $data['album'] = $id;
     		$sm->get('Albumanh\Model\AlbumanhTable')->deleteimagealbum($dbAdapter, $data);
+
+            if(isset($_POST['imageshow'])) {
+                foreach ($_POST['imageshow'] as $image)
+                {
+                    $data['link'] = $image ;
+                    $sm->get('Albumanh\Model\AlbumanhTable')->insertimage($dbAdapter, $data);
+                }
+            }
     		
-    		foreach ($_POST['imageshow'] as $image)
-    		{
-	    		$data['link'] = $image ;
-	    		$sm->get('Albumanh\Model\AlbumanhTable')->insertimage($dbAdapter, $data);
-    		}
     		
     		return $this->redirect()->toRoute('albumanh', array('action'=>'item','id'=>$id));
     	}
