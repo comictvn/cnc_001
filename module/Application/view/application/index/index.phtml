@@ -6,8 +6,11 @@
             <ul>
             <?php foreach($slide as $slides): ?>
                 <li data-transition="premium-random" data-slotamount="3">
-                    <img src="<?php echo $this->basepath() ?>/template/main/images/dummy/slides/1/slide.jpg.pagespeed.ce.r-PVKaMylg.jpg" alt="slider img" width="1400" height="377"/>
-
+                <?php $i=0; foreach ($slidevalue[$i] as $slidevaules):  if($slides['id'] == $slidevaules['parent']): ?>
+                    <?php if($slidevaules['meta'] == 'image_banner') :?>
+                    <img src="<?php  echo $slidevaules['value'] ?>" alt="slider img" width="1400" height="377"/>
+                    <?php  endif;?><?php endif;?>
+                <?php  endforeach;?>
                     <!-- baloons -->
                     <div class="caption lft ltt" data-x="570" data-y="50" data-speed="4000" data-start="1000" data-easing="easeOutElastic">
                         <img src="<?php echo $this->basepath() ?>/template/main/images/dummy/slides/1/baloon1.png.pagespeed.ce.L7q7sfZEL8.png" alt="baloon" width="135" height="186"/>
