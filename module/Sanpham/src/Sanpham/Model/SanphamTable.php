@@ -39,7 +39,7 @@ class SanphamTable
 	{
 		$select = $this->tableGateway->getSql()->select()->join('catepro', 'catepro.idpro = product.id', array('idpro', 'idcate'))
 		->join('procate', 'procate.id = catepro.idcate', array('cate_alias'=>'alias'))
-		->where(array(/*'procate.alias'=>$id,*/'product.active'=>1))
+		->where(array('procate.alias'=>$id,'product.active'=>1))
 		->order(array('product.id DESC'));
 		$resultSet = $this->tableGateway->selectWith($select);
 		$resultSet->buffer();
