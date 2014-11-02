@@ -4,7 +4,7 @@ return array(
 		'db' => array(
 				//this is for primary adapter...
 				'driver'         => 'Pdo',
-				'dsn'             => 'mysql:dbname=vnreforg_data;host=localhost',
+				'dsn'             => 'mysql:dbname=vnref_data001;host=localhost',
 				'driver_options'  => array(
 						PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
 				),
@@ -14,14 +14,14 @@ return array(
 						 
 						'db1' => array(
 								'driver'         => 'Pdo',
-								'dsn'             => 'mysql:dbname=vnreforg_data;host=localhost',
+								'dsn'             => 'mysql:dbname=vnref_data001;host=localhost',
 								'driver_options'  => array(
 										PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
 								),
 						),
 						'db2' => array(
 								'driver'         => 'Pdo',
-								'dsn'             => 'mysql:dbname=vnreforg_data;host=localhost',
+								'dsn'             => 'mysql:dbname=vnref_data001;host=localhost',
 								'driver_options'  => array(
 										PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
 								),
